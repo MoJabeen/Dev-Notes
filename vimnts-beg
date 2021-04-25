@@ -1,0 +1,58 @@
+
+NORMAL MODE
+SEARCHING
+
+/word
+n - next word
+N - prev word
+
+*next word on cursor
+# previous ""
+
+u - undo 
+Ctrl r - redo
+
+INSERT MODE
+
+i - insert before the char
+a - insert after the char
+A - insert at the end of a line
+
+o - newline bellow
+O - newline above
+
+Normal Mode
+
+h - left l - right
+j - down k - up
+
+w - move forward a word
+b - move back a word
+0 - begin of current line
+^ - first non blank char
+$ - end of line  
+% - matching bracket
+
+f char - move to char on line
+t char - move to before char one line
+
+line numb G - move cursor to chosen line
+G - end of file
+gg - start of file
+
+Ctrl e - scroll window down
+Ctrl u - move cursor half way up
+Ctrl d - move your cursor down half way
+
+d - delete
+c - change
+y - yank
+
+combine ie d$
+diw - delete inside word
+ciw - change inside a word
+dip - delete para
+dis - del sent
+di" - del in quotation marks
+di[ - del in brackets
+

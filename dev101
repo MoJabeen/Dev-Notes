@@ -1,0 +1,11 @@
+
+golang version 1.13.4
+
+registry maps service to port
+
+registry-server -upstream mgmt
+ - allows connection to all services on dc
+
+-ge_debug_rpc_client -ge_debug_fancy_dialer
+
+
