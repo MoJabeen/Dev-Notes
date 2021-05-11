@@ -1,0 +1,5 @@
+//This file shows my current vimrc setup
+
+:set number
+:colorscheme PapayaWhip
+:syntax on
