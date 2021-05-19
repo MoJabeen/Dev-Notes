@@ -1,0 +1,10 @@
+NOTES ON VIRTULISATION
+
+DOCKER
+
+Creates !containers! to deploy apps. Package up an app with all it needs in a container and deploy as one package.
+
+
+
+
+
