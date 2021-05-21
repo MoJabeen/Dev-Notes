@@ -1,0 +1,7 @@
+This is a list of items to learn
+
+- RPC/GRPC
+- REST API
+- OpenBSD cutting edge security unix system
+- nftables
+- network traffic (wireshark/tcpdump)
