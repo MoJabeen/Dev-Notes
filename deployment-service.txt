@@ -1,0 +1,16 @@
+DECRIP: This doc is notes on the deployment of services to a server
+
+Three models of service infastructure:
+
+SaaS : Software as a Service
+PaaS: Platform as a Service
+IaaS : Infracture as a Service
+
+
+SaaS: Pure app accessed through web no dev needed
+PaaS: Platform to deploy and manage your own apps - middleware managed
+IaaS: Hardware to use for apps
+
+PaaS open source solutions:
+
+OKD (OpenShift Orgin) - Highly reccomended
