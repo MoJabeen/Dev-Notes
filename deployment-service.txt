@@ -14,3 +14,16 @@ IaaS: Hardware to use for apps
 PaaS open source solutions:
 
 OKD (OpenShift Orgin) - Highly reccomended
+Cloud Foundry - Back up option with good suggest tutorial videos
+
+More on OKD:
+
+OKD is based on Kubernetes which is a container orchestration engine. This is designed to allow the easy scaling and deployment of services.
+
+OKD adds 
+	- Platform level requirements
+	- Deployment process
+	- Hybrid Cloud deployments
+
+
+
