@@ -1,0 +1,7 @@
+LAKE PARIME AUTODEPLOYER CODE NOTES
+
+autodeployer-server.go
+
+main process:
+	- slay all autodeployers
+	- start a go routine
