@@ -6,6 +6,9 @@ Package Context:
 
 - Context are taken and when used by a function will return a child
 !! Vital to use CancelFunc() to cancel the child and its children !!
-
+! Pass ctx directly and do not pass nil pass context.TODO!
 AUTH:
+	- 
+
+RPC: 
 	- 
