@@ -1,0 +1,51 @@
+CONTAINER BACKGROUND INFO
+
+Q: What is the main purpose of a container?
+
+    A: To allow software to run in all different enviroments
+
+Q: In its most basic form what is a container?
+
+    A: Packaging of software and all its dependancies
+       The package includes all items needed to run the software: code, system tools and settings.
+
+Q: What are lightweight containers?
+
+    A: Containers that share the OS kernal so each container does not need an OS.
+
+Q: Difference between VMs and Containers?
+
+    A: Containers abstract the OS (app layer), VM abstracts the hardware.
+
+CONTAINER ORCHESTRATION
+
+Q: why were container orchestration tools deveopled?
+
+    A: Provide frameworks for managing microservices at scale, enable containers to remain functional in production
+
+Q: Name a few functions facilitated by orchestration tools:
+
+    A:  - Host configuration
+        - Resources being allocated
+        - Authentication and access control
+        - High availbilty
+        - Load balance
+        - Scaling of containers to workload demands
+
+Q: In what area is kubernetes the standard ?
+
+    A: The feature set that enables deploying and managining containers in different clusters of VMs.
+
+Q: What is included in a kubernetes cluster ?
+
+    A: Node, control panel all in a cluster
+
+    Each node inlcudes a proxy and machine (kublet)
+
+    All nodes connect into the API server
+
+    Which then is connected to controller manager
+
+    Connected to the API
+
+
