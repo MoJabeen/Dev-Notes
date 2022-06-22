@@ -100,3 +100,29 @@ Abstraction is all about simplifying and detaching results from an implementatio
 - Avoid hybrids of OO and procedural, that use both freely accessed variables and functions operating on them
 
 ## Error Handling
+
+- Error handling should not be obscure, should not cover up the functional code
+
+This book suggests using try and catch methods instead of the nested error returning for clear separation
+
+- Best to scope the error used in the exceptions and not leave them broad
+- Good errors allow you to find the issue, they should state the operation that failed and the type of error
+
+- Its best practice to wrap any third party APIs for better control and easier to read implementations
+- Preferable to use SPECIAL CASE class or objects, instead of a null/error that is caught as an exception and dealt with.
+
+## Unit Testing
+
+TDD - Test Driven Development, tests should be written before production code. Tests need to be developed with code as, crappy tests or old tests are as good as no tests. They have a negative effect on the likelhood of upkeep and therefore having the necessary tests for new code.
+
+- The most important aspect of tests are they are easily readable and therefore easy to maintain
+- Use the BUILD OPERATE CHECK pattern
+
+- Each test function should only test one concept
+- Tests should follow FIRST:
+  - Fast (to run)
+  - Independant (not dependant on other tests)
+  - Repeatable
+  - Self Validating (Boolean output - Pass or fail)
+  - Timely (Written before production code)
+
