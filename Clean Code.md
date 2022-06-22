@@ -77,3 +77,26 @@ Weak foundations also progressively increase the difficulty of effective improve
 - Caller functions should be placed above the callee
 - Dependencies should flow down through the code
 - Avoid very wide lines of code
+
+## Objects and Data Structures
+
+Abstraction is all about simplifying and detaching results from an implementation.
+  - Good abstraction allows us to not care about the details of how to interact
+  - Your focus on the abstraction is how to manipulate the essence of data
+
+- Interfaces should be used to give you answers not data points to compute
+
+**Objects hide their data behind abstractions and expose functions that operate on that data**
+**Data Structures expose their data and have no meaningful functions**
+
+- Object should be thought of as essentially opposite in use case to data structures
+  - Procedural code with data structures are good for new functions and bad for new data types
+  - OO code with objects are good for new data types and bad for new functions
+
+*Both Procedural and OO are needed, they should be chosen based on the circumstance*
+
+- **Law of Demeter**: Dont access a classes variables if used by its methods
+- Avoid chains of functions ie meh().hem().blah()
+- Avoid hybrids of OO and procedural, that use both freely accessed variables and functions operating on them
+
+## Error Handling
