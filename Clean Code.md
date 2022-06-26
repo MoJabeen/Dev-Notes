@@ -78,7 +78,7 @@ Weak foundations also progressively increase the difficulty of effective improve
 - Dependencies should flow down through the code
 - Avoid very wide lines of code
 
-## Objects and Data Structures
+## Objects and Data Structures
 
 Abstraction is all about simplifying and detaching results from an implementation.
   - Good abstraction allows us to not care about the details of how to interact
