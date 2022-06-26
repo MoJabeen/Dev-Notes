@@ -121,8 +121,81 @@ TDD - Test Driven Development, tests should be written before production code. T
 - Each test function should only test one concept
 - Tests should follow FIRST:
   - Fast (to run)
-  - Independant (not dependant on other tests)
+  - Independent (not dependant on other tests)
   - Repeatable
   - Self Validating (Boolean output - Pass or fail)
   - Timely (Written before production code)
 
+## Classes
+
+- Always avoid public variables (accessible from anywhere) in a class
+- Encapsulation is important to ensure clear separation of concepts
+
+- Classes names should define the scope, they should always be small
+
+- Classes should follow the SRP principle (only have one reason to change)
+  - To create better abstractions, think about the reasons you would change the class
+
+- The methods inside the class should use many of its variables, to create cohesive classes. This is preferred so the class acts as a complete whole.
+
+- **Classes should be open for extension closed for modification**
+- Classes should depend on abstractions not on concrete details for a more fluid system design
+
+## Systems
+
+- Startup and runtime logic should be separated
+- Major dependencies should be carefully considered and resolved with a consistent global strategy
+
+- An option for separation, is to use main to setup and initalised before passing to run time logic
+
+- Some items need to be made in an adhoc manner, these should be separate (not intwined in the logic) and their creation should be abstracted away.
+  
+*Kent Becks 4 rules for a simple design*:
+- Run all tests
+- Contain no duplication
+- Express intent of programmer
+  - Use standard design patterns to easily show intent
+- Minimal number of classes and functions
+
+## Concurrency
+
+- Threads for I/O
+- Processes for data sets
+
+- Concurrency should be considered a separate issue to single thread programming 
+- Concurrency issues arise from the large number of possible execution paths for even simple code lines
+
+**Concurrency defense principles**:
+
+- Single responsibility principle (single reason to change)
+  - Keep concurrency related code separate from other code 
+
+- Limit the data that might be shared
+  - Preference to use copies of data and later merge into single thread
+  - Create independent threads
+
+- Wary of dependencies between threads
+- Keep synchronized sections small
+- Carefully manage graceful shutdown
+- Tests have potential to expose problems, run them frequently with different configurations and dont ignore errors as one offs.
+
+- Tests single threaded functions first
+
+**Concurrent execution models**:
+
+Producer consumer
+- Queue, with some threads writing to it and others reading
+
+Readers - Writers
+- Writers wait until all readers are done. Kill off writers if they are running for too long.
+
+Dining Philosophers
+- Only act when required and there is enough capacity
+
+## Case study
+
+- Writing clean code is an interactive process
+  - Most effective way to write code is start then begin the clean up
+  - Test driven
+
+TODO follow chapter 14 with your own case study.
