@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1660618243 "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" "Julia Cheat Sheet.pdf" "Julia Cheat Sheet" 1660618244
-  "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" 1660618243 5432 dde21b94bfdeaef7490643b2f5e2f4ff ""
+["pdflatex"] 1660673033 "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" "Julia Cheat Sheet.pdf" "Julia Cheat Sheet" 1660673033
+  "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" 1660673032 10584 46a16a65bd2c1340e6692121c2247e5d ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1136768653 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
@@ -29,6 +29,7 @@
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futr8c.tfm" 1575236847 1388 d9096524ed1bcb31494a842de214440c ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futr8r.tfm" 1136768653 1624 538d715a58a983dc183e18316ca72926 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futr8t.tfm" 1136768653 16984 6d4d92d3efaef5cab6a470d5d5548d56 ""
+  "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futri8c.tfm" 1575236847 1484 4897d23860be7a17fa4879a4c8077dc4 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futri8r.tfm" 1136768653 1844 05bfde78a3831349c6fcf7f272c13d65 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futri8t.tfm" 1136768653 16416 afc29352777063eec9d207ab744c06f5 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futro8t.tfm" 1136768653 17116 7b0335062f61ff6ce9e0d2f0fa58cf5d ""
@@ -39,6 +40,7 @@
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futb8t.vf" 1136768653 2168 d2ac693e07cd79dbc2b914caee3e8df0 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futr8c.vf" 1575236847 3432 6feece74417bef823a52a9450d7c99dc ""
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futr8t.vf" 1136768653 2168 e13210e675696694c4e23c8405ebd134 ""
+  "/usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futri8c.vf" 1575236847 3468 5e9ce925a580938dad3f5dec4ed212c8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futri8t.vf" 1136768653 2168 a3de0d7b0ec248b9d25f46a83dfdb4d8 ""
   "/usr/local/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2022/texmf-dist/tex/generic/babel-english/english.ldf" 1496785618 7008 9ff5fdcc865b01beca2b0fe4a46231d4 ""
@@ -104,8 +106,8 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1660065316 2826428 a8301d32520d3ecedcdd4485e83c119a ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "Julia Cheat Sheet.aux" 1660618244 895 3b6d3af3f239142e7e7b035355ee9c14 "pdflatex"
-  "Julia Cheat Sheet.tex" 1660618243 5432 dde21b94bfdeaef7490643b2f5e2f4ff ""
+  "Julia Cheat Sheet.aux" 1660673033 1616 7b3cb8608dafa15d2a6a70757afc5a4e "pdflatex"
+  "Julia Cheat Sheet.tex" 1660673032 10584 46a16a65bd2c1340e6692121c2247e5d ""
   "structure.tex" 1660150962 3604 5072145dbc6f610fa0f451681f59ddd8 ""
   (generated)
   "Julia Cheat Sheet.aux"

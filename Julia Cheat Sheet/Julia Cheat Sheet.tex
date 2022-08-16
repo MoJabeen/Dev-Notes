@@ -81,7 +81,7 @@
 	numbers=left, % Line numbers on left
 	numberstyle=\large, % Line numbers styling
 	]	
-	for i in 1:5
+	for i in 1:5 # This calls the iterate func
 	println(i)
 	end
 
@@ -91,16 +91,189 @@
 
 \end{lstlisting}
 
+\begin{lstlisting}[
+	caption= Struct definition., % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]	
+	
+	mutable struct name 
+		string::AbstractString
+		boolean::Bool 
+		age::Int
+		a::Array{Int,5}
+	end
+
+	newstruct = name(...)
+
+	# Internal constructors are used to place constraints on the code
+
+	mutable struct name
+		meh::AbstractString
+		numb::Int
+
+		name(blah::AbstractString)= new(meh,4) 
+		# this enforces if a struct without 
+		#a number is given 4 is placed
+	end
+
+\end{lstlisting}
+
+\begin{lstlisting}[
+	caption= Tenancy operations, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	x > 0 ? 1 : -1 
+	# If the condition is true 1 is returned else -1 is
+
+\end{lstlisting}
+
+\begin{itemize}
+	\item Avoid globals
+	\item Locals scope is defined by code blocks ie func, loop not if
+	\item Built in funcs such as iterate can be extended via multi-dispatch
+	\item Use the Profiling package for measuring performance.
+\end{itemize}
 
 
-\subsection{Subsection}
+\section{Objects/Methods}
 
-paragraph
+Structs mainly used to create new data type objects.
 
-\section{Understanding Text}
+Inner and outer constructor methods for structs define how a new object is created based on data input.
 
-\subsubsection{subsubsection}
+Inner constructors enforce the same checks for multiple data types.
 
+\begin{lstlisting}[
+	caption= Constructors, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	struct name{T<:Integer} <: Real 
+	# <: shows all values are included in that set
+	# {for arg} outer for object
+
+		num::T
+		den::T #ensures both are of type T
+
+		#Function checks if the input numbers are empty for every object
+		function name{T}(num::T, den::T) where T <: Integer
+
+			if num == 0 && den == 0
+				error("invalid")
+			end
+			new(num,den)
+		end		
+	end 
+	
+
+	name(n::Int, d::Float) = name(promote(n,d)...)
+	#Outer constructor
+	#Promote converts values of a single type to the same type 
+	#choosing the type to work with both
+
+
+	# MULTI-DISPATCH FUNCTION
+
+	function blah(n::Int, d::Int) = println('meh')
+
+	function blah(x::Int, y::name) = println(x*y.num)
+	#This func now has two methods (multi dispatch)
+
+\end{lstlisting}
+
+\section{Modules}
+
+Modules allow for better namespace control and cleaner structure.\\
+
+They are not attached to a file, can have multiple modules in a file and multi files for the same module.\\
+
+
+\textbf{using modulename:} Includes all code and exported variables.\\
+\textbf{import modulename:} Includes only the code.
+
+Can use submodules which are accessed via . operator.
+
+\section{Differences from Python}
+
+\begin{itemize}
+	\item Use immutable Vector (same data type) instead of arrays (python would use list)
+	\item Indents start with 1
+	\item Include end when slicing ie [1:end] not [1:]
+	\item Use [start;stop;step] format
+	\item Matrix indexing creates submatrix not tuple ie X[[1:2][2:3]]
+	\item To create a tuple from a matrix use (like python) X[CartesianIndex(1,1), CartesianIndex(2,3)]
+	\item Variable assignment is not pointer assignment ie a= b creates new variable so they remain separate.
+	\item push! is the same as append
+	\item \% is remainder not modulus
+	\item Int is not an unknown size its int32
+	\item nothing instead of null
+\end{itemize}
+
+\section{Metaprogramming}
+
+Julia code is represented after compiling as a data struct of type Expr.\\
+
+\textbf{\$:} Used as interpolation for literal expression in a macro.\\
+\textbf{eval:} Executes the code from Expr data type.\\
+\textbf{:} Turns code into an expression (can also used quote for blocks)
+
+Can use Expr data types as inputs to functions.
+
+\subsection{Macros}
+
+Compiled code as an expression not executed on runtime but during parsing.
+
+\begin{lstlisting}[
+	caption= Macro definition, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	macro name()
+
+	end
+
+	@name() # Run using the @ operator.
+
+\end{lstlisting}
+
+Macros are used in code when an expression is required in multiple places before it is evaluated.
+
+\begin{lstlisting}[
+	caption= Create code, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	struct MyNumber
+    	x::Float64
+	end
+	# output
+
+	for op = (:sin, :cos, :tan, :log, :exp)
+    	@eval Base.$op(a::MyNumber) = MyNumber($op(a.x))
+	end
+
+\end{lstlisting}
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
 %----------------------------------------------------------------------------------------

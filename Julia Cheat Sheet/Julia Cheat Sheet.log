@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.9)  16 AUG 2022 03:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.9)  16 AUG 2022 19:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -595,34 +595,54 @@ Overfull \hbox (35.74039pt too wide) in paragraph at lines 90--92
  []
 
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 100.
+(Font)              scaled to size 10.07397pt on input line 101.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 100.
+(Font)              scaled to size 7.63599pt on input line 101.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 100.
+(Font)              scaled to size 5.51999pt on input line 101.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 100.
+(Font)              scaled to size 10.07397pt on input line 101.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 100.
+(Font)              scaled to size 7.63599pt on input line 101.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 100.
+(Font)              scaled to size 5.51999pt on input line 101.
 [1
 
 
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] (./Julia Cheat Sheet.aux) ) 
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (35.74039pt too wide) in paragraph at lines 171--172
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 227--228
+
+ []
+
+[4] (./Julia Cheat Sheet.aux) ) 
 Here is how much of TeX's memory you used:
- 11530 strings out of 478268
- 230583 string characters out of 5846348
- 875710 words of memory out of 5000000
- 29579 multiletter control sequences out of 15000+600000
- 550306 words of font info for 109 fonts, out of 8000000 for 9000
+ 11566 strings out of 478268
+ 230802 string characters out of 5846348
+ 889710 words of memory out of 5000000
+ 29614 multiletter control sequences out of 15000+600000
+ 550653 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,20n,106p,10676b,1282s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,20n,106p,10676b,1933s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on "Julia Cheat Sheet.pdf" (2 pages, 50879 bytes).
+Output written on "Julia Cheat Sheet.pdf" (4 pages, 66020 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 33 PDF objects out of 1000 (max. 8388607)
+ 20 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
