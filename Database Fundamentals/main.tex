@@ -1,0 +1,187 @@
+% Mo Jabeen Template for docs 
+
+\documentclass[11pt]{scrartcl} % Font size
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{	
+	\normalfont\normalsize
+	\vspace{20pt} % Whitespace
+	{\huge Database Fundamentals}\\ % The assignment title
+	\vspace{12pt} % Whitespace
+	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
+}
+
+\author{\small Mo D Jabeen} % Your name
+
+\date{\normalsize\today} % Today's date (\today) or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section{Evolution of database design}
+
+\subsection{What has triggered the evolution in database?}
+
+\begin{itemize}
+	\item Business need to be agile, hypothesis/business models need to be tested fast and then
+	decisions made if a pivot is required. Market insights should allow for quick changes to products/operations.
+	\item CPU improvement is decelerating, and parallelism is increasing
+\end{itemize}
+
+\subsection{What is data intensive application?}
+
+A data intensive application primary challenge is the use of data (storage, transformation, transmission etc)
+this is primary bottle neck whereas in compute intensive apps CPU cycles is the bottle neck.
+
+\section{Fundamental metrics}
+
+\textbf{Reliability:} Tolerate hardware,software and human faults.\\
+\textbf{Scalability:} Maintain load and performance as quantities increase.\\
+\textbf{Maintainability:} Operability, simplicity and evolvability. (Ease of understanding).
+
+\section{Database Systems}
+
+\subsection{What are some elements of a database system?}
+
+\begin{itemize}
+	\item Cache - Results of expensive operations
+	\item Stream processing - Asynchronous processes messaging
+	\item Batch processing - Crunch a large amount of accumulated data
+	\item Message queue - Hold data for use with other processes
+\end{itemize}
+
+\subsection{Which tool should you use?}
+
+No single tools fits all applications, instead the work should be broken into tasks
+and then the most appropriate/effective tool used. 
+
+\textit{Example: Caching - Memcached}
+
+\section{Internal vs External}
+
+\subsection{In code data structures}
+
+Data structures in code are should be structured and used differently to external databases. In code
+data ie for OOP should be based around their use in logic. Databases can be used by multiple separate
+processes whereas data structs should only be used by local code.\\
+
+Data structs should:
+
+\begin{itemize}
+	\item Be limited in size
+	\item Not generally used for concurrent programs
+	\item Not tied to ACID (Atomic,consistent,isolated and durable)
+	\item Fast
+\end{itemize}
+
+\section{Understanding Text}
+
+\subsubsection{subsubsection}
+
+%----------------------------------------------------------------------------------------
+%	FIGURE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+% 	\centering
+% 	\includegraphics[width=0.5\columnwidth]{IMAGE_NAME.jpg} % Example image
+% 	\caption{European swallow.}
+% \end{figure}
+
+%----------------------------------------------------------------------------------------
+% MATH EXAMPLES
+%----------------------------------------------------------------------------------------
+
+% \begin{align} 
+% 	\label{eq:bayes}
+% 	\begin{split}
+% 		P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+% 	\end{split}					
+% \end{align}
+
+%----------------------------------------------------------------------------------------
+%	LIST EXAMPLES
+%----------------------------------------------------------------------------------------
+
+% \begin{itemize}
+% 	\item First item in a list 
+% 		\begin{itemize}
+% 		\item First item in a list 
+% 			\begin{itemize}
+% 			\item First item in a list 
+% 			\item Second item in a list 
+% 			\end{itemize}
+% 		\item Second item in a list 
+% 		\end{itemize}
+% 	\item Second item in a list 
+% \end{itemize}
+
+%------------------------------------------------
+
+% \subsection{Numbered List}
+
+% \begin{enumerate}
+% 	\item First item in a list 
+% 	\item Second item in a list 
+% 	\item Third item in a list
+% \end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	TABLE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \section{Interpreting a Table}
+
+% \begin{table}[h] % [h] forces the table to be output where it is defined in the code (it suppresses floating)
+% 	\centering % Centre the table
+% 	\begin{tabular}{l l l}
+% 		\toprule
+% 		\textit{Per 50g} & \textbf{Pork} & \textbf{Soy} \\
+% 		\midrule
+% 		Energy & 760kJ & 538kJ\\
+% 		Protein & 7.0g & 9.3g\\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Sausage nutrition.}
+% \end{table}
+
+%----------------------------------------------------------------------------------------
+%	CODE LISTING EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \begin{lstlisting}[
+% 	caption= Macro definition, % Caption above the listing
+% 	language=python, % Use Julia functions/syntax highlighting
+% 	frame=single, % Frame around the code listing
+% 	showstringspaces=false, % Don't put marks in string spaces
+% 	numbers=left, % Line numbers on left
+% 	numberstyle=\large, % Line numbers styling
+% 	]
+
+% 	CODE
+
+% \end{lstlisting}
+
+%----------------------------------------------------------------------------------------
+%	CODE LISTING FILE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \lstinputlisting[
+% 	caption=Luftballons Perl Script., % Caption above the listing
+% 	label=lst:luftballons, % Label for referencing this listing
+% 	language=Perl, % Use Perl functions/syntax highlighting
+% 	frame=single, % Frame around the code listing
+% 	showstringspaces=false, % Don't put marks in string spaces
+% 	numbers=left, % Line numbers on left
+% 	numberstyle=\tiny, % Line numbers styling
+% 	]{luftballons.pl}
+
+%------------------------------------------------
+
+\end{document}
