@@ -42,8 +42,76 @@ this is primary bottle neck whereas in compute intensive apps CPU cycles is the 
 \section{Fundamental metrics}
 
 \textbf{Reliability:} Tolerate hardware,software and human faults.\\
+
+Fault and failure are different.
+
+\begin{itemize}
+	\item Fault: Deviates from specification
+	\item Failure: Where the system stops working
+\end{itemize}
+
+Better to build fault tolerant systems that don't lead to failure. Occasionally (ie system security)
+better to be fault preventive.
+
+Worth creating faults as a testing methodology and questioning any assumptions the code bases uses to
+run successfully. Systematic faults are often caused by code assumptions which are true most of the 
+time. 
+
+\subsubsection{How do you prevent human error?}
+
+\begin{itemize}
+	\item Allow fast roll backs to default configs
+	\item Allow for data to be recomputed
+	\item Setup good telemetry (monitoring of system health)
+\end{itemize}
+
 \textbf{Scalability:} Maintain load and performance as quantities increase.\\
-\textbf{Maintainability:} Operability, simplicity and evolvability. (Ease of understanding).
+
+\subsubsection{How do you determine the focus on when increasing scalability?}
+
+Initial focus should be on determine the most intrinsic load parameter to the current architecture 
+(ie database size, size of average reads etc).
+
+Then question what is the effect on performance given the current resources as the load parameter is increased OR
+how would the resources have to be changed.
+
+\subsubsection{How do you measure performance?}
+
+The most releavant performance metric should be determined (ie throughput, response time latency.) \\
+
+This metric will most likely have a distribution even given local consistency due to external factors. The mean of this
+value should generally be ignored as it does not represent an actual value experienced by the system. Instead the
+median is an effective tool and the use of percentiles (50th,95th,99th etc).
+
+\subsubsection{How to scale?}
+
+Common knowledge is to scale on a single node before moving to a multi node setup as it is simpler. This is until it
+is worth the cost of the change. Better to focus on the ability to iterate quickly than scaling for a unknown future
+load.
+
+\textbf{Maintainability:} Operability, simplicity and evolvability. (Ease of understanding).\\
+
+The majority costs of software is upkeep not development. There are three main elements:
+
+\begin{itemize}
+	\item \textbf{Operability:} Easy to operate
+	\item \textbf{Simplicity:} Easy to understand
+	\item \textbf{Evolvability:} Easy to change
+\end{itemize}
+
+\subsubsection{How do you enable good operation?}
+
+\begin{itemize}
+	\item Good monitoring
+	\item Standard tools
+	\item Good documentation
+	\item Predictable behavior
+	\item Avoid single machine dependency
+	\item Good default behavior
+\end{itemize}
+
+\textbf{Accidental complexity:} Arises from complexity of the implementation and is not inherent in the problem being
+solved.
 
 \section{Database Systems}
 
