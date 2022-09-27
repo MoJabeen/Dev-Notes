@@ -148,9 +148,68 @@ Data structs should:
 	\item Fast
 \end{itemize}
 
-\section{Understanding Text}
+\section{Data Representation}
 
-\subsubsection{subsubsection}
+Data representation is crucial as it will directly influence how a problem is solved. The choice of method of storage is
+key:
+
+\begin{itemize}
+	\item JSON
+	\item XML
+	\item relational db
+	\item graph models
+\end{itemize}
+
+The most popular current db model is SQL, which is based on using relational databases via relational database management
+systems.
+
+NoSQL was born from:
+\begin{itemize}
+	\item Need for greater scalability with a large writing throughput
+	\item Desire for more dynamic and expressive data modelling (schemas can be static)
+\end{itemize}
+
+\subsection{How to handle many to one relationships?}
+
+\begin{enumerate}
+	\item Ref to another table with a foreign key
+	\item XML or json to have multiple entries per row
+	\item Refer to a XML or JSON doc in the entry
+\end{enumerate}
+
+In relational dbs can use \textbf{joins} to combine related data, however more difficult to handle with document or NoSQL dbs.
+As an apps features grows more data is collected with key links to old data increasing the \textbf{many to many relationship issue.}\\
+
+\textit{The key issue is to solve the many to many relationship without duplication (lacking normalisation)}
+
+\subsection{What are document databases good for ?}
+
+The data is normally stored in one continous string, so if all the data is loaded into the app at onces, have great locality. However normally recommended to separate docs
+as if any changes are needed to that cause the file size to change the entire file will be rewritten.\\
+
+Have a very flexible schema, allowing the use of heterogenous data ie 
+
+\begin{itemize}
+	\item Each object requires a different table
+	\item Data is from external sources and its format may change
+\end{itemize}
+
+Not so good at dealing with many to one or many to many relationships.
+
+\subsection{Declarative or imperative lang?}
+
+SQL is declarative, the compiler will decide how to implement the requirements. An imperative lang dedicates how to perform
+the requirements of the code (ie the sequence the code is executed).
+
+\subsubsection{Why is declarative useful ?}
+
+Good at abstracting away the db implementation, allowing the RDBM to optimize without needing to changing queries. Also
+great for parallel computing.
+
+\subsubsection{How can you use SQL features with NoSQL?}
+
+NoSQL is implementing methods to allow working easily with subsets of data ie map and reduce. The two different methods
+are converging.
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
