@@ -89,6 +89,8 @@
 
 	a = map((x) -> x^2, [1,3,5,3]) # map performs func on each array element
 
+	foreach(func, collection) #operate func on each val of collection
+
 \end{lstlisting}
 
 \begin{lstlisting}[
@@ -274,6 +276,164 @@ Macros are used in code when an expression is required in multiple places before
 	end
 
 \end{lstlisting}
+
+\section{Concurrency}
+
+Julia combines multi threads and cores using the same memory space as threading. CPUs using
+separate memory spaces are defined as multi-processor or distributed computing.\\
+
+\textbf{mutex:} Single lock mechanism for controlling accessing to data.\\
+\textbf{semaphore:} Value signifying what are the resources being used on, for process synchronization.
+
+Julia code tends to be purely functional and avoids mutation, generally opting for only local mutation.
+
+If there is a shared states locks should be used or a local state (an object shared by all threads.)
+
+A shared local state gives higher performance.
+
+\subsection{Asynchronous}
+
+\subsubsection{What are Tasks ?}
+
+\textbf{Tasks} are used for asynchronous calls, ie waiting for external signals. Tasks allow switching at any
+point in the execution between them and don't use extra memory space (call stack).
+
+wait(t) - waits for the tak
+\begin{lstlisting}[
+	caption= Async functions, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	t = @task func()
+	OR
+	t= @task begin ... end
+	OR	
+	t = Task(func)
+
+	schedule(t,[val],error) # Allocate task to scheduler, pass val
+
+	# if error true, val passed as an exception
+
+	@async func() same as schedule(@task func())
+
+	asyncmap(func,collection,ntask,batch) 
+	
+	# Return collection with the func executed on by ntasks.
+	# Batch executes on collection in groups set by number of batch.
+
+	yield() #Switch to scheduler to allow another task to run
+	yield(t) #Switch to task t.
+
+	Condition() #Edge triggered event source
+	thread.condition - thread safe version
+
+	Event() #Level triggered event source
+
+	notify(condition,val,all,error) #Wake up tasks waiting for condition
+
+	semaphore(sem_size) #counting with max at semsize
+
+	acquire(s) #get a semaphore, blocks if none available
+	release(s)
+
+	#Use below format for locking
+
+	lock()
+	try
+	...
+	finally
+	unlock()
+	end
+
+	bind(channel,task) 
+
+\end{lstlisting}
+
+\begin{lstlisting}[
+	caption= Async wait functions, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	wait([x])
+
+	x {
+		Channel: Wait for val
+		Condition: Wait for notify 
+		Process: wait for process to exit
+		Task: wait for task to finish
+		RawFD: change the file descriptor
+	}
+
+	#if there is no x will wait for schedule to be called
+
+\end{lstlisting}
+
+\subsubsection{What are Channels?}
+
+Channels are a first in first out queue, used to connect tasks in a memory/race safe way. They can be
+bounded to a task, by being placed as a parameter and therefore do not need closing.
+
+\begin{lstlisting}[
+	caption= Channel Functions, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	c = Channel{Type}(limit) #limit is max number of objects in queue
+
+	put!(channel,data) # Place data into channel
+	take!(channel) #Read data from channel
+
+	Channel(func()) - Bind a channel with a task
+
+\end{lstlisting}
+
+\begin{itemize}
+	\item Readers will block on a take if the channel is empty
+	\item Writers will block on a put if the channel is full
+	\item Wait will wait until the channel has data
+	\item isready test if the channel has data
+\end{itemize}
+
+\subsection{Multi threads}
+
+Use atomic vars to ensure expected correct operation when using threads (ie for arithmetics). Careful of
+finalization (tasks to clean up before garbage collection.)
+
+\begin{lstlisting}[
+	caption= threading Functions, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	Threads.@threads [schedule] for ... end
+
+	[schedule] {
+		default: :dyanmic assumes equal load per thread, cant guarantee thread id on an iteration
+		:static one task for thread, can guarantee same id for an iteration
+	}
+
+	threads.foreach(f,c,ntasks) #operate function on channel with n threads
+
+	Threads.@spawn func() #Create task and schedule to run on any available thread
+
+
+\end{lstlisting}
+
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
 %----------------------------------------------------------------------------------------

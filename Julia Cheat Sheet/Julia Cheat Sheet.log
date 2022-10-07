@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.9)  16 AUG 2022 19:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.9)  7 OCT 2022 10:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -595,28 +595,23 @@ Overfull \hbox (35.74039pt too wide) in paragraph at lines 90--92
  []
 
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 101.
+(Font)              scaled to size 10.07397pt on input line 94.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 101.
+(Font)              scaled to size 7.63599pt on input line 94.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 101.
+(Font)              scaled to size 5.51999pt on input line 94.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 10.07397pt on input line 101.
+(Font)              scaled to size 10.07397pt on input line 94.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.63599pt on input line 101.
+(Font)              scaled to size 7.63599pt on input line 94.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 101.
+(Font)              scaled to size 5.51999pt on input line 94.
 [1
 
 
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (35.74039pt too wide) in paragraph at lines 171--172
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (35.74039pt too wide) in paragraph at lines 173--174
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
-
  []
 
 
@@ -624,25 +619,60 @@ Underfull \hbox (badness 10000) in paragraph at lines 201--202
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 227--228
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
 
  []
 
-[4] (./Julia Cheat Sheet.aux) ) 
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--284
+
+ []
+
+[4]
+Overfull \hbox (12.6138pt too wide) in paragraph at lines 336--338
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[5] [6]
+Overfull \hbox (180.28156pt too wide) in paragraph at lines 426--427
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (53.08533pt too wide) in paragraph at lines 427--428
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (29.95874pt too wide) in paragraph at lines 430--432
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.43027pt too wide) in paragraph at lines 432--435
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[7] (./Julia Cheat Sheet.aux) ) 
 Here is how much of TeX's memory you used:
- 11566 strings out of 478268
- 230802 string characters out of 5846348
- 889710 words of memory out of 5000000
- 29614 multiletter control sequences out of 15000+600000
+ 11645 strings out of 478268
+ 231753 string characters out of 5846348
+ 891710 words of memory out of 5000000
+ 29693 multiletter control sequences out of 15000+600000
  550653 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,20n,106p,10676b,1933s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,21n,106p,10676b,1935s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on "Julia Cheat Sheet.pdf" (4 pages, 66020 bytes).
+Output written on "Julia Cheat Sheet.pdf" (7 pages, 77780 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
- 20 compressed objects within 1 object stream
+ 44 PDF objects out of 1000 (max. 8388607)
+ 28 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
