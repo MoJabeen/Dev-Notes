@@ -86,8 +86,8 @@ median is an effective tool and the use of percentiles (50th,95th,99th etc).
 \subsubsection{How to scale?}
 
 Common knowledge is to scale on a single node before moving to a multi node setup as it is simpler. This is until it
-is worth the cost of the change. Better to focus on the ability to iterate quickly than scaling for a unknown future
-load.
+is worth the cost of the change. \textbf{Better to focus on the ability to iterate quickly than scaling for a unknown future
+load.}\\
 
 \textbf{Maintainability:} Operability, simplicity and evolvability. (Ease of understanding).\\
 
@@ -135,7 +135,7 @@ and then the most appropriate/effective tool used.
 
 \subsection{In code data structures}
 
-Data structures in code are should be structured and used differently to external databases. In code
+Data structures in code should be structured and used differently to external databases. In code
 data ie for OOP should be based around their use in logic. Databases can be used by multiple separate
 processes whereas data structs should only be used by local code.\\
 
@@ -180,7 +180,7 @@ NoSQL was born from:
 In relational dbs can use \textbf{joins} to combine related data, however more difficult to handle with document or NoSQL dbs.
 As an apps features grows more data is collected with key links to old data increasing the \textbf{many to many relationship issue.}\\
 
-\textit{The key issue is to solve the many to many relationship without duplication (lacking normalisation)}
+\textit{The key issue is to solve the many to many relationship without duplication (lacking normalisation).}
 
 \subsection{What are document databases good for ?}
 
@@ -210,6 +210,272 @@ great for parallel computing.
 
 NoSQL is implementing methods to allow working easily with subsets of data ie map and reduce. The two different methods
 are converging.
+
+\section{Storage and retrieval}
+
+\subsection{Appended files}
+
+\subsubsection{What is the simplest method of storage ?}
+
+Simplest most effective method is to use an append log for storage.
+
+\subsubsection{How do you speed up retrival ?}
+
+Without parsing through the document, retrieval is speed up by using an index.\\
+
+\textbf{However there is a trade off, as index updating will slow down your write speed.}
+
+\subsubsection{How does a hash index work ?}
+
+Store all keys to the hash in memory allowing for quick looks ups. Will cause issues
+if the memory size issues with a large key set. 
+
+Works best with a small set of keys that are often changed.\\
+
+Con: Difficult to work with range queries, as index are not stored sequentially.
+
+\subsubsection{How do you manage the size of the append log ?}
+
+Segment the files compress and remove any duplication. The segmented files can be
+concurrently merged back.
+
+\subsubsection{What is the standard search approach for finding a key?}
+
+Search the most recent segment, then the next most recent etc.
+
+\subsubsection{How are delted entries managed?}
+
+A special message is appended into the log, which is used to ignore the chosen entry
+at the next merge.
+
+\subsection{LSM / SS Tables}
+
+\subsubsection{What if you sort the key value pairs ?}
+
+In hash indexes the key value pairs are stored sequentially. In a Sorted String table (SS Table)
+the key value pairs are sorted by key. Can then make assumptions about the location of a value,
+due to the ref values and the expected order. Can take these segments between ref values and 
+compress them for better bandwidth.
+
+\subsubsection{How is a LSM tree created ?}
+
+\begin{enumerate}
+	\item Write to in memory structured tree, by key.
+	\item When big enough store data in a SSTable sorted by key
+	\item Read data by first checking the mem table then the SSTables in disk
+	\item Merge and compress segments on disk in the background
+\end{enumerate}
+
+\subsubsection{What are issues with LSM trees?}
+
+When writing the memtable to disk a cash would cause lost data, so append logs are used to store
+data in the memtable deleted when memtable stored as SStable. 
+
+\subsubsection{How do you optimize finding a key?}
+
+Use \textbf{Bloom filters} to quick check if a key is in a segment.
+
+\subsection{B trees}
+
+\subsubsection{What is the most standard index implementation?}
+
+B trees are the most widely used and standard index implementation. They use fixed size blocks called pages. LSM are
+appended B trees changed in place. Fixed size implementation matches how storage is done in hardware.
+
+\subsubsection{How are B trees built?}
+
+Pages are linked to each other, some pages refer to child pages via a ref key value and the boundaries between the
+given references show which which child page will hold the key being searched for.
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{B trees construction.jpeg} % Example image
+	\caption{B trees page construction}
+\end{figure}
+
+Some pages will have the actual key and its value for indexing, these are called leaf pages. The number
+of refs in a page is called branching factor. 
+
+If a page does not have enough space for a new key, its split into two and the references are updated.
+
+A four level tree with 4kB pages and a branching factor of 500 can hold 256 TB of data. The actual data
+stored is structured into the tree.
+
+\subsubsection{What are the issues with B trees ?}
+
+When splitting a tree and updating the references is there is a crash in between can create corrupt data.
+So write ahead logs are used, a file that appends changes before they are executed.
+
+They also need to be careful when dealing with concurrency due to the required in place writes. So use
+latches (light weight locks).
+
+\subsubsection{How can B tree performance be improved?}
+
+Write a new modified page and change the reference to it, this will be more performance effective than
+modifying a page and keeping a write ahead log.
+
+\subsubsection{What is better LSM or B trees ?}
+
+Rule of thumb:
+
+\begin{itemize}
+	\item LSM has better write throughput
+	\item B trees have better reads
+\end{itemize}
+
+However many optimizations to B trees to improve its write throughput.
+
+\section{Transactional vs Analytical Data}
+
+\subsubsection{What are Transaction and Analytical processes?}
+
+Transaction process track every day writes with updates happening often. Allows for low latency
+small reads and writes. \textbf{OLTP - Online Transaction Processing}. 
+
+OLTP data is crucial for business so queries and bandwidth is tightly controlled.\\
+
+Analytical processes are large data amounts queried and uses for analysis. Generally these are instead
+stored in a date warehouse, which uses very different patterns for indexing (Not B or LSM trees). 
+\textbf{OLAP - Online Analytical Processing}.
+
+\subsubsection{How are data warehouses created ?}
+
+The data warehouse includes copies of the data in the OLTP data that has been extracted, transferred and
+then dumped into the database. \textbf{ETL - Extract Load and Transform}
+
+They most commonly use relational databases ie sql.
+
+\subsubsection{What is star and snowflake schema ?}
+
+\textbf{Star schema: One main fact table then many dimension tables ie product SKU, date ID etc}\\
+\textbf{Snowflake schema: Has many layers of dimensions.}
+
+\subsection{What is column storage ?}
+
+Instead of storing all values from each row together, instead store all values from each col.
+
+Therefore queries only need to query and parse the values used in the query. This is bad for OLTP
+as you will need to look and edit many files/tables for every transaction.
+
+\subsubsection{How do you compress column storage ?}
+
+Bitmap encoding is a form of compression, where one bitmap is created for every distinct value
+and one for each row. If that row contains that value the bit is 1 or 0 if it does not.
+
+Good for smaller number of distinct values used. Can be good for CPU cycles too as compressed data
+can be perform bit operations directly.\\
+
+Sorted cols can be used for faster queries ie sort by most queried.\textbf{ALl columns must use
+the same order for all files so a row can be reconstructed.}\\
+
+Can also create summary "materlized view" tables allowing for quick queries when comparing two
+dimensions, such as sum.\\
+
+Colum storage uses a similar concept to LSM trees for storage, hold in memory then written to disk.
+B trees are very hard as doing in places changes over many files will be very difficult.
+
+\section{Encoding and Evolvability}
+
+Changes to the schema caused by new features and data. Old and new code should be able to deal with
+these changes. Should also allow staged rollouts for better evolvability with small frequent changes.
+
+\subsubsection{What is the difference between in code data and data sent over the network ?}
+
+In code the data is stored in the programs structures, which are optimized to work with the CPU
+and use a pointer to access. \\
+
+Over a network you need a self contained sequence of bytes ie JSON sent using some type of protocol
+ie HTTP.
+
+\subsubsection{How do you convert from memory to network data ?}
+
+Encoding, marshalling and serlization are terms for changing program data to byte sequences.The
+reverse is decoding, unmarshalling and deserilization.
+
+\subsubsection{What is the issue with the libarires used by langs to encode/decode?}
+
+\begin{itemize}
+	\item Program specific
+	\item Allows arbitrary classes to be instantiated (which is a security issue)
+	\item Bad performance/compatibility
+\end{itemize}
+
+These should be only used for a small period of time and small issues.
+
+\subsubsection{What are the types of Encodings?}
+
+The most standard and popular are JSON and XML (which is considered too complex).\\
+
+Binary encoding are more space efficient, however are not in a human readable format.When TB of data
+is being sent this will matter. Apache thrift, protocol buffer and avaro (particularly flexible schema) are examples of binary encodings.
+They also gave a much simpler and less strict schemas rules giving better evolvability.
+
+\subsection{Modes of data flow}
+
+\subsubsection{What are potential issues with using a database as a dataflow ?}
+
+Will often have many processes accessing the db at any given time, its important that different
+version of code work with the database. New data for a col should work with old and new code.\\
+
+Forward compatibility is particularly important, there is a need to be careful of lost data in old code
+collecting data from the db converting it to an object then converting back to be placed into the db!!!\\
+
+Migrating to new schemas is expensive so instead old data is left and new data is fitted into the db,
+ie use a default null val to a new col.
+
+\subsubsection{How is data sent over a network?}
+
+Severs that expose data request via an API are called services. APIs use an agreed standard set of
+protocols ie HTTP,URL, TLS etc. Web apps uses services and a JavaScript app using XMLHTTPRequest to become
+a HTTP client is known Ajax.\\
+
+Services are similar to a database allowing input and output of data, however they are very 
+restricted by the business logic giving encapsulation.
+
+\subsubsection{What are the HTTP API methods ?}
+
+The two most popular are REST and SOAP. REST is a philosophy based around the tools of HTTP. SOAP
+is XML based and is trying to be HTTP independent, uses a bunch of features from the web service
+framework. Also uses an XML lang which can be good for statically typed languages.\\
+
+RESTful APIs are more popular and use Swagger as a definition format.
+
+\subsection{What about RPCs ?}
+
+Remote procedure calls (RPCs) are formed on the idea of making network calls feel like calling a
+local function. Which is called location based transparency.
+
+\subsubsection{What is bad about RPCs?}
+
+Local function and remote functions are not the same:
+
+\begin{itemize}
+	\item Network may return no result ie timeout
+	\item Retrying may make a process run many times in a service
+	\item Network calls will differ in latency
+	\item Program data sent as encoded bytes can be problematic
+\end{itemize}
+
+\subsubsection{Examples of RPCs ?}
+
+\begin{itemize}
+	\item gRPC uses protocol buffer
+	\item Fingle uses Thrift
+	\item Rest.li uses JSON over HTTP
+\end{itemize}
+
+Binary encoded RPC have better performance than generic methods ie JSON using REST.
+
+\subsubsection{What are message brokers ?}
+
+The middle men used a data queue to make messaging safer and simpler.
+
+Send message to queue or topic, message is sent from topic to subscriber or consumer.
+
+\subsection{What are actor models used for ?}
+
+Used for concurrency, an actor is an entity that sends messages to each other. As only one message
+is dealt with the worry of threads is gone.
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
