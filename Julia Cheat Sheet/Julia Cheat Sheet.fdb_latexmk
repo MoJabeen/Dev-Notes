@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1665133700 "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" "Julia Cheat Sheet.pdf" "Julia Cheat Sheet" 1665133701
-  "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" 1665133699 15332 788767f735eeef77e5780abfdc359a85 ""
+["pdflatex"] 1666076386 "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" "Julia Cheat Sheet.pdf" "Julia Cheat Sheet" 1666076387
+  "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" 1666076386 18463 02f9bf3c48a13167be00d66195879ae9 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1136768653 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
@@ -106,8 +106,8 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1660065316 2826428 a8301d32520d3ecedcdd4485e83c119a ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "Julia Cheat Sheet.aux" 1665133700 2594 9161d6d664b23614a512cd1395945c85 "pdflatex"
-  "Julia Cheat Sheet.tex" 1665133699 15332 788767f735eeef77e5780abfdc359a85 ""
+  "Julia Cheat Sheet.aux" 1666076387 3220 a94810549037aa60742cf4106279965a "pdflatex"
+  "Julia Cheat Sheet.tex" 1666076386 18463 02f9bf3c48a13167be00d66195879ae9 ""
   "structure.tex" 1660150962 3604 5072145dbc6f610fa0f451681f59ddd8 ""
   (generated)
   "Julia Cheat Sheet.aux"

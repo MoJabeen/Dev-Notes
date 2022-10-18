@@ -423,17 +423,135 @@ finalization (tasks to clean up before garbage collection.)
 	Threads.@threads [schedule] for ... end
 
 	[schedule] {
-		default: :dyanmic assumes equal load per thread, cant guarantee thread id on an iteration
-		:static one task for thread, can guarantee same id for an iteration
+		default: :dyanmic assumes equal load per thread, cant 
+		guarantee thread id on an iteration
+		:static one task for thread, can guarantee same id for an 
+		iteration
 	}
 
-	threads.foreach(f,c,ntasks) #operate function on channel with n threads
+	threads.foreach(f,c,ntasks) #operate function on channel with 
+	n threads
 
-	Threads.@spawn func() #Create task and schedule to run on any available thread
-
+	Threads.@spawn func() #Create task and schedule to run on any 
+	available thread
 
 \end{lstlisting}
 
+\section{Logging}
+
+Inserting a logging statement creates an event, logging is allows for
+better control and visibility than print statements.
+
+\begin{lstlisting}[
+	caption= Logging Functions, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	@debug #Auto set to not output to stderr
+	@info # mid level
+	@warn #Higher level
+	@error #highest level, generally not needed 
+	# (use exceptions instead)
+
+	@__ msg var x=var y=func() #msg in markdown
+
+	@__ "blah $var "
+
+\end{lstlisting}
+
+\subsection{How do you process a log ?}
+
+Log creation and processing are separate to allow for module level
+and app level work.
+
+\begin{lstlisting}[
+	caption= Logger, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	ConsoleLogger([steam,] min_level=Info) #stream can be a file io
+	SimpleLogger([stream,] min_level=Info)
+
+	global_logger(logger)
+	with_logger(logger) do ... end #Local logger
+
+\end{lstlisting}
+
+
+\begin{lstlisting}[
+	caption= Log filter, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	disable_logging(level) #disable below this level
+	should_log(logger,level) #return true if accepts this level
+
+	handle_message(logger,level,message,val ...)
+
+\end{lstlisting}
+
+
+\begin{lstlisting}[
+	caption= Example log, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	# Open a textfile for writing
+	io = open("log.txt", "w+")
+	IOStream(<file log.txt>)
+	
+	# Create a simple logger
+	logger = SimpleLogger(io)
+	SimpleLogger(IOStream(<file log.txt>), Info, Dict{Any,Int64}())
+	
+	# Log a task-specific message
+	with_logger(logger) do
+			   @info("a context specific log message")
+		   end
+	
+	# Write all buffered messages to the file
+	flush(io)
+	
+	# Set the global logger to logger
+	global_logger(logger)
+	SimpleLogger(IOStream(<file log.txt>), Info, Dict{Any,Int64}())
+	
+	# This message will now also be written to the file
+	@info("a global log message")
+	
+	# Close the file
+	close(io)
+
+	# Create a ConsoleLogger that prints any log 
+	#messages with level >= Debug to stderr
+	debuglogger = ConsoleLogger(stderr, Logging.Debug)
+
+	# Enable debuglogger for a task
+	with_logger(debuglogger) do
+			@debug "a context specific log message"
+		end
+
+	# Set the global logger
+	global_logger(debuglogger)
+
+
+\end{lstlisting}
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
 %----------------------------------------------------------------------------------------
