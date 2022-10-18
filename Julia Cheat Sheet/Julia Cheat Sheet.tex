@@ -552,6 +552,41 @@ and app level work.
 
 
 \end{lstlisting}
+
+\section{Packages}
+
+Designed around environments which can be local to inviduals or projects. Allows 
+exact set of packages and their version in an environment to be controlled and 
+repeated. All tracked in the manifest file.
+
+A better version of python virtualenv.
+
+\begin{lstlisting}[
+	caption= Pkg commands, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	activate [project name]
+
+	develop --local [package name] #Allows you to use a local version of a 
+	# package to develop
+
+	free [package name] #Go back to the registered version
+
+	get "url" or "local path"
+
+	pin [package name] #Never update
+
+	# Activate another persons project
+	activate .
+	instantiate
+
+\end{lstlisting}
+
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
 %----------------------------------------------------------------------------------------
