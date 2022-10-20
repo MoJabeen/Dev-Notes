@@ -1,0 +1,299 @@
+% Mo Jabeen Template for docs 
+
+\documentclass[11pt]{scrartcl} % Font size
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\title{	
+	\normalfont\normalsize
+	\vspace{20pt} % Whitespace
+	{\huge Systemd}\\ % The meh
+	\vspace{12pt} % Whitespace
+	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
+}
+
+\author{\small Mo D Jabeen} % Your name
+
+\date{\normalsize\today} % Today's date (\today) or a custom date
+
+
+\begin{document}
+
+\maketitle % Print the title
+
+Systemd is an improved version of service, controlled via systemctl. Allows you to initalise
+components after the linux kernel is booted. Also managed services and daemons.\\
+
+Systemd used units controlled via a unit file.
+
+\section{General Service Control}
+
+\begin{lstlisting}[
+	caption= Controlling servies, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	systemctl ...
+
+	start app.service //.service not needed
+	stop
+	restart
+	reload
+	reloadorrestart
+
+	enable //start service at boot
+	disable
+
+	status
+	isactive
+	isenabled
+	isfailed
+
+	list-units //list all units
+
+	cat //show unit file
+	mask //stop unit from starting
+	edit //append to unit file
+
+	edit --full //edit unit file
+
+\end{lstlisting}
+
+Targets are used to group units together, used to ref a system state instead of a unit. 
+
+Journald combines all outputs from services.
+
+\begin{lstlisting}[
+	caption= Logging view, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	journalctl -u unit // outputs from chosen unit
+
+	-n 20 // see last 20 logs
+	-f // follow a log 
+
+\end{lstlisting}
+
+\section{Unit files}
+
+\subsection{[Unit]}
+
+\begin{lstlisting}[
+	caption= Unit file sections, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	Description = //best to keep it short
+	Documentation = //man page or url
+	Requires = //Any units required
+	Wants = //Less strict than requires
+	BindsTo = //if unit stops this will to
+	Before = // Dont start these units until the associated unit has started
+	After = // start associated after these units
+	Conflicts = // dont run these units at the same time
+	Condition = // Only run if true, if failure skip
+	Assert = //if failure cause error
+	
+\end{lstlisting}
+
+\subsection{[Install]}
+
+Controls enabled units
+
+\begin{lstlisting}[
+	caption= Install section, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	Wantedby = //similar to Wants
+	Requiredby = //similar to requires
+
+	Alias = 
+	Also = //Create a set of units to enable with this one
+
+\end{lstlisting}
+
+\subsection{[Service]}
+
+\begin{lstlisting}[
+	caption= Service section, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	Type = // simple,notify etc
+	ExecStart = //commands for when started
+	ExecStartPost = //commands post start 
+	ExecReload = //commands on reload
+	ExecStop = // commands on stop
+	ExecStopPost = //commands post stop
+	RestartSec = // commands on restart
+	Restart = // commands on restart
+	TimeoutSec = // commands on timeout 
+
+\end{lstlisting}
+
+\subsection{[Path]}
+
+\begin{lstlisting}[
+	caption= Path section, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	PathChange = //path to monitor for changes
+	Unit = //units to activate on changes
+	MakeDirectory = //if path should be created
+
+\end{lstlisting}
+
+\subsection{[Timer]}
+
+\begin{lstlisting}[
+	caption= Timer Section, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	OnActiveSec = //start after .timer service
+	OnBootSec = //start after boot
+	OnUnitActive = //time after unit activation
+	OnCalendar =  // use absolute time instead
+	AccuracySec = // accuracy level
+	
+\end{lstlisting}
+
+
+\subsubsection{subsubsection}
+
+%----------------------------------------------------------------------------------------
+%	FIGURE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+% 	\centering
+% 	\includegraphics[width=0.5\columnwidth]{IMAGE_NAME.jpg} % Example image
+% 	\caption{European swallow.}
+% \end{figure}
+
+%----------------------------------------------------------------------------------------
+% MATH EXAMPLES
+%----------------------------------------------------------------------------------------
+
+% \begin{align} 
+% 	\label{eq:bayes}
+% 	\begin{split}
+% 		P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+% 	\end{split}					
+% \end{align}
+
+%----------------------------------------------------------------------------------------
+%	LIST EXAMPLES
+%----------------------------------------------------------------------------------------
+
+% \begin{itemize}
+% 	\item First item in a list 
+% 		\begin{itemize}
+% 		\item First item in a list 
+% 			\begin{itemize}
+% 			\item First item in a list 
+% 			\item Second item in a list 
+% 			\end{itemize}
+% 		\item Second item in a list 
+% 		\end{itemize}
+% 	\item Second item in a list 
+% \end{itemize}
+
+%------------------------------------------------
+
+% \subsection{Numbered List}
+
+% \begin{enumerate}
+% 	\item First item in a list 
+% 	\item Second item in a list 
+% 	\item Third item in a list
+% \end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	TABLE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \section{Interpreting a Table}
+
+% \begin{table}[h] % [h] forces the table to be output where it is defined in the code (it suppresses floating)
+% 	\centering % Centre the table
+% 	\begin{tabular}{l l l}
+% 		\toprule
+% 		\textit{Per 50g} & \textbf{Pork} & \textbf{Soy} \\
+% 		\midrule
+% 		Energy & 760kJ & 538kJ\\
+% 		Protein & 7.0g & 9.3g\\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Sausage nutrition.}
+% \end{table}
+
+%----------------------------------------------------------------------------------------
+%	CODE LISTING EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \begin{lstlisting}[
+% 	caption= Macro definition, % Caption above the listing
+% 	language=python, % Use Julia functions/syntax highlighting
+% 	frame=single, % Frame around the code listing
+% 	showstringspaces=false, % Don't put marks in string spaces
+% 	numbers=left, % Line numbers on left
+% 	numberstyle=\large, % Line numbers styling
+% 	]
+
+% 	CODE
+
+% \end{lstlisting}
+
+%----------------------------------------------------------------------------------------
+%	CODE LISTING FILE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \lstinputlisting[
+% 	caption=Luftballons Perl Script., % Caption above the listing
+% 	label=lst:luftballons, % Label for referencing this listing
+% 	language=Perl, % Use Perl functions/syntax highlighting
+% 	frame=single, % Frame around the code listing
+% 	showstringspaces=false, % Don't put marks in string spaces
+% 	numbers=left, % Line numbers on left
+% 	numberstyle=\tiny, % Line numbers styling
+% 	]{luftballons.pl}
+
+%------------------------------------------------
+
+\end{document}
