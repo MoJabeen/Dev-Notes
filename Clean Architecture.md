@@ -1,3 +1,7 @@
+layout: page
+title: "Clean Architecture"
+permalink: /clean-architecture
+
 Description: Summary of notes from the book Clean Architecture from Robert C Martin.
 
 # Clean Architecture
