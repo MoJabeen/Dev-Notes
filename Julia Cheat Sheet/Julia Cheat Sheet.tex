@@ -587,6 +587,131 @@ A better version of python virtualenv.
 
 \end{lstlisting}
 
+\section{Plotting}
+
+The Julia plot pkg used is \textbf{Gadfly}, git: https://github.com/GiovineItalia/Gadfly.jl.\\
+
+Used for plotting and visualization, using the browser to supply interactive plots, also supports
+svg,png,postscript and pdf (done via draw command).
+
+\subsection{General}
+
+\begin{lstlisting}[
+	caption= Plot commands, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	plot(data, elements ....; mapping)
+	#data is a dataframe
+	#elements are the plot ie x= :col, color = blue etc
+	#mapping is the type of graph ie Geom.point, Geom.line
+
+	map(display,plot) 
+	#Or can use REPL to output to default media viewer (browser)
+
+	plot(func(),lower,upper,elements;mapping)
+	#lower upper are x bounds
+
+	plot(Vector{funcs()},lower,upper,elements;mapping)
+	plot(func(),xmin,xmax,ymin,ymax,elements;mapping)
+
+	# Can also add elements to plot via push!
+
+\end{lstlisting}
+
+\textit{Widerform is when cols use the sames measurment type but are grouped in cols.}\\
+
+Elements have a Scale (continous or discrete) and Guide class:\\
+
+Types of Scale:
+\begin{itemize}
+	\item Scale.x\_continous(format=, minvalue,maxvalue)
+	\item Scale.x\_discrete
+	\item Scale.xlog10 : Added as elements to change entire plot
+	\item Scale.ylog10
+\end{itemize}
+
+\begin{lstlisting}[
+	caption= Scale examples, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	p2 = plot(mammals, x=:Body, y=:Brain, label=:Mammal, 
+		Geom.point, Geom.label,
+		Scale.x_log10, Scale.y_log10)
+
+	p3= plot(Diamonds, x=:Price, y=:Carat, 
+		Geom.histogram2d(xbincount=25, ybincount=25),
+    	Scale.x_continuous(format=:engineering))
+
+\end{lstlisting}
+
+Types of Guides:
+\begin{itemize}
+	\item Annotation
+	\item Keys : colour, shape or size
+	\item xrug,yrug : show distribution of points on axis
+	\item ticks : show plot lines
+\end{itemize}
+
+\begin{lstlisting}[
+	caption= Guide examples, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	pb = plot(iris, x=:SepalLength, y=:PetalLength, color=:Species, 
+		Geom.point,
+        Guide.colorkey(title="Iris", pos=[0.05w,-0.28h]) )
+
+	plot(dataset("ggplot2", "diamonds"), x="Price", Geom.histogram,
+		Guide.title("Diamond Price Distribution"))
+
+\end{lstlisting}
+
+\subsection{Compositing}
+
+Types:
+\begin{itemize}
+	\item Facets: Share same axis dims but seperate
+	\item Stack: Diff datasets and axis but together
+	\item Layers: Single plot
+\end{itemize}
+
+\subsubsection{Layers}
+
+\begin{lstlisting}[
+	caption= Layer examples, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	l = layer(data,elements;mapping) 
+	# Can not include Scale,coordinates or guides
+	#use plot for that
+
+	plot(layer1,layer2..)
+
+	plot(data
+		layer(elements;mapping)
+		layer(...))
+
+\end{lstlisting}
+
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
 %----------------------------------------------------------------------------------------
@@ -669,5 +794,16 @@ A better version of python virtualenv.
 % 	]{luftballons.pl}
 
 %------------------------------------------------
+
+% \begin{lstlisting}[
+% 	caption= [NAME], % Caption above the listing
+% 	language=python, % Use Julia functions/syntax highlighting
+% 	frame=single, % Frame around the code listing
+% 	showstringspaces=false, % Don't put marks in string spaces
+% 	numbers=left, % Line numbers on left
+% 	numberstyle=\large, % Line numbers styling
+% 	]
+
+% \end{lstlisting}
 
 \end{document}
