@@ -623,11 +623,62 @@ svg,png,postscript and pdf (done via draw command).
 
 \end{lstlisting}
 
+\textbf{To output the plot as a html file, run code in REPL using include("filename.jl").}\\
+
 \textit{Widerform is when cols use the sames measurment type but are grouped in cols.}\\
 
 Elements have a Scale (continous or discrete) and Guide class:\\
 
-Types of Scale:
+\subsection{Aesthetics}
+
+Data is binded to aesthetics, defined by a number of elements: Scales, Coordinates, Guides and
+Geometrics.
+
+\subsubsection{Themes}
+
+Allow easy setting of a bunch of parameters, the theme overrides the default values.\\
+
+Style will override the current theme.
+
+\subsubsection{Geometries}
+
+Are the types of graph: Point, line, bar, candle etc.
+
+\subsubsection{Scale}
+
+Scale allows a characteristic to be used to show the different grouping of values ie
+alpha(transparency),color, shape, linetype.\\
+
+\begin{lstlisting}[
+	caption= Scale examples for grouping, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	plot(x=xdata, y=ydata, color=cdata,
+	Scale.color_continuous(minvalue=-1, maxvalue=1))
+
+	plot(x=x, y=y, color=x+y, Geom.rectbin,
+    Scale.color_continuous(colormap=p->RGB(0,p,0)))
+
+	plot(x=xdata, y=ydata, color=repeat([1,2,3], 
+	outer=[4]), Scale.color_discrete)
+	
+	plot(x=rand(12), y=rand(12), color=repeat(["a","b","c"],
+	 outer=[4]),
+     Scale.color_discrete_manual("red","purple","green"))
+
+	plot(dataset("datasets", "CO2"), x=:Conc, y=:Uptake,
+    group=:Plant, linestyle=:Treatment, color=:Type, Geom.line,
+    Scale.linestyle_discrete(order=[2,1]))
+
+\end{lstlisting}
+
+Also used for scaling of axis:
+
 \begin{itemize}
 	\item Scale.x\_continous(format=, minvalue,maxvalue)
 	\item Scale.x\_discrete
@@ -654,10 +705,13 @@ Types of Scale:
 
 \end{lstlisting}
 
+\subsubsection{Guides}
+
 Types of Guides:
 \begin{itemize}
-	\item Annotation
+	\item Annotation (inc shapes to highlight points)
 	\item Keys : colour, shape or size
+	\item Title labels 
 	\item xrug,yrug : show distribution of points on axis
 	\item ticks : show plot lines
 \end{itemize}
@@ -679,6 +733,16 @@ Types of Guides:
 		Guide.title("Diamond Price Distribution"))
 
 \end{lstlisting}
+
+\subsubsection{Stats}
+
+Can also uses in built stat transformations ie:
+
+\begin{itemize}
+	\item Density 
+	\item Quantile
+	\item Doge: Grouped and shown value
+\end{itemize}
 
 \subsection{Compositing}
 

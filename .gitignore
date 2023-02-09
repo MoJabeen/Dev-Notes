@@ -3,3 +3,9 @@
 *.fls
 *.log
 *.synctex.gz
+*.bbl
+*.bcf
+*.blg
+*.xml
+*.toc
+*.synctex(busy)
