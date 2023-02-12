@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.9)  9 FEB 2023 13:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.9)  12 FEB 2023 12:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -679,17 +679,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 649--651
 
  []
 
-[10] [11] [12] (./Julia Cheat Sheet.aux) ) 
+[10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 781--782
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 783--785
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 817--819
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 820--823
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 828--829
+
+ []
+
+[12] (./Julia Cheat Sheet.aux) ) 
 Here is how much of TeX's memory you used:
- 11762 strings out of 478268
- 233095 string characters out of 5846348
- 898713 words of memory out of 5000000
- 29810 multiletter control sequences out of 15000+600000
+ 11767 strings out of 478268
+ 233151 string characters out of 5846348
+ 898714 words of memory out of 5000000
+ 29815 multiletter control sequences out of 15000+600000
  550653 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,21n,106p,10676b,1935s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on "Julia Cheat Sheet.pdf" (12 pages, 96743 bytes).
+Output written on "Julia Cheat Sheet.pdf" (12 pages, 98835 bytes).
 PDF statistics:
  59 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream

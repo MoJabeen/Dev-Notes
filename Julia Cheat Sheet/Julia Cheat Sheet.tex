@@ -776,6 +776,59 @@ Types:
 
 \end{lstlisting}
 
+\subsection{Profiling}
+
+Julia has built in profiling, allowing code lines to be timed to discover code bottlenecks.\\
+
+Checks how often lines appear in a set of backtraces, the line coverage is therefore dependant on
+the backtrace sampling freq.\\
+
+\textbf{Pros:} No need to change code to measure and little computational overhead.
+
+\subsubsection{Example}
+
+\begin{lstlisting}[
+	caption= Profiling, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	using Profile
+
+	@profile myfunc()
+
+	Profile.print() #Output to stderr backtraces
+
+	#Run test 100 times
+
+	@profile for( i=1:100; myfunc();end)
+
+	Profile.clear() #Clear buffer
+
+\end{lstlisting}
+
+The number of backtraces shows how expensive that line is. 
+
+\subsubsection{Memory allocation}
+
+Use @time or @allocation to check the memory allocation. Can also check the
+cost of garbage collection.\\
+
+To check line by line allocation, use flag track\-allocation. Remove compiler
+overhead before measuring allocation by running Profile.clear\_malloc\_data() after
+executing commands.\\
+
+GC.enable\_logging(true) set to true to check collection cost.
+
+\subsection{Performance tips}
+
+Performance critical code should be inside a function.\\
+
+Avoid untyped global variables, if they must be used annotate the type at point of use.
+
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
 %----------------------------------------------------------------------------------------
