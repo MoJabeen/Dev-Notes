@@ -145,7 +145,7 @@
 	\item Use the Profiling package for measuring performance.
 \end{itemize}
 
-
+\newpage
 \section{Objects/Methods}
 
 Structs mainly used to create new data type objects.
@@ -194,8 +194,14 @@ Inner constructors enforce the same checks for multiple data types.
 	function blah(x::Int, y::name) = println(x*y.num)
 	#This func now has two methods (multi dispatch)
 
+	# The T is the type inside the vector which refed in the func
+	function myfunc(x::Vector{T}) where T
+		b::Vector{T} = x.*3
+	end
+
 \end{lstlisting}
 
+\newpage
 \section{Modules}
 
 Modules allow for better namespace control and cleaner structure.\\
@@ -224,6 +230,7 @@ Can use submodules which are accessed via . operator.
 	\item nothing instead of null
 \end{itemize}
 
+\newpage
 \section{Metaprogramming}
 
 Julia code is represented after compiling as a data struct of type Expr.\\
@@ -277,6 +284,7 @@ Macros are used in code when an expression is required in multiple places before
 
 \end{lstlisting}
 
+\newpage
 \section{Concurrency}
 
 Julia combines multi threads and cores using the same memory space as threading. CPUs using
@@ -437,6 +445,7 @@ finalization (tasks to clean up before garbage collection.)
 
 \end{lstlisting}
 
+\newpage
 \section{Logging}
 
 Inserting a logging statement creates an event, logging is allows for
@@ -553,6 +562,7 @@ and app level work.
 
 \end{lstlisting}
 
+\newpage
 \section{Packages}
 
 Designed around environments which can be local to inviduals or projects. Allows 
@@ -587,6 +597,7 @@ A better version of python virtualenv.
 
 \end{lstlisting}
 
+\newpage
 \section{Plotting}
 
 The Julia plot pkg used is \textbf{Gadfly}, git: https://github.com/GiovineItalia/Gadfly.jl.\\
@@ -776,7 +787,8 @@ Types:
 
 \end{lstlisting}
 
-\subsection{Profiling}
+\newpage
+\section{Profiling}
 
 Julia has built in profiling, allowing code lines to be timed to discover code bottlenecks.\\
 
@@ -808,6 +820,8 @@ the backtrace sampling freq.\\
 
 	Profile.clear() #Clear buffer
 
+	@time func() #Measure how long to run func
+
 \end{lstlisting}
 
 The number of backtraces shows how expensive that line is. 
@@ -823,11 +837,143 @@ executing commands.\\
 
 GC.enable\_logging(true) set to true to check collection cost.
 
-\subsection{Performance tips}
+\newpage
+\section{Performance tips}
 
 Performance critical code should be inside a function.\\
 
-Avoid untyped global variables, if they must be used annotate the type at point of use.
+\textbf{AVOID:}
+\begin{itemize}
+	\item Untyped global variables, if they must be used annotate the type at point of use.
+	\item Problems with type stability
+	\item Many temporary small arrays
+\end{itemize}
+
+At point of use annotation:
+\begin{verbatim}
+	for i in x :: Vector{Float64}
+\end{verbatim}		
+
+\subsection{Wrappers}
+
+Better to define the type of the wrapper than only the its elements. As you dont want the high
+level struct type to be ambiguous:
+
+\begin{lstlisting}[
+	caption= Structs, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	mutable struct Ty{T<: AbstractFloat}
+		a::T
+	end
+
+	#This is better than
+
+	mutable struct Ty
+		a::Float64 #should be concrete type
+	end
+
+\end{lstlisting}
+
+Functions using the same struct but different types of elements should be explicit of the
+type of elements
+
+\begin{lstlisting}[
+	caption= functions, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	function func(c::Ty{<:AbstractArray{<:Integer}})
+
+	#If a type in vector is known should declare it!
+	function func(a::Vector{Any,1})
+		x = a[1]::Int32
+
+
+\end{lstlisting}
+
+\textbf{However, abstract type annotation for values and elements can hinder performance.}\\
+
+Dont use compound functions, ie same function used differently for types use multiple dispatch.
+
+\subsection{How should functions be returned?}
+
+A function should always return the same type, so if the type is ambiguous convert before return.
+
+\begin{verbatim}
+	zero(x) #Gives a 0 val in type of x
+	oftype(x,y) #Gives y as type of x
+\end{verbatim}
+
+Variables changing type within the function should also be avoided. 
+
+\subsection{How should functions be broken down?}
+
+Generally functions of made of the setup and compute on the setup vars. The compute should
+broken into its own function.
+
+\subsection{Types used as parameters for other types}
+
+If a var is created using an unknown type ie a matrix or array then its type will be checked on
+every access.
+
+\begin{verbatim}
+	fill(5,ntuple(d->3,N)) #If N is unknown then will create an unknown type matrix.
+	::Val{N} #is used a concrete type to specify dimensions, pass as Val(N) in func
+\end{verbatim}
+
+\subsection{What is dangerous when using Multi Dispatch?}
+
+If at compile time Julia does not know the type it will be checked at run time slowing down
+compute.
+
+\begin{lstlisting}[
+	caption= Multi Dispatch, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	struct Car{:make,:model}
+		year::Int
+	end
+
+	Array{Car{:Honda,:Accord},N} 
+	#This is contiguous and known
+
+	ar = [Car{:Honda,:Accord}(2),Car{:Honda,:Buggy}(3)] 
+	#Non contiguous will be determined at runtime
+
+\end{lstlisting}
+
+The above situation would be bad if used as method of multi dispatch as many lookups on each
+type as the array is iterated will be done. Will also take a lot more compile time memory
+as all versions of functions will need to be compiled for each type ie for push!.
+
+\subsection{What are the array types used in Julia?}
+
+Arrays are column major, the first index changes most rapidly (row). Meaning the inner most loop
+should be iterated on rows, the outer loop on cols. Cols are faster to get than rows.
+
+\subsection{Should outputs for func allocated before?}
+
+The output of a function should be preallocated with a defined type and the function should be
+used to change its values.
+
+\subsection{How should nested dot calls be used?}
+
+
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
