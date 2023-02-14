@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1676316898 "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" "Julia Cheat Sheet.pdf" "Julia Cheat Sheet" 1676316899
-  "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" 1676316897 30813 6818c39e77a4bae7928b615ee0b04fcc ""
+["pdflatex"] 1676367995 "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" "Julia Cheat Sheet.pdf" "Julia Cheat Sheet" 1676367996
+  "/Users/mohammadjabeen/Desktop/Notes/Dev_Nts/Julia Cheat Sheet/Julia Cheat Sheet.tex" 1676367993 32353 2d770c614989a8a7a92af577a5f667eb ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -39,6 +39,7 @@
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb" 1164221255 36737 6946087c3bf3ef810605d9989b3e7a11 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb" 1164221255 36507 bc28f9f0cdba50a8a348a6e4dc8a5378 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb" 1164221255 37756 112837e95d30cb64c320437ea63bd4d6 ""
+  "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb" 1215737283 145807 7e6525044e63a61de8529743665d16c8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb" 1215737283 169670 48d12e69c9a3b23c81f6d703ccbd4554 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futb8t.vf" 1136768653 2168 d2ac693e07cd79dbc2b914caee3e8df0 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futr8c.vf" 1575236847 3432 6feece74417bef823a52a9450d7c99dc ""
@@ -110,10 +111,12 @@
   "/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1647878959 4410336 7d30a02e9fa9a16d7d1f8d037ba69641 ""
   "/usr/local/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1660065316 2826428 a8301d32520d3ecedcdd4485e83c119a ""
   "/usr/local/texlive/2022/texmf.cnf" 1647878952 577 209b46be99c9075fd74d4c0369380e8c ""
-  "Julia Cheat Sheet.aux" 1676316899 6886 19d826bb53f37f150b258056ec8d5fbc "pdflatex"
-  "Julia Cheat Sheet.tex" 1676316897 30813 6818c39e77a4bae7928b615ee0b04fcc ""
+  "Julia Cheat Sheet.aux" 1676367996 7498 7ac1f5c49dc5b2cc7b37dec3c89fa18e "pdflatex"
+  "Julia Cheat Sheet.tex" 1676367993 32353 2d770c614989a8a7a92af577a5f667eb ""
+  "Julia Cheat Sheet.toc" 1676367996 2722 5bac9998cbf594b2ebe51fb7aa6772d4 "pdflatex"
   "structure.tex" 1660150962 3604 5072145dbc6f610fa0f451681f59ddd8 ""
   (generated)
   "Julia Cheat Sheet.aux"
   "Julia Cheat Sheet.log"
   "Julia Cheat Sheet.pdf"
+  "Julia Cheat Sheet.toc"

@@ -24,6 +24,9 @@
 
 \maketitle % Print the title
 
+\tableofcontents
+
+\newpage
 \section{General}
 
 \begin{lstlisting}[
@@ -973,7 +976,47 @@ used to change its values.
 
 \subsection{How should nested dot calls be used?}
 
+Nested dot calls are fusing, they are combined at the syntax level into a single loop. And use
+preallocated arrays instead of temp ones (SHOULD BE USED WHENEVER POSSIBLE!).\\
 
+\begin{lstlisting}[
+	caption= Nested dot calls, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	f(x) = 3x.^2 + 4x + 7x.^3
+	fdot(x) = @. 3x^2 + 4x + 7x^3 
+
+	# @. converts all vector ops into a dot operation
+	# fdot(x) is 10x faster
+
+\end{lstlisting}
+
+\subsection{How should views be used?}
+
+A slice creates a copy of the array, which is okay if many operations are to be done on the
+copy, however, could be worse if the cost of the copy outweighs the operations to be done on it.\\
+
+Can instead use @view to reference a subarray of the original array.\\
+
+Also contiguous are better and if possible arrays should be converted into a contiguous array
+before operation.
+
+\subsection{Other}
+
+\begin{itemize}
+	\item Static array pkg if array is to be fixed size
+	\item Avoid string interpolation for I/O (dont use \$a)
+	\item Fix all warnings
+	\item Avoid unnecessary arrays
+	\item Use fld(x,y) and cld(x,y) instead of floor and ceil
+	\item Annotations available to reduce Julia functions for sake of speed ie don't check boundaries.
+	\item Use @code\_warntype to show non concrete types in red.
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
