@@ -1,0 +1,337 @@
+% Mo Jabeen Template for docs 
+
+\documentclass[11pt]{scrartcl} % Font size
+
+\input{structure.tex} % Include the file specifying the document structure and custom commands
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+
+\title{	
+	\normalfont\normalsize
+	\vspace{20pt} % Whitespace
+	{\huge Golang Cheat Sheet}\\ % The meh
+	\vspace{12pt} % Whitespace
+	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
+}
+
+\author{\small Dainish Jabeen} % Your name
+
+\date{\normalsize\today} % Today's date (\today) or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section{Packages}
+
+Go uses packages, which can contain multiple files. \textbf{The app will start running in the main 
+application.}\\
+
+Names exported outside the packages, must use a Capital letter.
+
+\begin{lstlisting}[
+	caption= Golang basics, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	package main
+
+	import "fmt"
+
+	func main(){
+		fmt.Println("Hello World")
+	}
+
+\end{lstlisting}
+
+\newpage
+
+\section{General}
+
+\subsection{Types}
+
+\begin{lstlisting}[
+	caption= Golang types, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	:= //Declare and initialize non explicit type
+	>> //Shift bitwise right
+	<<  //Shift bitwise left
+
+	//ARRAY
+	name []string 
+	var := []string("blah","meh")
+
+	//MAPS
+	map[key type]val type //Dict has to be made
+	m := make(map[string]String)
+
+	elem, ok = m[key] // check key exists
+
+	// Initialization
+
+	var i int // initializes as 0
+
+	// Constants
+
+	const(
+		x=1 // the type of this can change on context
+	)
+
+	p := &i //point to i
+	*p //value of i, changes will change also change i
+
+	type Name struct{
+		x int
+		y int
+	}
+
+	// Pointers to structs
+
+	v := StructName{1,2}
+
+	p = &v
+	p.x = //Will change the value of v
+
+	// Struct constructors
+
+	v := StructName{x:1} //Others members made 0
+
+	//SLICES
+
+	//Slices acts as pointers
+
+	a[1:] // slice to end
+	s := a[:3] // slice start to 3
+
+	cap(s) // Capacity, elements in underlying array
+
+	// Dynamically size arrays
+
+	a := make(type,len,cap)
+	append(arr,val)
+	
+\end{lstlisting}
+
+\newpage
+
+\subsection{Functions}
+
+\begin{lstlisting}[
+	caption= Functions, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	func Name(name type) type{}
+
+	//FUNC PARAMS
+
+	func name(x int,y int)
+	func name(x,y int)
+
+	//NAKED RETURN
+
+	func() (x,y int) {
+		x:=1
+		y:=2
+		return
+	} // Will return x and y 
+
+\end{lstlisting}
+
+\subsubsection{Funcs as params}
+
+\begin{lstlisting}[
+	caption= Params, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	func compute(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
+	}
+
+	func main() {
+		hypot := func(x, y float64) float64 {
+			return math.Sqrt(x*x + y*y)
+		}
+		fmt.Println(hypot(5, 12))
+
+		fmt.Println(compute(hypot))
+		fmt.Println(compute(math.Pow))
+	}
+
+\end{lstlisting}
+
+\subsection{Control}
+
+\begin{lstlisting}[
+	caption= Control, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	for i:=0;i<10;i++{}
+
+	for x<100 {} //Same as while loop
+
+	if statement; cond {}
+
+	switch statement; val {
+
+		case x: //x same as val == x
+
+		case y: //y same as val == y
+
+		default:
+	}
+
+	defer expr //execute expr at the end of func, can stack defers
+
+	for i,v := range arr {} // Loops through array (can do _,v or i,_)
+
+\end{lstlisting}
+
+%----------------------------------------------------------------------------------------
+%	FIGURE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+% 	\centering
+% 	\includegraphics[width=0.5\columnwidth]{IMAGE_NAME.jpg} % Example image
+% 	\caption{European swallow.}
+% \end{figure}
+
+%----------------------------------------------------------------------------------------
+% MATH EXAMPLES
+%----------------------------------------------------------------------------------------
+
+% \begin{align} 
+% 	\label{eq:bayes}
+% 	\begin{split}
+% 		P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+% 	\end{split}					
+% \end{align}
+
+%----------------------------------------------------------------------------------------
+%	LIST EXAMPLES
+%----------------------------------------------------------------------------------------
+
+% \begin{itemize}
+% 	\item First item in a list 
+% 		\begin{itemize}
+% 		\item First item in a list 
+% 			\begin{itemize}
+% 			\item First item in a list 
+% 			\item Second item in a list 
+% 			\end{itemize}
+% 		\item Second item in a list 
+% 		\end{itemize}
+% 	\item Second item in a list 
+% \end{itemize}
+
+%------------------------------------------------
+
+% \subsection{Numbered List}
+
+% \begin{enumerate}
+% 	\item First item in a list 
+% 	\item Second item in a list 
+% 	\item Third item in a list
+% \end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	TABLE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \section{Interpreting a Table}
+
+% \begin{table}[h] % [h] forces the table to be output where it is defined in the code (it suppresses floating)
+% 	\centering % Centre the table
+% 	\begin{tabular}{l l l}
+% 		\toprule
+% 		\textit{Per 50g} & \textbf{Pork} & \textbf{Soy} \\
+% 		\midrule
+% 		Energy & 760kJ & 538kJ\\
+% 		Protein & 7.0g & 9.3g\\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Sausage nutrition.}
+% \end{table}
+
+%----------------------------------------------------------------------------------------
+%	CODE LISTING EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \begin{lstlisting}[
+% 	caption= Macro definition, % Caption above the listing
+% 	language=python, % Use Julia functions/syntax highlighting
+% 	frame=single, % Frame around the code listing
+% 	showstringspaces=false, % Don't put marks in string spaces
+% 	numbers=left, % Line numbers on left
+% 	numberstyle=\large, % Line numbers styling
+% 	]
+
+% 	CODE
+
+% \end{lstlisting}
+
+%----------------------------------------------------------------------------------------
+%	CODE LISTING FILE EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% \lstinputlisting[
+% 	caption=Luftballons Perl Script., % Caption above the listing
+% 	label=lst:luftballons, % Label for referencing this listing
+% 	language=Perl, % Use Perl functions/syntax highlighting
+% 	frame=single, % Frame around the code listing
+% 	showstringspaces=false, % Don't put marks in string spaces
+% 	numbers=left, % Line numbers on left
+% 	numberstyle=\tiny, % Line numbers styling
+% 	]{luftballons.pl}
+
+%----------------------------------------------------------------------------------------
+%	BIB EXAMPLE
+%----------------------------------------------------------------------------------------
+
+% Using \texttt{biblatex} you can display a bibliography divided into sections, depending on citation type. 
+% Let's cite! Einstein's journal paper \cite{einstein} and Dirac's book \cite{dirac} are physics-related items. 
+% Next, \textit{The \LaTeX\ Companion} book \cite{latexcompanion}, Donald Knuth's website \cite{knuthwebsite}, \textit{The Comprehensive Tex Archive Network} (CTAN) \cite{ctan} are \LaTeX-related items; but the others, Donald Knuth's items, \cite{knuth-fa,knuth-acp} are dedicated to programming. 
+
+% \medskip
+
+% \printbibliography[
+% heading=bibintoc,
+% title={Whole bibliography}
+% ] %Prints the entire bibliography with the title "Whole bibliography"
+
+% %Filters bibliography
+% \printbibliography[heading=subbibintoc,type=article,title={Articles only}]
+% \printbibliography[type=book,title={Books only}]
+
+% \printbibliography[keyword={physics},title={Physics-related only}]
+% \printbibliography[keyword={latex},title={\LaTeX-related only}]
+
+\end{document}
