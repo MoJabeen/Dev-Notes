@@ -53,7 +53,7 @@ Names exported outside the packages, must use a Capital letter.
 
 \newpage
 
-\section{General}
+\section{Basics}
 
 \subsection{Types}
 
@@ -182,6 +182,40 @@ Names exported outside the packages, must use a Capital letter.
 
 \end{lstlisting}
 
+\subsubsection{Funcs as closures}
+
+Reference var from outside the body and be bound to that value, which when called
+includes any prev changes to those vars.
+
+\begin{lstlisting}[
+	caption= Params, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	func adder() func(int) int {
+		sum := 0
+		return func(x int) int {
+			sum += x
+			return sum
+		}
+	}
+	
+	func main() {
+		pos, neg := adder(), adder()
+		for i := 0; i < 10; i++ {
+			fmt.Println(
+				pos(i),
+				neg(-2*i),
+			)
+		}
+	}
+
+\end{lstlisting}
+
 \subsection{Control}
 
 \begin{lstlisting}[
@@ -213,6 +247,208 @@ Names exported outside the packages, must use a Capital letter.
 	for i,v := range arr {} // Loops through array (can do _,v or i,_)
 
 \end{lstlisting}
+
+\section{Methods}
+
+Function with a receiver argument. Generally a type through which the function allows for polymorphism.
+
+\begin{lstlisting}[
+	caption= Methods, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	type blah struct{
+		x int
+	}
+
+	func (v blah) Name() int {} // v can access all members of the struct.
+
+	func (v *blah) Name() int {} //Pointer allows changing of structs.
+
+	// v.Name() interpreted as &v.Name()
+\end{lstlisting}
+
+\begin{itemize}
+	\item Pointers good for performance as copying is avoided
+	\item Should avoid mixing methods of val and pointers
+\end{itemize}
+
+\subsection{Interfaces}
+
+Interfaces allow holding any value used to interface with methods.
+
+\begin{lstlisting}[
+	caption= Interfaces, % Caption above the listing
+	language=python, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	type Name interface{
+		method()
+	}
+
+	interface{} // Empty interface can hold any type
+
+	// Type Assertion
+
+	var := interface{} = "h"
+
+	s := var.(string) // Gives the value in the interface
+	s := var.(int) // Causes panic
+
+	s,ok := i.(string) // Check
+
+	switch v := i.(type){
+		case int:
+
+		case string:
+	}
+
+\end{lstlisting}
+
+Fmt uses Stringer interface, that allows the method String() to be accessed via new types.
+
+\section{Error}
+
+Error method can be extended to use new types, which is auto called if the return type is error.
+
+\begin{lstlisting}[
+	caption= Error, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	type ErrNegativeSqrt float64
+
+	func (e ErrNegativeSqrt) Error() string {
+		return fmt.Sprint("cannot Sqrt negative number:",
+		float64(e))
+	}
+
+	func Sqrt(x float64) (float64, error) {
+		if x > 0{
+			return x*x,nil
+		}else {
+			return 0,ErrNegativeSqrt(x)
+		}
+	}
+
+	func main() {
+		fmt.Println(Sqrt(2))
+		fmt.Println(Sqrt(-2))
+	}
+
+\end{lstlisting}
+
+\section{Type Parameters}
+
+Can use T as a generic type in parameters with a constraint.
+
+\begin{lstlisting}[
+	caption= Type Parameters, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	//s can be any type that is comparable
+	func Name[T comparable](s T) int{} 
+
+	type[T any] struct{
+		next *List[T]
+		val
+	} 
+	
+	v := List[int]{nil,3} // Before use need to define T
+
+\end{lstlisting}
+
+\section{Concurrency}
+
+\subsection{Go routines}
+
+Lightweight thread managed by the Go routine.
+
+\[ go\;f(x,y,z) \]
+
+Eval of f happens in current routine, execution happens in new routine. Happens in the 
+same address space.
+
+\subsection{Channels}
+
+Type conduit to send/receive values through the routines.
+
+\[ ch\;<-v,\;v:=<-ch \]
+
+The data flows in arrows direction. Like maps and slices need to make before use, send
+and receive will block until channel is ready. Add length to make buffered lengths.\\
+
+Sends can close the channel so no more vals will be sent. Use ,ok to check if channel is closed,
+sending on a closed channel causes a panic.
+
+\begin{lstlisting}[
+	caption= Channels, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	func fibonacci(n int, c chan int) {
+	x, y := 0, 1
+	for i := 0; i < n; i++ {
+		c <- x
+		x, y = y, x+y
+	}
+	close(c)
+	}
+
+	func main() {
+		c := make(chan int, 10)
+		go fibonacci(cap(c), c)
+		for i := range c { // Receives until c is closed
+			fmt.Println(i)
+		}
+	}
+
+\end{lstlisting}
+
+Select with a channel will block until one of its cases can run (a channel is not empty), 
+unless theres a default.
+
+\subsection{Mutual exclusion}
+
+\begin{lstlisting}[
+	caption= Mutal exclusion, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	var mu sync.Mutex
+
+	mu.Lock
+	mu.Unlock 
+
+\end{lstlisting}
+
+Lock will wait for another lock to unlock before continuing, can use defer to unlock. Locks are queued
+in order.
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
