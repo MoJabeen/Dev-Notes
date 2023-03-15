@@ -450,6 +450,77 @@ unless theres a default.
 Lock will wait for another lock to unlock before continuing, can use defer to unlock. Locks are queued
 in order.
 
+\section{Testing}
+
+A test file name, should end with \_test.go.
+
+\begin{lstlisting}[
+	caption= Test example, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	package example
+
+	import "testing"
+
+	func TestExample(t *testing.T){
+		if testResult != example {
+			test.Errorf{"This test has failed "}
+		}
+	}
+
+\end{lstlisting}
+
+Use go test to run the file.
+
+\section{Modules}
+
+Dependencies are managed via modules, the go.mod file tracks them.\\
+
+After adding an import to the package the mod file should be tidied.
+
+\begin{lstlisting}[
+	caption= Module Commands, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	go mod init [path] // Initalise setup
+	go mod tidy // Add imports to mod file
+
+	go mode -replace [mod name] = [path]
+	// replace path of mod to local file
+
+\end{lstlisting}
+
+Module path is normally: <prefix>/<descriptive-text> \\
+
+Prefix: The location ie github.com \\
+Descriptive text: Project name
+
+\subsection{Workspaces}
+
+Use work spaces to control multiple and locally change modules. Allows reference to packages inside a module
+outside the module in the workspace.
+
+\[ go\;work\;init\; ./module_name \]
+\[ go\;work\;use\; ./module_name \]
+
+\section{APIs}
+
+Gin is a HTTP web framework written in golang. TBA
+
+\section{Fuzzing}
+
+A method of testing with random injections of data. TBA
+
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
 %----------------------------------------------------------------------------------------
