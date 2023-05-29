@@ -513,6 +513,11 @@ outside the module in the workspace.
 \[ go\;work\;init\; ./module_name \]
 \[ go\;work\;use\; ./module_name \]
 
+Ensure the local module has the same name .mod file as the package name and then replace the 
+workspace path to local.
+
+\[ go\;mod\;edit\;-replace\;[module name]\;=\;[full path]\]
+
 \section{APIs}
 
 Gin is a HTTP web framework written in golang. TBA
