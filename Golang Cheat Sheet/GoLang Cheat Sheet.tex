@@ -187,6 +187,8 @@ Names exported outside the packages, must use a Capital letter.
 Reference var from outside the body and be bound to that value, which when called
 includes any prev changes to those vars.
 
+Allows a state of memory via an assigned variable to a func of the internal variables of that func.
+
 \begin{lstlisting}[
 	caption= Params, % Caption above the listing
 	language=Go, % Use Julia functions/syntax highlighting
@@ -250,7 +252,8 @@ includes any prev changes to those vars.
 
 \section{Methods}
 
-Function with a receiver argument. Generally a type through which the function allows for polymorphism.
+Function with a receiver argument, ie accessed through an object (normally a struct). 
+Generally a type through which the function allows for polymorphism.
 
 \begin{lstlisting}[
 	caption= Methods, % Caption above the listing
@@ -274,12 +277,20 @@ Function with a receiver argument. Generally a type through which the function a
 
 \begin{itemize}
 	\item Pointers good for performance as copying is avoided
-	\item Should avoid mixing methods of val and pointers
+	\item \textbf{Should avoid mixing methods of val and pointers}
 \end{itemize}
 
 \subsection{Interfaces}
 
-Interfaces allow holding any value used to interface with methods.
+Interfaces are a type of data via you can access a set defined number of methods.
+
+This can:
+\begin{itemize}
+	\item Define behavior of an object (a type that uses a chosen interface must also have 
+	accompanying methods)
+	\item Decouple code, allow use of methods without needing to know the details of the objects
+	\item polymorphism same func does different things based on interface
+\end{itemize}
 
 \begin{lstlisting}[
 	caption= Interfaces, % Caption above the listing
@@ -328,7 +339,8 @@ Error method can be extended to use new types, which is auto called if the retur
 	numberstyle=\large, % Line numbers styling
 	]
 
-	type ErrNegativeSqrt float64
+	// Kind of a struct with only a float stored
+	type ErrNegativeSqrt float64 
 
 	func (e ErrNegativeSqrt) Error() string {
 		return fmt.Sprint("cannot Sqrt negative number:",
