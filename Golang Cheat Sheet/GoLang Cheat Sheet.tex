@@ -30,7 +30,9 @@
 Go uses packages, which can contain multiple files. \textbf{The app will start running in the main 
 application.}\\
 
-Names exported outside the packages, must use a Capital letter.
+Names exported outside the packages, must use a Capital letter.\\
+
+\textbf{Golang will auto connect any package in different files.}
 
 \begin{lstlisting}[
 	caption= Golang basics, % Caption above the listing
@@ -50,6 +52,8 @@ Names exported outside the packages, must use a Capital letter.
 	}
 
 \end{lstlisting}
+
+\textbf{Can use go run . to run a package but should build for production.}
 
 \newpage
 
@@ -72,7 +76,7 @@ Names exported outside the packages, must use a Capital letter.
 
 	//ARRAY
 	name []string 
-	var := []string("blah","meh")
+	var := []string{"blah","meh"}
 
 	//MAPS
 	map[key type]val type //Dict has to be made
@@ -533,6 +537,15 @@ workspace path to local.
 \section{APIs}
 
 Gin is a HTTP web framework written in golang. TBA
+
+\subsection{JSON/HTTP}
+
+Client errors need to be unmarshalled and then acted upon.
+
+\begin{itemize}
+	\item Decode into struct with 'json: "meh"' markers
+	\item If data comes in as array will need to unmarshal as an interface{} array
+\end{itemize}
 
 \section{Fuzzing}
 
