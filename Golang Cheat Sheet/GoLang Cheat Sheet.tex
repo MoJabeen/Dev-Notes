@@ -82,6 +82,8 @@ Names exported outside the packages, must use a Capital letter.\\
 	map[key type]val type //Dict has to be made
 	m := make(map[string]String)
 
+	m["pi"] = 3.14 //Add to map
+
 	elem, ok = m[key] // check key exists
 
 	// Initialization
@@ -310,6 +312,9 @@ This can:
 	}
 
 	interface{} // Empty interface can hold any type
+
+	//Use known type from interface object with assertion
+	val.(type)
 
 	// Type Assertion
 
@@ -550,6 +555,82 @@ Client errors need to be unmarshalled and then acted upon.
 \section{Fuzzing}
 
 A method of testing with random injections of data. TBA
+
+\section{Logging}
+
+Using the package Zap.
+
+\begin{lstlisting}[
+	caption= Macro definition, % Caption above the listing
+	language=Go, % Use Go functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	import (
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
+	)
+	
+	logger, _ = zap.NewProduction().Sugar 
+	//Sugar - Less performance intense version
+	//New Production is a built-in preset
+
+	defer logger.Sync() 
+	// Will flush any buffered logs
+
+	//NewProduction():
+
+	{"level":"info","ts":1686135419.8329651,
+	"caller":"GoTests/test.go:13","msg":"Meh"}
+
+	//NewDevelopment():
+
+	2023-06-07T11:57:16.804+0100	INFO	
+	GoTests/test.go:13	Meh
+
+	//NewExample():
+
+	{"level":"info","msg":"Meh"}
+
+	logger.Info("Hello World")
+	.Error("Not able to reach blog.
+	",zap.String("url", "codewithmukesh.com"))
+
+	//example with key-val data pairs 
+	sugar.Infow("failed to fetch URL",
+  	"url", "http://example.com",
+  	"attempt", 3,
+  	"backoff", time.Second,)
+
+	//Using fmt.Sprintf
+	sugar.Infof("failed to fetch URL: %s", "http://example.com")
+)
+
+
+\end{lstlisting}
+
+\textbf{Levels:}
+\begin{itemize}
+	\item DPanic : Causes logger to panic after log (in development)
+	\item Debug
+	\item Error
+	\item Fatal
+	\item Info
+	\item Panic: Causes logger to panic after log
+	\item Warn
+\end{itemize}
+
+\textbf{Level Endings:}
+\begin{itemize}
+	\item None: Uses fmt.Sprint
+	\item f: Uses fmt.Sprintf
+	\item ln: Uses fmt.Sprintln
+	\item w: allows extra values to be added in log
+\end{itemize}
+
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
