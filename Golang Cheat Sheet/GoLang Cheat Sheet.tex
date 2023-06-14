@@ -679,7 +679,7 @@ Add counter/gauge:
 			Namespace: "",
 			Subsystem: "",
 			Name: "gauge_example",
-			help: "Gauge example"
+			Help: "Gauge example"
 		})
 
 )
@@ -712,7 +712,6 @@ Data points will be separated out into a chosen bucket.
 	temps := prometheus.NewHistogram(prometheus.HistogramOpts{
 		Name:    "pond_temperature_celsius",
 		Help:    "The temperature of the frog pond.", 
-		// Sorry, we can't measure how badly it smells.
 		Buckets: prometheus.LinearBuckets(20, 5, 5),  
 		// Start at 20, 5 buckets, each 5 centigrade wide.
 	})
@@ -726,35 +725,142 @@ Data points will be separated out into a chosen bucket.
 	//Example output
 
 	histogram: <
-	sample_count: 1000
-	sample_sum: 29969.50000000001
-	bucket: <
-		cumulative_count: 192
-		upper_bound: 20
-	>
-	bucket: <
-		cumulative_count: 366
-		upper_bound: 25
-	>
-	bucket: <
-		cumulative_count: 501
-		upper_bound: 30
-	>
-	bucket: <
-		cumulative_count: 638
-		upper_bound: 35
-	>
-	bucket: <
-		cumulative_count: 816
-		upper_bound: 40
-	>
+  sample_count: 1000
+  sample_sum: 29969.50000000001
+  bucket: <
+    cumulative_count: 192
+    upper_bound: 20
+  >
+  bucket: <
+    cumulative_count: 366
+    upper_bound: 25
+  >
+  bucket: <
+    cumulative_count: 501
+    upper_bound: 30
+  >
+  bucket: <
+    cumulative_count: 638
+    upper_bound: 35
+  >
+  bucket: <
+    cumulative_count: 816
+    upper_bound: 40
+  >
+
 
 \end{lstlisting}
 
-Use registries for metrics grouping into MetricFamailies.\\
+\section{Cobra - CLI}
 
-Push libaries are good for exporting metrics from short burst
-batch jobs.
+Cobra is a CLI framework. \\
+
+Built around commands (actions), args (things) and flags (modifiers).
+
+\begin{center}
+	\textit{APPNAME COMMAND ARG --FLAG }
+\end{center}
+
+\textbf{Structure:}
+
+appName/ \\
+-- cmd/ \\
+--- files.go \\
+-- main.go \\
+
+The main files will simply initalise Cobra.
+
+\subsection{Example Command}
+
+\begin{lstlisting}[
+	caption= Example command, % Caption above the listing
+	language=go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	//Placed in file called ex.go in package cmd
+
+	var exCmd = &cobra.Command{
+		Use:   "ex",
+		Short: "Hugo is a very fast static site generator",
+		Long: `A Fast and Flexible Static Site Generator built 
+		with love by spf13 and friends in Go.
+		Complete documentation is available at 
+		https://gohugo.io/documentation/`,
+
+		Run: func(cmd *cobra.Command, args []string) {
+		  // Do Stuff Here
+		},
+	}
+
+	func Execute() {
+  		if err := rootCmd.Execute(); err != nil {
+    		fmt.Fprintln(os.Stderr, err)
+    		os.Exit(1)
+  		}
+	}
+
+\end{lstlisting}
+
+\begin{lstlisting}[
+	caption= main.go, % Caption above the listing
+	language=go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	func main() {
+		cmd.Execute()
+	}
+
+\end{lstlisting}
+
+\subsection{Sub commands}
+
+Can create sub commands using the Add command function:
+
+\subsection{Flags}
+
+Two types: Persistent flag (available to that command and all subcommands), local command 
+(only applies to that specific command).
+
+\begin{lstlisting}[
+	caption= Flags, % Caption above the listing
+	language=go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	var Verbose bool
+
+	//Persistent
+
+	rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", 
+	"v", false, "verbose output")
+	rootCmd.Flags().StringVarP(&Verbose, "verbose",
+	 "v", false, "verbose output")
+
+	// Flag required
+	rootCmd.MarkFlagRequired("verbose")
+	rootCmd.MarkPersistentFlagRequired("verbose")
+
+	// Flags required together
+	rootCmd.MarkFlagsRequiredTogether("username", "password")
+
+	// Flags mutually exclusive
+	rootCmd.MarkFlagsMutuallyExclusive("json", "yaml")
+
+\end{lstlisting}
+
+\subsection{Arguments}
+
 
 
 %----------------------------------------------------------------------------------------
