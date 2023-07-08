@@ -30,7 +30,9 @@
 Go uses packages, which can contain multiple files. \textbf{The app will start running in the main 
 application.}\\
 
-Names exported outside the packages, must use a Capital letter.
+Names exported outside the packages, must use a Capital letter.\\
+
+\textbf{Golang will auto connect any package in different files.}
 
 \begin{lstlisting}[
 	caption= Golang basics, % Caption above the listing
@@ -50,6 +52,8 @@ Names exported outside the packages, must use a Capital letter.
 	}
 
 \end{lstlisting}
+
+\textbf{Can use go run . to run a package but should build for production.}
 
 \newpage
 
@@ -72,11 +76,13 @@ Names exported outside the packages, must use a Capital letter.
 
 	//ARRAY
 	name []string 
-	var := []string("blah","meh")
+	var := []string{"blah","meh"}
 
 	//MAPS
 	map[key type]val type //Dict has to be made
 	m := make(map[string]String)
+
+	m["pi"] = 3.14 //Add to map
 
 	elem, ok = m[key] // check key exists
 
@@ -187,6 +193,8 @@ Names exported outside the packages, must use a Capital letter.
 Reference var from outside the body and be bound to that value, which when called
 includes any prev changes to those vars.
 
+Allows a state of memory via an assigned variable to a func of the internal variables of that func.
+
 \begin{lstlisting}[
 	caption= Params, % Caption above the listing
 	language=Go, % Use Julia functions/syntax highlighting
@@ -250,7 +258,8 @@ includes any prev changes to those vars.
 
 \section{Methods}
 
-Function with a receiver argument. Generally a type through which the function allows for polymorphism.
+Function with a receiver argument, ie accessed through an object (normally a struct). 
+Generally a type through which the function allows for polymorphism.
 
 \begin{lstlisting}[
 	caption= Methods, % Caption above the listing
@@ -274,12 +283,20 @@ Function with a receiver argument. Generally a type through which the function a
 
 \begin{itemize}
 	\item Pointers good for performance as copying is avoided
-	\item Should avoid mixing methods of val and pointers
+	\item \textbf{Should avoid mixing methods of val and pointers}
 \end{itemize}
 
 \subsection{Interfaces}
 
-Interfaces allow holding any value used to interface with methods.
+Interfaces are a type of data via you can access a set defined number of methods.
+
+This can:
+\begin{itemize}
+	\item Define behavior of an object (a type that uses a chosen interface must also have 
+	accompanying methods)
+	\item Decouple code, allow use of methods without needing to know the details of the objects
+	\item polymorphism same func does different things based on interface
+\end{itemize}
 
 \begin{lstlisting}[
 	caption= Interfaces, % Caption above the listing
@@ -295,6 +312,9 @@ Interfaces allow holding any value used to interface with methods.
 	}
 
 	interface{} // Empty interface can hold any type
+
+	//Use known type from interface object with assertion
+	val.(type)
 
 	// Type Assertion
 
@@ -328,7 +348,8 @@ Error method can be extended to use new types, which is auto called if the retur
 	numberstyle=\large, % Line numbers styling
 	]
 
-	type ErrNegativeSqrt float64
+	// Kind of a struct with only a float stored
+	type ErrNegativeSqrt float64 
 
 	func (e ErrNegativeSqrt) Error() string {
 		return fmt.Sprint("cannot Sqrt negative number:",
@@ -513,13 +534,334 @@ outside the module in the workspace.
 \[ go\;work\;init\; ./module_name \]
 \[ go\;work\;use\; ./module_name \]
 
+Ensure the local module has the same name .mod file as the package name and then replace the 
+workspace path to local.
+
+\[ go\;mod\;edit\;-replace\;[module name]\;=\;[full path]\]
+
 \section{APIs}
 
 Gin is a HTTP web framework written in golang. TBA
 
+\subsection{JSON/HTTP}
+
+Client errors need to be unmarshalled and then acted upon.
+
+\begin{itemize}
+	\item Decode into struct with 'json: "meh"' markers
+	\item If data comes in as array will need to unmarshal as an interface{} array
+\end{itemize}
+
 \section{Fuzzing}
 
 A method of testing with random injections of data. TBA
+
+\section{Logging}
+
+Using the package Zap.
+
+\begin{lstlisting}[
+	caption= Macro definition, % Caption above the listing
+	language=Go, % Use Go functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	import (
+	"go.uber.org/zap"
+	)
+	
+	logger, _ = zap.NewProduction()
+	logger := logger.Sugar() 
+	//Sugar - Less performance intense version
+	//New Production is a built-in preset
+
+	defer logger.Sync() 
+	// Will flush any buffered logs
+
+	//NewProduction():
+
+	{"level":"info","ts":1686135419.8329651,
+	"caller":"GoTests/test.go:13","msg":"Meh"}
+
+	//NewDevelopment():
+
+	2023-06-07T11:57:16.804+0100	INFO	
+	GoTests/test.go:13	Meh
+
+	//NewExample():
+
+	{"level":"info","msg":"Meh"}
+
+	logger.Info("Hello World")
+	.Error("Not able to reach blog.
+	",zap.String("url", "codewithmukesh.com"))
+
+	//example with key-val data pairs 
+	sugar.Infow("failed to fetch URL",
+  	"url", "http://example.com",
+  	"attempt", 3,
+  	"backoff", time.Second,)
+
+	//Using fmt.Sprintf
+	sugar.Infof("failed to fetch URL: %s", "http://example.com")
+
+\end{lstlisting}
+
+\textbf{Levels:}
+\begin{itemize}
+	\item DPanic : Causes logger to panic after log (in development)
+	\item Debug
+	\item Error
+	\item Fatal
+	\item Info
+	\item Panic: Causes logger to panic after log
+	\item Warn
+\end{itemize}
+
+\textbf{Level Endings:}
+\begin{itemize}
+	\item None: Uses fmt.Sprint
+	\item f: Uses fmt.Sprintf
+	\item ln: Uses fmt.Sprintln
+	\item w: allows extra values to be added in log
+\end{itemize}
+
+
+\section{Prometheus}
+
+Host metrics locally:
+
+\begin{lstlisting}[
+	caption= Macro definition, % Caption above the listing
+	language=Go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	package main
+
+	import (
+       "net/http"
+
+        "github.com/prometheus/client_golang/prometheus/promhttp"
+	)
+
+	func main() {
+        http.Handle("/metrics", promhttp.Handler())
+        http.ListenAndServe(":2112", nil)
+	}
+
+\end{lstlisting}
+
+
+Add counter/gauge:
+
+\begin{lstlisting}[
+	caption= Macro definition, % Caption above the listing
+	language=Go, % Use Go functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	var (
+        counterExample = promauto.NewCounter(prometheus.CounterOpts{
+                Name: "Counter_Example",
+                Help: "The total number of processed events",
+        })
+		gaugeExample = promauto.NewGauge(prometheus.GaugeOpts{
+			Namespace: "",
+			Subsystem: "",
+			Name: "gauge_example",
+			Help: "Gauge example"
+		})
+
+)
+
+counterExample.Inc() // Increment counter
+gaugeExample.Set(99.9)
+gaugeExample.Inc()
+gaugeExample.Dec() //Decrement value
+gaugeExample.Add(10) //Add 10
+gaugeExample.Sub(10) //Subtract 10
+
+gaugeExample.SetToCurrentTime()
+
+\end{lstlisting}
+
+Add histogram, counts observations from configurable static buckets in a burst sample. Which can be used to calculate
+quantiles. 
+
+Data points will be separated out into a chosen bucket.
+
+\begin{lstlisting}[
+	caption= Macro definition, % Caption above the listing
+	language=Go, % Use Go functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	temps := prometheus.NewHistogram(prometheus.HistogramOpts{
+		Name:    "pond_temperature_celsius",
+		Help:    "The temperature of the frog pond.", 
+		Buckets: prometheus.LinearBuckets(20, 5, 5),  
+		// Start at 20, 5 buckets, each 5 centigrade wide.
+	})
+
+	// Simulate some observations.
+	for i := 0; i < 1000; i++ {
+		temps.Observe(30 + 
+		math.Floor(120*math.Sin(float64(i)*0.1))/10)
+	}
+
+	//Example output
+
+	histogram: <
+  sample_count: 1000
+  sample_sum: 29969.50000000001
+  bucket: <
+    cumulative_count: 192
+    upper_bound: 20
+  >
+  bucket: <
+    cumulative_count: 366
+    upper_bound: 25
+  >
+  bucket: <
+    cumulative_count: 501
+    upper_bound: 30
+  >
+  bucket: <
+    cumulative_count: 638
+    upper_bound: 35
+  >
+  bucket: <
+    cumulative_count: 816
+    upper_bound: 40
+  >
+
+
+\end{lstlisting}
+
+\section{Cobra - CLI}
+
+Cobra is a CLI framework. \\
+
+Built around commands (actions), args (things) and flags (modifiers).
+
+\begin{center}
+	\textit{APPNAME COMMAND ARG --FLAG }
+\end{center}
+
+\textbf{Structure:}
+
+appName/ \\
+-- cmd/ \\
+--- files.go \\
+-- main.go \\
+
+The main files will simply initalise Cobra.
+
+\subsection{Example Command}
+
+\begin{lstlisting}[
+	caption= Example command, % Caption above the listing
+	language=go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	//Placed in file called ex.go in package cmd
+
+	var exCmd = &cobra.Command{
+		Use:   "ex",
+		Short: "Hugo is a very fast static site generator",
+		Long: `A Fast and Flexible Static Site Generator built 
+		with love by spf13 and friends in Go.
+		Complete documentation is available at 
+		https://gohugo.io/documentation/`,
+
+		Run: func(cmd *cobra.Command, args []string) {
+		  // Do Stuff Here
+		},
+	}
+
+	func Execute() {
+  		if err := rootCmd.Execute(); err != nil {
+    		fmt.Fprintln(os.Stderr, err)
+    		os.Exit(1)
+  		}
+	}
+
+\end{lstlisting}
+
+\begin{lstlisting}[
+	caption= main.go, % Caption above the listing
+	language=go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	func main() {
+		cmd.Execute()
+	}
+
+\end{lstlisting}
+
+\subsection{Sub commands}
+
+Can create sub commands using the Add command function:
+
+\subsection{Flags}
+
+Two types: Persistent flag (available to that command and all subcommands), local command 
+(only applies to that specific command).
+
+\begin{lstlisting}[
+	caption= Flags, % Caption above the listing
+	language=go, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	var Verbose bool
+
+	//Persistent
+
+	rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", 
+	"v", false, "verbose output")
+	rootCmd.Flags().StringVarP(&Verbose, "verbose",
+	 "v", false, "verbose output")
+
+	// Flag required
+	rootCmd.MarkFlagRequired("verbose")
+	rootCmd.MarkPersistentFlagRequired("verbose")
+
+	// Flags required together
+	rootCmd.MarkFlagsRequiredTogether("username", "password")
+
+	// Flags mutually exclusive
+	rootCmd.MarkFlagsMutuallyExclusive("json", "yaml")
+
+\end{lstlisting}
+
+\subsection{Arguments}
+
+
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
