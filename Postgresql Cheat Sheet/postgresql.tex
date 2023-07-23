@@ -181,7 +181,37 @@ Tables can be linked to each other via reference ids.
 
 Libpq is the C software used to access postgres via a program.
 
+\section{Partitioning}
+
+Logically separate one large table into smaller physical ones, the main benefit is to
+increase query speed if one part of the table is heavily accessed.\\
+
+This done by doing a sequential scan of the relevant partition, instead of a random search
+through the whole table.\\
+
+The partitioned table itself is a “virtual” table having no storage of its own. 
+Instead, the storage belongs to partitions, which are otherwise-ordinary tables associated with 
+the partitioned table.\\
+
+Not the same as archiving data.
+
+\subsection{Types}
+
+\begin{itemize}
+	\item Range: Seperated into a given range of a column or set of cols.
+	\item List: Key values that should appear in each partition
+	\item Hash: A modulus, with the remainder of the modulus with the partition key 
+	giving the partitions.
+\end{itemize}
+
+\subsection{Altering}
+
+It is not possible to turn a regular table to partitioned or vice versa. However,
+you can add an existing regular table as a partition or remove a partition turning it 
+into a regular table.
+
 \end{document}
+
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE

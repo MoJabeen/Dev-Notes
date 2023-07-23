@@ -861,7 +861,42 @@ Two types: Persistent flag (available to that command and all subcommands), loca
 
 \subsection{Arguments}
 
+Using the Args field in cobra.Command(), can add validators:
 
+\begin{itemize}
+	\item NoArgs - report error if any args used
+	\item MinimumNArgs(int) - report an error if less than N positional args are provided.
+	\item MaximumNArgs(int) - report an error if more than N positional args are provided.
+	\item ExactArgs(int) - report an error if there are not exactly N positional args.
+	\item OnlyValidArgs - report an error if there are any positional args not specified in the ValidArgs field of 
+	Command, which can optionally be set to a list of valid values for positional args.
+\end{itemize}
+
+\textbf{MatchAll()} is used to combine validators.\\
+
+Can also create custom validator funcs.
+
+\subsection{Help}
+
+If using subcommands, cobra will auto generate command help, will give list of all subcommands. \\
+
+Can also get help on specific commands by using command help subcommand.
+
+\subsection{Version}
+
+\textbf{cmd.SetVersionTemplate()}
+
+\subsection{Cobra Generator}
+
+Use: \textbf{cobra-cli init} to create new cli app.\\
+
+\textit{Edit details in cmd/root.go}. \\
+
+Use: \textbf{cobra-cli add command} to create new command files. Add -p 'parentCmd' for a subcommand.
+
+\section{Viper}
+
+A configurator (TBA)
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE

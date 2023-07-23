@@ -11,7 +11,7 @@
 \title{	
 	\normalfont\normalsize
 	\vspace{20pt} % Whitespace
-	{\huge meh}\\ % The meh
+	{\huge Apache}\\ % The meh
 	\vspace{12pt} % Whitespace
 	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
 }
@@ -25,15 +25,44 @@
 
 \maketitle % Print the title
 
-\section{First fjwkefh}
+\section{General}
 
-\subsection{Subsection}
+\begin{itemize}
+	\item Need to set firewall to accept WWW
+	\item Add mods using a2enmod command
+	\item enable sites in sites available using soft link (ln -s)
+\end{itemize}
 
-paragraph
+\section{Proxy}
 
-\section{Understanding Text}
+Need to add proxy mods to enable proxy
 
-\subsubsection{subsubsection}
+\begin{lstlisting}[
+	caption= Macro definition, % Caption above the listing
+	language=html, % Use Julia functions/syntax highlighting
+	frame=single, % Frame around the code listing
+	showstringspaces=false, % Don't put marks in string spaces
+	numbers=left, % Line numbers on left
+	numberstyle=\large, % Line numbers styling
+	]
+
+	<VirtualHost *:80>
+
+	ProxyRequests Off
+    ProxyPreserveHost On
+    ProxyVia Full
+
+	<Location /directory>
+	ProxyPass http://127.0.0.1:2021
+	ProxyPassReverse http://127.0.0.1:2021
+	</Location>
+
+	ErrorLog ${APACHE_LOG_DIR}/divination_proxy_error.log
+    CustomLog ${APACHE_LOG_DIR}/divination_proxy_access.log combined
+
+	</VirtualHost>
+
+\end{lstlisting}
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE

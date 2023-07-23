@@ -644,6 +644,12 @@ INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/fourier-alt-it
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futb8t.vf
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futb8r.tfm
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/fourier-alt-bold.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/ecss1200.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/jknappen/ec/ecsx1200.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futb8t.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/vf/public/fourier/futb8t.vf
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/futb8r.tfm
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/fourier/fourier-alt-bold.tfm
 INPUT postgresql.aux
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT /usr/local/texlive/2022/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb
