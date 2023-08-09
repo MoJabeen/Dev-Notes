@@ -54,13 +54,13 @@ data management.
 \section{Object orientated}
 
 First area thought to be introduced is Encapsulation of data and
-functions.
+functions.\\
 
 Data should be kept within concepts and only accessed through this
-concept.
+concept.\\
 
 Good encapsulation is when the users of a program have or need no
-knowledge of the implementation of the data structure of function.
+knowledge of the implementation of the data structure or function.
 
 \begin{itemize}
 \item
@@ -70,14 +70,14 @@ knowledge of the implementation of the data structure of function.
 \end{itemize}
 
 \textbf{Inheritance:} Able to reuse classes and modules in different
-scopes.
+scopes.\\
 
 Encapsulation can exist without OO so this is not its feature.
 
 \subsection{What is polymorphism ?}
 
 At its core polymorphism is pointers to functions. Allowing the pointer
-to dictate based on the given parameter the functions behavior.
+to dictate based on the given parameter the functions behavior.\\
 
 This can be done without OO, however it makes it much safer and more
 convenient.
@@ -85,19 +85,25 @@ convenient.
 \subsection{How did OO effect the flow of dependency (Dependency
 inversion)}
 
-Prior to OO flow of control had to match the direction of dependency.
+Prior to OO (polymorphism) flow of control had to match the direction of dependency.
 
 \begin{itemize}
 \item
-  All higher level functions are dependant on main and the flow of
-  control stems down to them from main.
+  All higher level functions are dependant on the implementation and the flow of
+  control stems down to them from higher level function.
 \end{itemize}
 
 The dependency can be inverted using OO and interfaces; giving the
 architect control over the dependency tree. \textbf{Control order does
-not have to match dependency}
+not have to match dependency}\\
 
 \emph{Green arrow = Control , Red arrow = dependency}
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Poly.png} % Example image
+	\caption{Control/Dependency Flow}
+\end{figure}
 
 \begin{itemize}
 \item
@@ -105,12 +111,18 @@ not have to match dependency}
   the rules.
 \end{itemize}
 
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Flow.png} % Example image
+	\caption{Overview Flow}
+\end{figure}
+
 The main thing OO introduces is a safe effective method of controlling
-source code dependencies !!
+source code dependencies !!\\
 
 Vital to allow modularity and plugin nature of development.
 
-\#~Functional Programming
+\subsubsection{Functional Programming}
 
 Functional programs variable are not mutable, they do not vary.
 
@@ -120,11 +132,16 @@ Functional programs variable are not mutable, they do not vary.
 
 If there was infinite resources (memory and processing) using immutable
 variables would be an option. Instead need to split the program into
-mutable and immutable components.
+mutable and immutable components.\\
 
 The immutable components will feed the mutable components which then use
-transactional memory.
+transactional memory.\\
 
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Components.png} % Example image
+	\caption{Immutable Components}
+\end{figure}
 
 Transactional memory acts as disk database with safety measures against
 race conditions; locking mechanisms on reading and writing.
@@ -137,15 +154,15 @@ state is then calculated by summing transactions.
 \section{Components}
 
 Well designed components are independently deployable and therefore
-independently developable.
+independently developable.\\
+
+Module managment tools: Maven, Leiningen and RVM.\\
 
 Three principles associated with component design :
 
-Module managment tools: Maven, Leiningen and RVM.
-
 \subsection{Reuse/Release equivalence principle}
 
-Should be an overarching theme of the modules inside a component.
+Should be an overarching theme of the modules inside a component.\\
 
 To allow effective developing and reuse of a component there should be
 scheduled releases of new versions. And therefore the classes and
@@ -153,17 +170,17 @@ components should be releasable together as a unit.
 
 \subsection{Common closure principle}
 
-Gather classes/modules into a component that change change for the same
-reasons at the same time.
+Gather classes/modules into a component that change for the same
+reasons at the same time.\\
 
 Much easier to change related classes in a single component than across
 many components.
 
 \subsection{Common reuse principle}
 
-Dont force users of a component to depend on a code they dont need.
-Places reused classes and modules together into a component. There
-should be a high dependency in a component between classes and modules.
+Dont force users of a component to depend on code they dont need.
+Place reused classes and modules together into a component. There
+should be a high dependency in a component's classes and modules.\\
 
 If dependant on a component better to be completely dependant on the
 entire component.
@@ -171,48 +188,53 @@ entire component.
 \subsection{How do you balance the three principles}
 
 It is dependant on the needs of the software system and there will be
-tension between all three.
+tension between all three.\\
 
 i.e Early on development CCP is more important than REP ! As development
 is more important than reuse.
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{space.png} % Example image
+	\caption{Balancing three principles}
+\end{figure}
 
 \section{Component Cohesion}
 
 \subsection{Acyclic dependencies principle}
 
-No cycles in the component dependency graph.
+No cycles in the component dependency graph.\\
 
 Released components allow devs to work in isolated teams and decide
-which version to integrate with their dependant component.
+which version to integrate with their dependant component.\\
 
 If there is a dependency cycle between components multiple components
 will be forced to use the same version of a dependant components
-disrupting the isolated teams.
+disrupting the isolated teams.\\
 
 To break a cycle create an interface component which will inverse the
 dependency. Or create another component between.
 
 \subsection{Stable dependency principle}
 
-Do not make easy to change modules be depended on by hard to change
-modules.
+Do not make hard to change modules depend on easy to change modules.\\
 
 A method to make software stable and therefore hard to change is to have
 a lot of software dependant on it.
 
 \subsubsection{How do you measure stability ?}
 
-By the number of dependencies:
+By the number of dependencies:\\
 
 Fan in: Incoming dependencies (Increasing this number is good for
-stability) Fan out: Outgoing dependencies
+stability) Fan out: Outgoing dependencies\\
 
 Instability : I = Fan out/(Fan in + Fan out), I=0 is maximum stability
 and I=1 is max unstable.
 
 \subsection{Stable abstraction principle}
 
-A component should be as abstract as it is stable.
+A component should be as abstract as it is stable.\\
 
 A stable component should be abstracted so it can be \textbf{extended},
 it should be hard to change however being extendable does not effect
@@ -223,6 +245,11 @@ this.
 Abstractness = Number of abstract classes and interfaces / number of
 classes in component
 
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{main_seq.png} % Example image
+	\caption{Abstractness measurement}
+\end{figure}
 
 \subsubsection{Metric to determine good design}
 
@@ -236,7 +263,7 @@ Architecture is about deployment, maintenance and ongoing development.
 Not directly linked with behavior or operation however it can aid in
 this.\\
 
-The focus is on reliability and development speed not performance.Good architecture is about
+The focus is on reliability and development speed not performance. Good architecture is about
 making a system easy to understand, develop, deploy and maintain.\\
 
 As many options as possible should be kept open for as long as possible
@@ -283,8 +310,8 @@ Dependency can be thought of as import mechanisms, if a module or files requires
 statement then it is \textbf{dependant on the thing its is importing!}\\
 
 An interface allows for dependency inversion without changing the flow of control. This is vital
-to a modularized methodology. The key thing to check in dependency is if changes or breakages 
-effect in a module effect other modules, if they do they are dependant.\\
+to a modularized methodology. The key thing to check in dependency is if changes or breakages
+ in a module effect other modules, if they do they are dependant.\\
 
 Generally an interface is called via a data object allowing for polymorphic methods and independence.\\
 
@@ -298,11 +325,13 @@ The lower level component should depend on the higher level ones. I.e DB access 
 on the procedure that uses that data and not the other way. This allows for plugin design where details
 are dependant on procedures so they can be easily swapped.\\
 
+\textbf{Vital to remember to create reusable interfaces/frameworks, must create them concurrently with several plugins/reusing apps.}\\
+
 Error handling becomes clear when there is clear dependency as it can happen post interface.
 
 \section{Component Cohesion}
 
-A module should be determined by if the axis of changes, is it expected for all elements
+A module should be determined by the axis of changes, is it expected for all elements
 in this module to change for the same reason and rate!\\
 
 A module hard to change should be easy to extend.
@@ -356,13 +385,16 @@ The grouped policies are components on acyclic graph.
 
 \end{lstlisting}
 
-This is bad design as the procedure encrypt is dependant on the details. A better design would be:
+This is bad design as the procedure encrypt is dependant on the details. \\
 
 \begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
 	\centering
 	\includegraphics[width=\columnwidth]{Improved.jpeg} % Example image
 	\caption{Improved Architecture}
+  \label{Improved}
 \end{figure}
+
+A better design would be: Figure \ref{Improved}.
 
 \subsection{Critical}
 
@@ -429,7 +461,51 @@ plugin element. Can do a similar thing with an OS.
 
 \section{Example}
 
+\begin{enumerate}
+  \item Determine actors and use cases
+  \item Create component architecture
+  \item Ensure dependency is appropriate for policy levels
+  \item Determine deployment method of components
+\end{enumerate}
 
+\subsection{Use Cases}
+
+Actors should be connected to use cases, abstract use cases can be used that connect other use
+cases which add details to the abstract.
+
+\subsection{Components}
+
+Example pattern: View, presenter, interactor and controller are separated
+
+\begin{itemize}
+  \item Controller: Handle input
+  \item Interactor: Process input into usable data
+  \item Presenter: Format results
+  \item Viewer: Display result
+\end{itemize}
+
+The vertical splits will be different actors/use cases.
+
+\subsection{Types}
+
+\subsubsection{Layered Architecture}
+
+Boundaries drawn by technical difference, ie web, procedure and storage.\\
+
+Doesn't have any link to the business or use case.
+
+\subsubsection{Feature Architecture}
+
+The boundaries are around features, but doesn't effectively separate technologies.
+
+\subsubsection{Component Architecture}
+
+Use boundaries and deployment method to separate technologies and use cases. A hybrid of the previous.
+
+\subsection{Encapsulation}
+
+If components have free access to each other, the architecture can be easily ignored. Utilizing
+encapsulation allows the complier to ensure the architecture.
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
