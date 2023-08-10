@@ -25,6 +25,8 @@
 
 \maketitle % Print the title
 
+Notes based on \cite{Martin17} and \cite{richards2020fundamentals}.
+
 \tableofcontents
 
 \pagebreak
@@ -273,7 +275,94 @@ judgment on an option (database, language, hardware etc).\\
 The concept is to ensure policy is completely decoupled from details.\\
 
 Good architecture is about balancing when boundaries are needed and not needed and being flexible 
-about this as it will be revealed as time progresses.
+about this as it will be revealed as time progresses. Trade offs are always present.
+
+\subsection{Technical Breadth}
+
+All architecture will be iterative due to unknown unknown, the response is to reduce this by increasing
+your known unknowns - technical breadth.\\
+
+Careful to avoid the frozen caveman problem, constantly revisiting the same risk due to PTSD.
+
+\subsection{Areas}
+
+Software architecture can be thought of as involving work in four paradigms.
+
+\begin{itemize}
+  \item Structure: Deployment method (Monolithic,Distributed)
+  \item Characteristics: Properties to focus on based on domain problem (Performance,Security,Scalability)
+  \item Decisions: Hard rules for constructing the system (only procedures can access the database)
+  \item Principles: Soft rules/guidance (Only use asynchronous comms)
+\end{itemize}
+
+\subsection{Characteristics}
+
+The list of characteristics supported should be as small as possible for simplicity.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|p{8cm}|}
+    \hline
+    \textbf{Metric} & \textbf{Definition} \\ \hline
+    \textbf{Availability} & How long the system will need to be available (if 24/7, steps need to be in place to allow the system to be up and running quickly in case of any failure). \\ \hline
+    \textbf{Performance} & Includes stress testing, peak analysis, analysis of the frequency of functions used, capacity required, and response times. Performance acceptance sometimes requires an exercise of its own, taking months to complete. \\ \hline
+    \textbf{Reliability/safety} & Assess if the system needs to be fail-safe, or if it is mission critical in a way that affects lives. If it fails, will it cost the company large sums of money? \\ \hline
+    \textbf{Scalability} & Ability for the system to perform and operate as the number of users or requests increases. \\ \hline
+  \end{tabular}
+  \caption{Operational Characteristics}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|p{8cm}|}
+    \hline
+    \textbf{Metric} & \textbf{Definition} \\ \hline
+    \textbf{Configurability} & Ability for the end users to easily change aspects of the software’s configuration (through usable interfaces). \\ \hline
+    \textbf{Extensibility} & How important it is to plug new pieces of functionality in. \\ \hline
+    \textbf{Installability} & Ease of system installation on all necessary platforms. \\ \hline
+    \textbf{Localization} & Support for multiple languages on entry/query screens in data fields; on reports, multibyte character requirements and units of measure or currencies. \\ \hline
+    \textbf{Portability} & Does the system need to run on more than one platform? (For example, does the frontend need to run against Oracle as well as SAP DB?) \\ \hline
+    \textbf{Upgradeability} & Ability to easily/quickly upgrade from a previous version of this application/solution to a newer version on servers and clients. \\ \hline
+    \textbf{Leverageability/reuse} & Ability to leverage common components across multiple products. \\ \hline
+    \textbf{Maintainability} & How easy it is to apply changes and enhance the system? \\ \hline
+    \textbf{Supportability} & What level of technical support is needed by the application? What level of logging and other facilities are required to debug errors in the system? \\ \hline
+    \end{tabular}
+    \caption{Structural Characteristics}
+\end{table}
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|p{8cm}|}
+    \hline
+    \textbf{Metric} & \textbf{Definition} \\ \hline
+    \textbf{Accessibility} & Access to all your users, including those with disabilities like colorblindness or hearing loss. \\ \hline
+    \textbf{Archivability} & Will the data need to be archived or deleted after a period of time? (For example, customer accounts are to be deleted after three months or marked as obsolete and archived to a secondary database for future access.) \\ \hline
+    \textbf{Authentication} & Security requirements to ensure users are who they say they are. \\ \hline
+    \textbf{Legal} & What legislative constraints is the system operating in (data protection, Sarbanes Oxley, GDPR, etc.)? What reservation rights does the company require? Any regulations regarding the way the application is to be built or deployed? \\ \hline
+    \textbf{Security} & Does the data need to be encrypted in the database? Encrypted for network communication between internal systems? What type of authentication needs to be in place for remote user access? \\ \hline
+    \textbf{Usability/achievability} & Level of training required for users to achieve their goals with the application/solution. Usability requirements need to be treated as seriously as any other architectural issue. \\ \hline
+    \textbf{Authorization} & Security requirements to ensure users can access only certain functions within the application (by use case, subsystem, webpage, business rule, field level, etc.). \\ \hline
+    \textbf{Privacy} & Ability to hide transactions from internal company employees (encrypted transactions so even DBAs and network architects cannot see them). \\ \hline
+    \textbf{Supportability} & What level of technical support is needed by the application? What level of logging and other facilities are required to debug errors in the system? \\ \hline
+    \end{tabular}
+    \caption{Cross cutting characteristics}
+\end{table}
+
+\subsubsection{Domain}
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|p{6cm}|p{6cm}|}
+    \hline
+    \textbf{Domain concern} & \textbf{Architecture characteristics} & \textbf{Example} \\ \hline
+    \textbf{Mergers and acquisitions} & Interoperability, scalability, adaptability, extensibility & The system needs to be able to integrate with the systems of the acquired company and scale to meet the needs of the larger organization. \\ \hline
+    \textbf{User satisfaction} & Performance, availability, fault tolerance, testability, deployability, agility, security & The system needs to be responsive, always available, and secure in order to meet the needs of users. \\ \hline
+    \textbf{Time and budget} & Simplicity, feasibility & The system needs to be easy to develop and maintain within the constraints of time and budget. \\ \hline
+    \textbf{Time to market} & Agility, testability, deployability & The system needs to be developed and deployed quickly in order to meet market demands. \\ \hline
+    \textbf{Competitive advantage} & Agility, testability, deployability, scalability, availability, fault tolerance & The system needs to be able to adapt to changing market conditions and provide a competitive advantage for the organization. \\ \hline
+    \end{tabular}
+    \caption{Mapping from domain to characteristics}
+\end{table}
 
 \subsection{Size}
 
@@ -308,6 +397,8 @@ different data flow streams.
 
 Dependency can be thought of as import mechanisms, if a module or files requires an import or using
 statement then it is \textbf{dependant on the thing its is importing!}\\
+
+\textbf{Connascense:} Change in one module requires change in another to keep the system working.
 
 An interface allows for dependency inversion without changing the flow of control. This is vital
 to a modularized methodology. The key thing to check in dependency is if changes or breakages
@@ -439,6 +530,140 @@ services they are interfaces communicating with each other. Unless the service i
 
 The benefit of service design is outside the goal of good architecture.
 
+\section{Structures}
+
+\begin{itemize}
+  \item Big ball of mud: None
+  \item Monolithic
+  \begin{itemize}
+    \item Layered
+    \item Pipeline
+    \item Microkernal
+  \end{itemize}
+  \item Distributed
+  \begin{itemize}
+    \item Service-based
+    \item Event driven
+    \item Space based
+    \item Service-orientated
+    \item Microservices
+  \end{itemize}
+\end{itemize}
+
+Distributed gives the benefit of performance,scalability and availability with a bunch of networking headaches.
+
+\subsection{Layered}
+
+Separated components based on technical differences.\\
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Layered.png} % Example image
+	\caption{Layered Rating}
+  \label{Layered}
+\end{figure}
+
+Rating table found in Figure:\ref{Layered} on page: \pageref{Layered}.
+
+\subsection{Pipeline}
+
+Filter and pipe method, where data is passed through many stateless filters via pipes.\\
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Pipeline.png} % Example image
+	\caption{Pipeline Rating}
+  \label{Pipeline}
+\end{figure}
+
+Rating table found in Figure:\ref{Pipeline} on page: \pageref{Pipeline}.
+
+\subsection{Microkernal}
+
+Division of components by technical and domain. Gives plugin structure.\\
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Microkernal.png} % Example image
+	\caption{Microkernal Rating}
+  \label{Microkernal}
+\end{figure}
+
+Rating table found in Figure:\ref{Microkernal} on page: \pageref{Microkernal}.
+
+\subsection{Service-based}
+
+The basic topology of service-based architecture follows a distributed macro layered
+structure consisting of a separately deployed user interface, separately 
+deployed remote coarse- grained services, and a monolithic database. The services split by domain.\\
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Service-based.png} % Example image
+	\caption{Service based Rating}
+  \label{Service-based}
+\end{figure}
+
+Rating table found in Figure:\ref{Service-based} on page: \pageref{Service-based}. 
+
+\subsection{Event-driven}
+
+Event-driven architecture is made up of decoupled event processing components that asynchronously 
+receive and process events. It can be used as a standalone architecture 
+style or embedded within other architecture styles (such as an event-driven microservices architecture).\\
+
+Requests made to the system to perform some sort of action are send to a request orchestrator.
+The request orchestrator is to deterministically and synchronously direct the request to various 
+request processors. The request processors handle the request, either retrieving or updating 
+information in a database.\\
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Event_Driven.png} % Example image
+	\caption{Event Driven Rating}
+  \label{Event_Driven}
+\end{figure}
+
+Rating table found in Figure:\ref{Event_Driven} on page: \pageref{Event_Driven}. 
+
+\subsection{Space based}
+
+Space-based architecture gets its name from the concept of tuple space, 
+the technique of using multiple parallel processors communicating through shared memory. 
+High scalability, high elasticity, and high performance are achieved by removing the central 
+database as a synchronous constraint in the system and instead leveraging replicated in-memory data grids. 
+Application data is kept in- memory and replicated among all the active processing units. 
+When a processing unit updates data, it asynchronously sends that data to the database, usually via 
+messaging with persistent queues. Processing units start up and shut down dynamically as user load 
+increases and decreases, thereby addressing variable scalability. Because there is no central database 
+involved in the standard transactional processing of the application, 
+the database bottleneck is removed, thus providing near- infinite scalability within the application.\\
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Space_based.png} % Example image
+	\caption{Space based Rating}
+  \label{Space_based}
+\end{figure}
+
+Rating table found in Figure:\ref{Space_based} on page: \pageref{Space_based}.
+
+\subsection{Microservices}
+
+Microservices contain an API layer which guide request to each service which is a 
+standalone program and database.
+each service runs in its own process, 
+which originally implied a physical computer but quickly evolved to virtual machines and containers.\\
+
+\begin{figure}[h] % [h] forces the figure to be output where it is defined in the code (it suppresses floating)
+	\centering
+	\includegraphics[width=\columnwidth]{Microservices.png} % Example image
+	\caption{Microservices Rating}
+  \label{Microservices}
+\end{figure}
+
+Rating table found in Figure:\ref{Microservices} on page: \pageref{Microservices}.
+
 \section{Embedded software}
 
 Issue of deep mingling between hardware elements and procedures.\\
@@ -506,6 +731,19 @@ Use boundaries and deployment method to separate technologies and use cases. A h
 
 If components have free access to each other, the architecture can be easily ignored. Utilizing
 encapsulation allows the complier to ensure the architecture.
+
+\section{Risk}
+
+Use risk rating system which scores the impact of risk (1-3) and then the likelihood (1-3) and multiples for the
+final risk score. This score should be marked against the supported characteristics, showing direction from
+previous scores.
+
+\pagebreak
+
+\printbibliography[
+heading=bibintoc,
+title={Bibliography}
+] %Prints the entire bibliography with the title "Whole bibliography"
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
