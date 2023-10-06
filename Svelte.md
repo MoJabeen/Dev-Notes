@@ -57,3 +57,33 @@ If the value of the attribute and element are the same dont need to specify attr
 //OR
 <img {src} />
 ```
+
+#### Styling
+
+Can add CSS code into the style tag ie:
+
+```CSS
+<p> hem </p>
+
+<style>
+p {
+	color:gold;
+	font-family: 'Comic Sans MS', cursive;
+	font-size: 2em;
+}
+```
+
+The style is connected to this component (and file) ie p in this case.  Imported components will not gave 
+
+#### Importing
+
+```js
+<script>
+import Name from '/path';
+</script>
+
+<Name />
+```
+
+#### Tags
+
