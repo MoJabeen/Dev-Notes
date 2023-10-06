@@ -1,7 +1,7 @@
 
 ## Introduction
 
-Javascript based framework, the app is built *declaratively* by using components. The components combine markup, styles and behaviours.
+Javascript based framework, the app is built *declaratively* by using components. The components combine markup, styles and behaviours. Using the DOM (document object model) to dynamically access and update content.
 
 Using an application framework like SvelteKit allows you to build the entire app. **Components** can be also be shipped as standalone packages.
 
@@ -86,4 +86,17 @@ import Name from '/path';
 ```
 
 #### Tags
+
+If need to embed html into a variable use the @html tag when outputting
+
+```js
+<script>
+let string = '<strong> meh </strong>'
+
+</script>
+
+<p> {@html string}
+```
+
+**Avoid this method of auto gen for unsafe variables**!
 
