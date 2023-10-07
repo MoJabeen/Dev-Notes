@@ -40,7 +40,7 @@ $$ cargo\;new\;[name] $$
 
 ### Running code
 
-Can either build then run the binary or simply use run which will build then execute.
+Can either build then run the binary (found in target/debug) or simply use run which will build then execute.
 
 $$ cargo\;build$$
 $$cargo\;run$$
@@ -48,4 +48,6 @@ For a quick check for compiler errors without building use:
 $$cargo\;check$$
 #### Release
 
-To op
+To optimise code for release use:
+
+$$cargo\;build\;--release$$ This creates a binary in target/release instead of target/debug
