@@ -9,5 +9,5 @@ title: Rust
 
 # Introduction
 
-
+Rust is balancing high level ergonomics and low-level control, allowing safe control over low level details.
 

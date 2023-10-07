@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Svelte.md",
+                "file": "Rust.md",
                 "mode": "source",
                 "source": false
               }
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Svelte.md",
+                "file": "Rust.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Svelte.md",
+                "file": "Rust.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Svelte.md"
+                "file": "Rust.md"
               }
             }
           },
@@ -156,5 +156,7 @@
     }
   },
   "active": "3e6bf035a9dfb469",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "Svelte.md"
+  ]
 }
