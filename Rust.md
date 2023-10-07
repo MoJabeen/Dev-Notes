@@ -21,9 +21,7 @@ Rust is a compiler static based language, meaning to run the code you first comp
 
 ```rust
 fn main() {
-
 	println!("meh");
-
 }
 ```
 
