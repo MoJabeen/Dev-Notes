@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Rust.md",
+                "file": "Julia.md",
                 "mode": "source",
                 "source": false
               }
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Rust.md",
+                "file": "Julia.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Rust.md",
+                "file": "Julia.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Rust.md"
+                "file": "Julia.md"
               }
             }
           },
@@ -157,6 +157,7 @@
   },
   "active": "3e6bf035a9dfb469",
   "lastOpenFiles": [
+    "Rust.md",
     "Svelte.md"
   ]
 }
