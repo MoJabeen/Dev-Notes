@@ -366,7 +366,7 @@ Use go test to run the file.
 
 # Modules
 
-Dependencies are managed via modules, the go.mod file tracks them. After adding an import to the package the mod file should be tidied.
+Dependencies (packages) are managed via modules, the go.mod file tracks them. Modules essentially bundle together all dependencies needed for the code. After adding an import to the package the mod file should be tidied.
 
 ```bash
 go mod init [path] // Initalise setup
