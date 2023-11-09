@@ -273,8 +273,22 @@ switch v := i.(type){
 
 ```
 
-
 Fmt uses Stringer interface, that allows the method String() to be accessed via new types.
+
+- Allow use of unknown types by using an empty interface as all types implement no methods
+	- To access the underlying value need to use a type assertion
+
+```go
+
+func ex(i interface{}) {
+
+	//i can be any type
+	fmt.Println(i)
+	
+	s := i.(string)
+	fmt.Println(s)
+}
+```
 
 # Error
 
