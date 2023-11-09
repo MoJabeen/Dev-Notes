@@ -204,12 +204,45 @@ func (v *blah) Name() int {} //Pointer allows changing of structs.
 
 ## Interfaces
 
-Interfaces are a type of data through which you can access a set defined number of methods.
+Interfaces are a type of data through which you can access a set defined number of methods. An interface types has the methods listed implemented.
 
 This can:
 
 -   Define behaviour of an object (a type that uses a chosen interface must also have accompanying methods)
 -   Decouple code, allow use of methods without needing to know the details of the objects
+
+```go
+
+type Meh interface {
+	name() string
+}
+
+type Float float64
+type Strig string
+
+func (f Float) name() string {
+	return string(f)
+}
+
+func (s Strig) name() string{
+	return s
+}
+
+func main(){
+
+	//This variable can now be used to access either methods name
+	var a Meh
+
+	a = 99.99
+	a.name()
+
+	a = "meh"
+
+	a.name()
+}
+
+```
+
 -   polymorphism same func does different things based on interface
 
 ```go
