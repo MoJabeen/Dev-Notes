@@ -38,7 +38,7 @@ var := []string{"blah","meh"}
 
 //MAPS
 map[key type]val type //Dict has to be made
-m := make(map[string]String)
+m := make(map[string]string)
 
 m["pi"] = 3.14 //Add to map
 
@@ -204,7 +204,7 @@ func (v *blah) Name() int {} //Pointer allows changing of structs.
 
 ## Interfaces
 
-Interfaces are a type of data via you can access a set defined number of methods.
+Interfaces are a type of data through which you can access a set defined number of methods.
 
 This can:
 
