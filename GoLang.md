@@ -465,7 +465,7 @@ import (
 )
 
 logger, _ = zap.NewProduction()
-logger := logger.Sugar() 
+sugar := logger.Sugar() 
 //Sugar - Less performance intense version
 //New Production is a built-in preset
 
@@ -486,15 +486,22 @@ GoTests/test.go:13  Meh
 
 {"level":"info","msg":"Meh"}
 
-logger.Info("Hello World")
-.Error("Not able to reach blog.
-",zap.String("url", "codewithmukesh.com"))
+sugar.Info("Hello World")
+.Error("Not able to reach blog.",
+	   zap.String("url", "codewithmukesh.com"))
 
-//example with key-val data pairs 
+//example with key-val data pairs for context 
 sugar.Infow("failed to fetch URL",
-"url", "http://example.com",
+"url", url,
 "attempt", 3,
 "backoff", time.Second,)
+
+logger.Info("failed to fetch URL",
+  // Structured context as strongly typed Field values.
+  zap.String("url", url),
+  zap.Int("attempt", 3),
+  zap.Duration("backoff", time.Second),
+)
 
 //Using fmt.Sprintf
 sugar.Infof("failed to fetch URL: %s", "http://example.com")
