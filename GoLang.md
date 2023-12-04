@@ -393,6 +393,8 @@ Lock will wait for another lock to unlock before continuing, can use defer to un
 
 # Testing
 
+## Unit Tests
+
 A test file name, should end with \_test.go.
 
 ```go
@@ -410,6 +412,10 @@ func TestExample(t *testing.T){
 
 
 Use go test to run the file.
+
+## Table Driven Tests
+
+
 
 # Modules
 
