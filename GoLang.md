@@ -455,7 +455,13 @@ go test -cover
 
 How much of the code is covered by tests.
 
+## Benchmarking
 
+TBA
+
+## Fuzz
+
+TBA
 # Modules
 
 Dependencies (packages) are managed via modules, the go.mod file tracks them. Modules essentially bundle together all dependencies needed for the code. After adding an import to the package the mod file should be tidied.
