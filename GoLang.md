@@ -393,6 +393,18 @@ Lock will wait for another lock to unlock before continuing, can use defer to un
 
 # Testing
 
+Files need to be named : 
+
+```
+[name]_test.go
+```
+
+Functions need be:
+
+```go
+Test[Name](t *testing.T) {}
+```
+
 ## Unit Tests
 
 A test file name, should end with \_test.go.
