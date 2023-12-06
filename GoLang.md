@@ -405,7 +405,7 @@ import "testing"
 
 func TestExample(t *testing.T){
 	if testResult != example {
-		t.Errorf{"This test has failed "}
+		t.Errorf("This test has failed ")
 	}
 }
 ```
