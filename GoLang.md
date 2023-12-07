@@ -516,7 +516,34 @@ Client errors need to be unmarshalled and then acted upon.
 
 ## Parsing JSON
 
+Can parse JSON into map interface for free form or into a struct
 
+```go
+
+// Open the JSON config file.  
+file, err := os.Open("x.json")  
+  
+if err != nil {  
+    panic(err)  
+}  
+  
+// Close the JSON file.  
+defer file.Close()  
+  
+// Read the contents of the JSON file into a []byte value.  
+data, err := io.ReadAll(file)  
+  
+if err != nil {  
+    panic(err)  
+}  
+  
+// Use the Unmarshal() function to unmarshal the JSON file into a Golang struct or Map.  
+var str Struct
+var data map[string]interface{}
+  
+err = json.Unmarshal(data, &params)
+
+```
 
 # Fuzzing
 
