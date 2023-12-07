@@ -514,6 +514,10 @@ Client errors need to be unmarshalled and then acted upon.
 -   Decode into struct with 'json: \"meh\"' markers
 -   If data comes in as array will need to unmarshal as an interface array
 
+## Parsing JSON
+
+
+
 # Fuzzing
 
 A method of testing with random injections of data. TBA
