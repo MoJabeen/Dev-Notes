@@ -190,7 +190,11 @@ The use of the big package is recommended:
 ```go
 
 //Create new big float val
+//SetPrec decides number of bits used to store value
 xB := new(big.Float).SetPrec(prec).SetFloat64(2)
+
+//The default rounding is set to nearest even this can be changed with set mode
+SetMode(big.ToNearestEven)
 
 
 ```
