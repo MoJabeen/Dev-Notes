@@ -191,11 +191,18 @@ The use of the big package is recommended:
 
 //Create new big float val
 //SetPrec decides number of bits used to store value
-xB := new(big.Float).SetPrec(prec).SetFloat64(2)
+xB := new(big.Float).SetPrec(prec).SetFloat64(2.9)
 
 //The default rounding is set to nearest even this can be changed with set mode
 SetMode(big.ToNearestEven)
 
+res := new(big.Float).Sub(a,b)
+res := new(big.Float).Add(a,b)
+res := new(big.Float).Quo(a,b) //Divide
+res := new(big.Float).Mul(a,b) //Multiply
+
+//if a > b res=1, if a==b res=0, if a<b res=-1
+res := new(big.Float).Cmp(a,b)
 
 ```
 # Methods
