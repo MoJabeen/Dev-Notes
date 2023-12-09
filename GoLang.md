@@ -181,6 +181,19 @@ for i,v := range arr {} // Loops through array (can do _,v or i,_)
 
 ```
 
+# Floating Point
+
+Use of standard float64 does not give accurate calculations.
+
+The use of the big package is recommended:
+
+```go
+
+//Create new big float val
+xB := new(big.Float).SetPrec(prec).SetFloat64(2)
+
+
+```
 # Methods
 
 Function with a receiver argument, ie accessed through an object (normally a struct). Generally a type through which the function allows for polymorphism.
