@@ -183,7 +183,7 @@ for i,v := range arr {} // Loops through array (can do _,v or i,_)
 
 # Floating Point
 
-Use of standard float64 does not give accurate calculations.
+Use of standard float64 does not give accurate calculations. If you can simply know the rounding precision you need, better to use simple rounding.
 
 The use of the big package is recommended:
 
