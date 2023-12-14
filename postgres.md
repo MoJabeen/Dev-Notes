@@ -123,3 +123,24 @@ This done by doing a sequential scan of the relevant partition, instead of a ran
 ## Altering
 
 It is not possible to turn a regular table to partitioned or vice versa. However, you can add an existing regular table as a partition or remove a partition turning it into a regular table.
+
+# Server
+
+Install postgres using apt get.
+
+Setting up a server to connect to:
+
+Update postgres.conf file in /etc/postgresql/\*/main/postgresql.conf to:
+
+```
+listen_address = '*'
+```
+
+To allow connections from any address.
+
+Switch to user postgres on server:
+
+```
+sudo -i -u postgres
+psql
+```
