@@ -49,7 +49,7 @@
 \end{lstlisting}
 
 \begin{itemize}
-	\item printf for formatted prints uses the module Printf and is macro with synatax @printf	
+	\item printf for formatted prints uses the module Printf and is macro with synatax @printf
 	\item \%3f : used to show 3 sig fig
 	\item \"e : scientific notation
 \end{itemize}
@@ -568,8 +568,8 @@ and app level work.
 \newpage
 \section{Packages}
 
-Designed around environments which can be local to inviduals or projects. Allows 
-exact set of packages and their version in an environment to be controlled and 
+Designed around environments which can be local to inviduals or projects. Allows
+exact set of packages and their version in an environment to be controlled and
 repeated. All tracked in the manifest file.
 
 A better version of python virtualenv.
@@ -725,7 +725,7 @@ Types of Guides:
 \begin{itemize}
 	\item Annotation (inc shapes to highlight points)
 	\item Keys : colour, shape or size
-	\item Title labels 
+	\item Title labels
 	\item xrug,yrug : show distribution of points on axis
 	\item ticks : show plot lines
 \end{itemize}
@@ -753,7 +753,7 @@ Types of Guides:
 Can also uses in built stat transformations ie:
 
 \begin{itemize}
-	\item Density 
+	\item Density
 	\item Quantile
 	\item Doge: Grouped and shown value
 \end{itemize}
@@ -827,7 +827,7 @@ the backtrace sampling freq.\\
 
 \end{lstlisting}
 
-The number of backtraces shows how expensive that line is. 
+The number of backtraces shows how expensive that line is.
 
 \subsubsection{Memory allocation}
 
@@ -855,7 +855,7 @@ Performance critical code should be inside a function.\\
 At point of use annotation:
 \begin{verbatim}
 	for i in x :: Vector{Float64}
-\end{verbatim}		
+\end{verbatim}
 
 \subsection{Wrappers}
 
@@ -917,7 +917,7 @@ A function should always return the same type, so if the type is ambiguous conve
 	oftype(x,y) #Gives y as type of x
 \end{verbatim}
 
-Variables changing type within the function should also be avoided. 
+Variables changing type within the function should also be avoided.
 
 \subsection{How should functions be broken down?}
 
@@ -1017,6 +1017,10 @@ before operation.
 	\item Annotations available to reduce Julia functions for sake of speed ie don't check boundaries.
 	\item Use @code\_warntype to show non concrete types in red.
 \end{itemize}
+
+\section{RCall}
+
+Using R in Julia.
 
 %----------------------------------------------------------------------------------------
 %	FIGURE EXAMPLE
