@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "362672b597807a41",
@@ -155,8 +154,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1f3335a1e3a78653",
+  "active": "3e6bf035a9dfb469",
   "lastOpenFiles": [
+    "postgres.md",
     "GoLang.md",
     "Rust.md",
     "Julia.md",

@@ -144,3 +144,10 @@ Switch to user postgres on server:
 sudo -i -u postgres
 psql
 ```
+
+Setup firewall rules using ufw:
+
+```
+sudo ufw allow postgresql/tcp
+sudo ufw allow 5432/tcp`
+```
