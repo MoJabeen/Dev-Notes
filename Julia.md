@@ -208,7 +208,7 @@ Julia code tends to be purely functional and avoids mutation, generally opting f
 
 **Tasks** are used for asynchronous calls, ie waiting for external signals. Tasks allow switching at any point in the execution between them and don't use extra memory space (call stack).
 
-wait(t) - waits for the tak
+wait(t) - waits for the task
 
 ```julia
 t = @task func()
