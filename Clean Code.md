@@ -17,7 +17,7 @@ title: Clean Code by Robert C Martin
 -   Method names should be verbs
 -   Use known subject domain names
 -   Create names that give context : Classes are great way to link
-    context
+    context (or structs)
 # Functions
 
 -   Keep functions very small, should be \< 20 lines long
@@ -33,9 +33,10 @@ title: Clean Code by Robert C Martin
 	-   Questions, getting info about the arg
 	-   Operative, transform arg and return it
 	-   Event, Trigger change of state based on arg
--   Avoid flag arguments
--   A list of related variables can be considered one arg; (meh(int blah, int \...args))
--   Function arguments should not be changed in the function (the output should be via return)
+-   Avoid flag arguments 
+	- Instead create two functions
+-   A list of related variables can be considered one arg; (meh(int blah, int \...args)), if they are treated equally (the ordering makes no difference)
+-   Function arguments should not be changed in the function (the output should be via return)  (But julia has !)
 -   Remove any duplication of calling functions !!
 # Comments
 
@@ -55,6 +56,7 @@ title: Clean Code by Robert C Martin
 -   Caller functions should be placed above the callee
 -   Dependencies should flow down through the code
 -   Avoid very wide lines of code
+
 # Objects and Data Structures
 
 Abstraction is all about simplifying and detaching results (details) from an implementation.
@@ -80,7 +82,7 @@ Abstraction is all about simplifying and detaching results (details) from an imp
 **Error handling should not be obscure, hidden within functional code.**
 
 -   Best to scope out errors used in exceptions an not leave them broad.
--   Good errors allow you to find the issue, they should state the operation that failed and the type of error
+-   Good errors allow you to find the issue, **they should state the operation that failed and the type of error**
 -   Its best practice to wrap any third party APIs for better control and easier to read implementations
 -   Preferable to use SPECIAL CASE class or objects, instead of a null/error that is caught as an exception and dealt with.
 

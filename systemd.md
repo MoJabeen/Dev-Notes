@@ -81,6 +81,7 @@ Also = //Create a set of units to enable with this one
 
 ```bash
 Type = // simple,notify etc
+ExecStartPre = //commands pre start (waits for return before proceeding) 
 ExecStart = //commands for when started
 ExecStartPost = //commands post start 
 ExecReload = //commands on reload
@@ -91,6 +92,7 @@ Restart = // commands on restart
 TimeoutSec = // commands on timeout
 ```
 
+- Just call a script for multiple commands !
 ## \[Path\]
 
 ```bash

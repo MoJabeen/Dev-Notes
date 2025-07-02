@@ -5,7 +5,6 @@ bibliography: []
 date: 2023-10-01
 title: Golang Cheat Sheet
 ---
-
 # Packages
 
 Go uses packages, which can contain multiple files. **The app will start running in the main application.** Names exported outside the packages, must use a Capital letter. **Golang will auto connect any package in different files.**
@@ -63,6 +62,7 @@ type Name struct{
 }
 
 // Pointers to structs
+// TO UPDATE A STRUCT VIA PARAM NEED TO USE POINTER !!!
 
 v := StructName{1,2}
 
@@ -86,6 +86,9 @@ cap(s) // Capacity, elements in underlying array
 
 a := make(type,len,cap)
 append(arr,val)
+
+// The ... breaks down the array into values !
+append(arr,arr...) 
 
 ```
 
@@ -166,7 +169,25 @@ for x<100 {} //Same as while loop
 
 if statement; cond {}
 
-switch statement; val {
+if num := 9; num < 0 {
+	fmt.Println(num, "is negative")
+} else if num < 10 {
+	fmt.Println(num, "has 1 digit")
+} else {
+	fmt.Println(num, "has multiple digits")
+}
+
+defer expr //execute expr at the end of func, can stack defers
+
+for i,v := range arr {} // Loops through array (can do _,v or i,_)
+
+```
+
+## Switch
+
+```go
+
+switch statement; val { // Dont need statement (normally a func)
 
 	case x: //x same as val == x
 
@@ -175,11 +196,19 @@ switch statement; val {
 	default:
 }
 
-defer expr //execute expr at the end of func, can stack defers
+// Makes sense for clear constraints and flow to use an ENUM as va2
 
-for i,v := range arr {} // Loops through array (can do _,v or i,_)
+var name int
+
+const (
+	option1 name iota
+	option2
+	option3
+
+)
 
 ```
+
 
 # Floating Point
 
@@ -315,6 +344,33 @@ func ex(i interface{}) {
 ```
 
 # Error
+
+Instead of using values to signify error, golang has a clear error type which can be easily created using formatted strings. **A nil shows no error.**
+
+```go
+//System wide error
+var ErrOutOfTea = fmt.Errorf("no more tea available")
+
+// New construct for error
+if arg == 42 {
+	return -1, erros.New("42 is meh")
+}
+
+//Multi layered errors via %w wrap
+return fmt.Errorf("making tea: %w", ErrOutOfTea)
+
+```
+
+Navigate through errors using:
+
+```go
+
+//Returns true if matching error
+error.Is(err,ErrOutOfTea)
+
+```
+
+Always best to only deal with errors at the highest abstraction level (main) for max flexibility.
 
 Error method can be extended to use new types, which is auto called if the return type is error.
 
@@ -506,14 +562,32 @@ Dependencies (packages) are managed via modules, the go.mod file tracks them. Mo
 go mod init [path] // Initalise setup
 go mod tidy // Add imports to mod file
 
-go mode -replace [mod name] = [path]
+go mod edit -replace [mod name] = [path]
 // replace path of mod to local file
+//Example: go mod edit -replace github.com/pselle/bar=/Users/pselle/Projects/bar
+go mod install
 ```
-
 
 - Module path is normally: \<prefix\>/\<descriptive-text\>\ 
 - Prefix: The location ie github.com\
 - Descriptive text: Project name
+
+## Private
+
+Need to set go variable to private repo.
+
+```
+ export GOPRIVATE=github.com/MoJabeen 
+```
+
+## Updates
+
+Must create a new release on github before updating module. Must use tag in format "vX.X.X".
+
+```go
+go get -v -u github.com/MoJabeen/MODULE
+```
+
 ## Workspaces
 
 Use work spaces to control multiple and locally change modules. Allows reference to packages inside a module outside the module in the workspace.
@@ -642,6 +716,45 @@ sugar.Infof("failed to fetch URL: %s", "http://example.com")
 -   f: Uses fmt.Sprintf
 -   ln: Uses fmt.Sprintln
 -   w: allows extra values to be added in log
+
+# Style
+
+Order of importance:
+- Clarity: Purpose and rationale to reader
+- Simplicity
+- Concision: High signal to noise
+- Maintainability
+- Consistency
+
+- Use camel case instead of underscore for variables (inc constants)
+- Package names should only be lowercase
+
+Receiver names: Use single or double letters:
+
+| Long Name                   | Better Name               |
+| --------------------------- | ------------------------- |
+| `func (tray Tray)`          | `func (t Tray)`           |
+| `func (info *ResearchInfo)` | `func (ri *ResearchInfo)` |
+- Abbreviations should stay full caps ie never Id -> ID.
+- Avoid using get or Get as function prefix.
+- Variable length proportional to the size of its scope and inversely proportional to the number of times that it is used within that scope
+- Avoid dropping letters in names for easier typing.
+- Allow surrounding context to clarify words
+- Avoid long single line comments, stop at 70 char
+- Better to use error objects for structure, which then when handled prints a message than direct string comparison !
+
+### Doc comments
+
+All top-level exported names must have doc comments, as should unexported type or function declarations with unobvious behavior or meaning. These comments should be [full sentences](https://google.github.io/styleguide/go/decisions#comment-sentences) that begin with the name of the object being described. An article (“a”, “an”, “the”) can precede the name to make it read more naturally.
+
+```
+// Good:
+// A Request represents a request to run a command.
+type Request struct { ...
+
+// Encode writes the JSON encoding of req to w.
+func Encode(w io.Writer, req *Request) { ...
+```
 
 # Prometheus
 

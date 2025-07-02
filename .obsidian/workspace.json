@@ -13,13 +13,72 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "systemd.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "systemd"
+            }
+          },
+          {
+            "id": "2c00bb66ff21971e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "GoLang.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "GoLang"
+            }
+          },
+          {
+            "id": "c99e33d1268cf2e1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Clean Architecture.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Clean Architecture"
+            }
+          },
+          {
+            "id": "fa5a4577b41df274",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Obsidian.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Obsidian"
+            }
+          },
+          {
+            "id": "15e5f087c0b87fcb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "Julia.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "Julia"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -39,7 +98,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -54,7 +115,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -62,15 +125,16 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "362672b597807a41",
@@ -86,15 +150,17 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Julia.md",
-                "collapseAll": false,
-                "extraContext": false,
+                "file": "Obsidian.md",
+                "collapseAll": true,
+                "extraContext": true,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Obsidian"
             }
           },
           {
@@ -103,10 +169,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Julia.md",
+                "file": "Obsidian.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Obsidian"
             }
           },
           {
@@ -117,7 +185,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -126,20 +196,24 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia.md"
-              }
+                "file": "Obsidian.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Obsidian"
             }
           },
           {
-            "id": "07ecf506b56a55ee",
+            "id": "f3d5220af29be4fd",
             "type": "leaf",
             "state": {
               "type": "git-view",
-              "state": {}
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -152,17 +226,41 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3e6bf035a9dfb469",
+  "active": "15e5f087c0b87fcb",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
+    "Obsidian.md",
+    "postgres.md",
+    "Clippings/Clip web pages - Obsidian Help.md",
+    "Clippings",
+    "templates/Default template.md",
+    "Untitled.md",
+    "vimnts.md",
+    "Clean Code.md",
+    "templates",
+    "Notion.md",
+    "Untitled.canvas",
+    "Markdown Basics.md",
+    "vimrc (setup).txt",
+    "vimrc.txt",
+    "vimnts-inter",
+    "vimnts-beg",
     "Julia.md",
+    "Clean Architecture.md",
+    "GoLang.md",
+    "systemd.md",
+    "Design Patterns.md",
+    "R.md",
+    "Apache.md",
+    "Database Fundamentals.md",
+    "Slack.md",
+    "Rust.md",
+    "conflict-files-obsidian-git.md",
     "Julia Cheat Sheet/Julia Cheat Sheet.tex",
     "Julia Cheat Sheet",
-    "GoLang.md",
-    "Rust.md",
     "Svelte.md"
   ]
 }

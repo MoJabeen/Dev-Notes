@@ -4,7 +4,6 @@ author:
 date: 2023-10-01
 title: Julia Cheat Sheet
 ---
-
 # General
 
 ```julia
@@ -17,6 +16,8 @@ r=3
 
 r,r+2 #Omit the return keyword for tuple return
 end 
+
+
 ```
 
 -   printf for formatted prints uses the module Printf and is macro with syntax \@printf
@@ -34,6 +35,19 @@ end
         #Loops and funcs can also be placed in dicts
 ```
 
+
+## Constants
+
+Julia has lexical scope, allowing to access the scope in which the function is defined not from where its called. Global values are looked up at run time making state tracking difficult if multiple places are updating the value. Looking up global values is also slow.
+
+Using `const` skips this issue and allows the complier to fix the variable type giving faster and easier to manage code.
+
+```julia
+
+const L = 2
+
+```
+
 ## Loops
 
 ```julia
@@ -41,11 +55,50 @@ for i in 1:5 # This calls the iterate func
 println(i)
 end
 
+#Avoid using len for iteration (better saftey ,extension and efficency!)
+The rule of thumb: if you need indices, use `eachindex`. If you need to work with specific dimensions, use `axes`. Only use `length`/`size` when you actually need the numeric size value, not for iteration.
+
 a = collect(1:20) # convert into an array
 
 a = map((x) -> x^2, [1,3,5,3]) # map performs func on each array element
 
+x = hcat(map((x) -> x^2, [1,3,5,3])...)
+
+#The ... will seperate each result of the func for hcat
+
+#Example
+
+julia> hcat([[1,2],[1,3]]...)
+2×2 Matrix{Int64}:
+ 1  1
+ 2  3
+
+julia> hcat([[1,2],[1,3]])
+2×1 Matrix{Vector{Int64}}:
+ [1, 2]
+ [1, 3]
+
+#... essentially removes the outer vector layer
+
+ColumnData = map(x -> "meh", collect(1:10);
+
 foreach(func, collection) #operate func on each val of collection
+
+for (key,val) in dict # to iterate through dict
+```
+
+## Functions
+
+```julia
+# Varargs, unknown number of params
+
+function meh(a,b,x...)
+	# x is a collection of all the other params used in calling the func
+
+# Pass function as param
+
+function meh(hem::Function)
+
 ```
 
 ## Struct
@@ -71,7 +124,43 @@ mutable struct name
 	#a number is given 4 is placed
 end
 
+getfield(struct,symbol) #get field value using symbol instead of direct access
+setfield!(struct,symbol,value) #set field value using symbol instead of direct access
 ```   
+
+## Struct with Separate Fields
+
+#### Pros:
+
+1. **Type safety**: Fields have explicit types, giving you compile-time type checking
+2. **Performance**: Direct field access is faster than dictionary lookups
+3. **Auto-completion**: IDEs can provide field name suggestions
+4. **Documentation**: Field names and types can be documented in the struct definition
+5. **Clear interface**: The available fields are explicitly defined in the code
+6. **Memory efficiency**: Fixed memory layout, no overhead for hash tables
+
+#### Cons:
+
+1. **Less flexible**: Adding/removing fields requires changing the struct definition
+2. **Code repetition**: Can lead to boilerplate code when many similar structs are needed
+3. **Refactoring overhead**: Changing field names requires updating all references
+
+## Dictionary Approach
+
+#### Pros:
+
+1. **Flexibility**: Easy to add or remove keys dynamically
+2. **Generic code**: Can write functions that work with any keys without changing struct definitions
+3. **Metaprogramming friendly**: Easier to generate or manipulate keys programmatically
+4. **Unified interface**: All metrics can share exactly the same type
+
+#### Cons:
+
+1. **No type safety** for keys: Misspelled keys don't cause compile-time errors
+2. **Performance overhead**: Hash lookups are slower than direct field access
+3. **Memory overhead**: Hash tables have more memory overhead than structs
+4. **Less clear interface**: Available keys aren't obvious from the type definition
+5. **No auto-completion**: IDEs can't suggest available keys
 
 ## Tenancy
 
@@ -129,8 +218,27 @@ function blah(x::Int, y::name) = println(x*y.num)
 function myfunc(x::Vector{T}) where T
 	b::Vector{T} = x.*3
 end
+
 ```
 
+## Abstract
+
+- **Hierarchical organization**: They allow you to create a logical type hierarchy that represents relationships between different types.
+- **Code reuse through multiple dispatch**: You can write methods that operate on an abstract type, and these methods will work with any concrete subtype.
+- **Interface definition**: Abstract types define a conceptual interface that concrete subtypes are expected to implement, similar to interfaces in other languages. (Code control)
+- **Parametric polymorphism**: They enable parametric types to be constrained to a family of related types.
+- **Extension without modification**: New concrete subtypes can be added without changing existing code.
+
+```julia
+#To allow grouping of objects, to define a common type for a function USE ABSTRACT TYPES
+
+abstract type «name» end
+abstract type «name» <: «supertype» end
+
+abstract type Number end 
+abstract type Real <: Number end
+
+```
 # Modules
 
 Modules allow for better namespace control and cleaner structure.
@@ -284,6 +392,7 @@ Channel(func()) - Bind a channel with a task
 -   Writers will block on a put if the channel is full
 -   Wait will wait until the channel has data
 -   isready test if the channel has data
+- CAREFUL OF USING MUTABLE STRUCTS WITH CHANNELS !
 
 ## Multi threads
 
@@ -383,14 +492,14 @@ global_logger(debuglogger)
 
 # Packages
 
-Designed around environments which can be local to inviduals or projects. Allows exact set of packages and their version in an environment to be controlled and repeated. All tracked in the manifest file.
+Designed around environments which can be local to individuals or projects. Allows exact set of packages and their version in an environment to be controlled and repeated. All tracked in the manifest file.
 
 A better version of python virtualenv.
 
 ```julia
 activate [project name]
 
-develop --local [package name] #Allows you to use a local version of a 
+develop --local [package name or path] #Allows you to use a local version of a 
 # package to develop
 
 free [package name] #Go back to the registered version
@@ -402,6 +511,64 @@ pin [package name] #Never update
 # Activate another persons project
 activate .
 instantiate
+```
+
+## Creating package
+
+Add PkgTemplates
+
+Execute:
+
+```julia
+
+using PkgTemplates 
+
+t = Template(; 
+	user="your-GitHub-username", 
+	authors=["your-name"],
+	plugins=[ License(name="MIT"), Git(), GitHubActions(), 
+	], 
+)
+
+
+t("YourPackageName")
+```
+
+Source files stored at:  `~/.julia/dev`
+
+- Add `.jl` to the name of the git repository.
+- Keep the options of **Initialize this repository with** unselected.
+
+### Code
+
+Add includes for files exports for functions to be accessed in the main package file 
+
+Main File (PackageName.jl):
+```julia
+module YourPackageName 
+export greet_your_package_name 
+include("functions.jl") 
+end
+```
+
+Add tests in test/runtests.jl
+
+**Run tests:**
+```
+julia> ] # Go to the package mode (v1.8) 
+pkg> activate . 
+(YourPackageName) pkg> test
+```
+
+## CI
+
+Adjust CI.yml to include macOS-latest
+
+```yml
+        os:
+          - macOS-latest
+          - ubuntu-latest
+        arch:
 ```
 
 # Plotting
@@ -584,12 +751,23 @@ At point of use annotation:
 for i in x :: Vector{Float64}
 ```
 
+## Push
+
+```julia
+
+pushfirst! #Can cause signficantly larger operations up to O(N^2) if a larger block of memory needs to be allocated
+
+push! #Stays at O(1) even combined with a sort its at O(N) 
+
+```
+
 ## Wrappers
+
 
 Better to define the type of the wrapper than only the its elements. As you dont want the high level struct type to be ambiguous:
 
  ```julia
- mutable struct Ty{T<: AbstractFloat}
+mutable struct Ty{T<: AbstractFloat}
 	a::T
 end
 
@@ -694,3 +872,150 @@ Can instead use \@view to reference a subarray of the original array. Also conti
 -   Use fld(x,y) and cld(x,y) instead of floor and ceil
 -   Annotations available to reduce Julia functions for sake of speed ie don't check boundaries.
 -   Use \@code_warntype to show non concrete types in red.
+
+# Style
+
+- Better to use abstract types than concrete
+- Use ! for argument modifying funcs
+- Avoid complicated container types, better to use Any
+- Use _ prefix for internal elements (implementation details)
+- modules and types (structs) should be capital and camel case
+- functions should be lower case and if easy to ready squashed as a single word, otherwise use underscore to show a combination of concepts.
+- Avoid abbreviations 
+- Dont () conditions 
+
+```julia
+#Not (a==b)
+if a==b
+
+end
+```
+
+- Dont overuse ... (separates  elements into array)
+- Dont overdo macros, funcs are better
+- Dont allow easy access to overwrite pointers
+- Avoid having functions with specialised types of base containers (ie Vector, Array), will be confusing to work with
+- For testing types use isa and <: instead of ==
+- Avoid Float literals if possible use Int or Rational (fractions ie 1//2 is 0.5)
+
+```julia
+f(x) = 2.0 * x #meh
+g(x) = 2 * x #Best
+h(x) = 2//1 * x #Good
+```
+## Exported methods 
+
+Use exported methods of a module instead of direct access (unless an API).
+
+- Allows use of more abstract funcs instead of always needing implementation details of the modules type.
+- Generally allows for easier code reuse and abstraction of funcs
+
+## Type Piracy
+
+Avoid type piracy, ie dont extend package methods without using your own custom types.
+
+```julia
+module A 
+#Dont do this !
+import Base.* 
+*(x::Symbol, y::Symbol) = Symbol(x,y) 
+end
+```
+
+## Anon funcs
+
+Avoid trivial anon funcs, pass funcs directly as arguments instead of wrapping them as anon.
+
+```julia
+#Dont do
+map(x-f(x),a)
+#Pass func directly
+map(f,a)
+```
+
+# Docs
+
+Package: Documenter.jl
+
+Combines md docs and inline code docstrings to create a single inter-linked doc.
+
+**Folder structure:**
+```
+Example/ 
+├── docs/ 
+│   └── ... 
+├── src/ 
+│    └── Example.jl ...
+```
+
+The docs folder contains a src folder to hold all markdown files to use and a make script
+
+```
+docs/ 
+├── src/
+│   └── index.md
+└── make.jl
+```
+
+**Never** `git commit` the contents of `build` (or any other content generated by Documenter) to your repository's `master` branch.
+
+## Index
+
+To link doc string add to the index.md file:
+
+with code line:
+
+```
+code block @docs
+func(x)
+
+```
+
+then run make.jl which will replace the block for you.
+
+Note that _more than one_ object can be referenced inside a `@docs` block – just place each one on a separate line.
+
+To change module use the @meta block and set CurrentModule = to chosen module.
+
+### Cross reference
+
+index.md file
+
+```
+
+- link to [Example.jl Documentation](@ref) // links to header
+- link to [`func(x)`](@ref) // links to doc string func(x)
+
+```
+
+### Navigation
+
+```
+
+code block @contents
+
+code block @index
+
+```
+
+
+Use makedocs func to control sidebar.
+## Docstrings
+
+In md format.
+
+"""
+	func(parmas) -> (return...)
+
+Description
+
+\`\`\` julia
+	example code
+\`\`\`
+... 
+\# Arguments 
+ \-\`n::Integer\`: the number of elements to compute. 
+ \-\`dim::Integer=1\`: the dimensions along which to perform the computation. 
+...
+
+"""

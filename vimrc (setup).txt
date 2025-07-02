@@ -1,0 +1,6 @@
+//This file shows my current vimrc setup
+
+:set number
+:colorscheme genericdc-light
+:syntax on
+:set background=light
