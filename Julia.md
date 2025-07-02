@@ -12,6 +12,10 @@ title: Julia Cheat Sheet
 -   index starts at 1 !
 -   Strings can be indexed like arrays
 -   try, catch : for error handling
+-   Avoid globals
+-   Locals scope is defined by code blocks ie func, loop not if
+-   Built in funcs such as iterate can be extended via multi-dispatch
+-   Use the Profiling package for measuring performance.
 
 ```julia 
 #String comb uses *
@@ -44,6 +48,12 @@ end
 
 #Avoid using len for iteration (better saftey ,extension and efficency!)
 The rule of thumb: if you need indices, use `eachindex`. If you need to work with specific dimensions, use `axes`. Only use `length`/`size` when you actually need the numeric size value, not for iteration.
+
+#DONT DO
+for i in 1:length(arr)
+
+#DO
+for i in eachindex(arr)
 
 a = collect(1:20) # convert into an array
 
@@ -162,15 +172,11 @@ setfield!(struct,symbol,value) #set field value using symbol instead of direct a
 ## Tenancy
 
 ```julia
+
+# If the condition is true 1 is returned else -1 is
 x > 0 ? 1 : -1 
 ```
 
-# If the condition is true 1 is returned else -1 is
-
--   Avoid globals
--   Locals scope is defined by code blocks ie func, loop not if
--   Built in funcs such as iterate can be extended via multi-dispatch
--   Use the Profiling package for measuring performance.
 
 # Objects/Methods
 
