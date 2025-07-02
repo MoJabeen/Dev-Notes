@@ -6,35 +6,22 @@ title: Julia Cheat Sheet
 ---
 # General
 
-```julia
-function name()
-code
-end 
-
-function name()
-r=3
-
-r,r+2 #Omit the return keyword for tuple return
-end 
-
-
-```
-
 -   printf for formatted prints uses the module Printf and is macro with syntax \@printf
 -   %3f : used to show 3 sig fig
 -   ë : scientific notation
--   index starts at 1 :O
+-   index starts at 1 !
 -   Strings can be indexed like arrays
--   Combine strings using \*
 -   try, catch : for error handling
 
-```julia
+```julia 
+#String comb uses *
+comb = "str" * "ing"
+ 
  d = Dict(1=>"one", 2 => "two")
         d[3] = "three" # Add to the dict
 
-        #Loops and funcs can also be placed in dicts
+    #Loops and funcs can also be placed in dicts
 ```
-
 
 ## Constants
 
@@ -90,6 +77,16 @@ for (key,val) in dict # to iterate through dict
 ## Functions
 
 ```julia
+function name()
+code
+end 
+
+function name()
+r=3
+
+r,r+2 #Omit the return keyword for tuple return
+end 
+
 # Varargs, unknown number of params
 
 function meh(a,b,x...)
