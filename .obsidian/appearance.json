@@ -1,5 +1,6 @@
 {
   "accentColor": "",
   "cssTheme": "Red Graphite",
-  "theme": "system"
+  "theme": "system",
+  "translucency": true
 }
