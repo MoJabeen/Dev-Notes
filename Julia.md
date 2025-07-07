@@ -133,6 +133,17 @@ end
 
 getfield(struct,symbol) #get field value using symbol instead of direct access
 setfield!(struct,symbol,value) #set field value using symbol instead of direct access
+
+#Built in anon struct into a vector
+
+res = []
+push!(results, (
+            base_metric = base_metric,
+            avg_position = avg_position,
+            positions = positions,
+            count = length(positions)
+        ))
+
 ```   
 
 ## Struct with Separate Fields
