@@ -187,8 +187,17 @@ Julia uses version 2 of Perl-compatible regular expressions (regexes).
 
 ```julia
 
+#Regex follow r"" format
+re = r""
 
+#Determine whether the first argument matches the second.
+occursin(regex,string)  
 
+# Search for the first match of the regular expression `r` in `s` and return a RegexMatch object containing the match, or nothing if the match failed.
+match(regex,string)
+
+# Search for all matches of the regular expression `r` in `s` and return an iterator over the matches
+eachmatch(regex,string,overlap::Bool=false)
 
 ```
 
