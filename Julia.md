@@ -177,6 +177,20 @@ setfield!(struct,symbol,value) #set field value using symbol instead of direct a
 x > 0 ? 1 : -1 
 ```
 
+# Strings
+
+## Regex
+
+Sometimes you are not looking for an exact string, but a particular pattern this can be done using a regex which is a string key used to search through text. (ie . signifies any character)
+
+Julia uses version 2 of Perl-compatible regular expressions (regexes).
+
+```julia
+
+
+
+
+```
 
 # Objects/Methods
 
