@@ -864,7 +864,20 @@ fdot(x) = @. 3x^2 + 4x + 7x^3
 
 A slice creates a copy of the array, which is okay if many operations are to be done on the copy, however, could be worse if the cost of the copy outweighs the operations to be done on it.
 
-Can instead use \@view to reference a subarray of the original array. Also contiguous are better and if possible arrays should be converted into a contiguous array before operation.
+Can instead use \@view to reference a subarray of the original array without making a copy. Also contiguous are better and if possible arrays should be converted into a contiguous array before operation.
+
+```julia
+
+A = zeros(3, 3); 
+
+#@views converts each operations return into a view, like a wrapper
+@views for row in 1:3 
+	b = A[row, :] # b is a view, not a copy 
+	b .= row # assign every element to the row index 
+end
+
+
+```
 
 ## Other
 

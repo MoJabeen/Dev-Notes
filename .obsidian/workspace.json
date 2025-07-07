@@ -196,10 +196,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian.md"
+                "file": "Julia.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Obsidian"
+              "title": "Outline of Julia"
             }
           },
           {
@@ -213,7 +213,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -232,6 +232,8 @@
   },
   "active": "15e5f087c0b87fcb",
   "lastOpenFiles": [
+    "Database Fundamentals.md",
+    "Julia.md",
     "Obsidian.md",
     "postgres.md",
     "Clippings/Clip web pages - Obsidian Help.md",
@@ -248,14 +250,12 @@
     "vimrc.txt",
     "vimnts-inter",
     "vimnts-beg",
-    "Julia.md",
     "Clean Architecture.md",
     "GoLang.md",
     "systemd.md",
     "Design Patterns.md",
     "R.md",
     "Apache.md",
-    "Database Fundamentals.md",
     "Slack.md",
     "Rust.md",
     "conflict-files-obsidian-git.md",
