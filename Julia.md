@@ -288,6 +288,8 @@ name(n::Int, d::Float) = name(promote(n,d)...)
 ## MULTI-DISPATCH 
 
 - Will use the narrowest available subtype.
+- Careful of ambiguities from unclear crossover within subtype structures (detect_ambiguities tool available)
+
 
 ```julia
 
