@@ -13,6 +13,7 @@ title: Julia Cheat Sheet
 -   Strings can be indexed like arrays
 -   try, catch : for error handling
 -   Avoid globals
+- Immutable vars use more memory but safer for multi threading.
 -   Locals scope is defined by code blocks ie func, loop not if
 -   Built in funcs such as iterate can be extended via multi-dispatch
 -   Use the Profiling package for measuring performance.
@@ -111,10 +112,15 @@ function meh(hem::Function)
 ## Struct
 
 ```julia
+
+# Use union for combinations
+const Numbs = Union{Int,Float}
+
 mutable struct name 
 	string::AbstractString
 	boolean::Bool 
 	age::Int
+	height::Numbs
 	a::Array{Int,5}
 end
 
@@ -180,6 +186,14 @@ push!(results, (
 4. **Less clear interface**: Available keys aren't obvious from the type definition
 5. **No auto-completion**: IDEs can't suggest available keys
 
+
+### Parametric Structs
+
+```julia
+
+
+
+```
 ## Tenancy
 
 ```julia
@@ -263,7 +277,7 @@ end
 Abstract types dont dictate how data is stored instead for controlling behaviour!
 
 - **Hierarchical organization**: They allow you to create a logical type hierarchy that represents relationships between different types.
-- **Code reuse through multiple dispatch**: You can write methods that operate on an abstract type, and these methods will work with any concrete subtype. (Overlapping behaviour built into each subtype.)
+- **Code reuse through multiple dispatch**: You can write methods that operate on an abstract type, and these methods will work with any concrete subtype. (Overlapping behaviour built into each subtype, if subtype missing will use supertype func.)
 - **Interface definition**: Abstract types define a conceptual interface that concrete subtypes are expected to implement, similar to interfaces in other languages. (Code control)
 - **Parametric polymorphism**: They enable parametric types to be constrained to a family of related types.
 - **Extension without modification**: New concrete subtypes can be added without changing existing code.
@@ -1073,3 +1087,9 @@ Description
 ...
 
 """
+
+# Appendix
+
+## Variables
+
+Two types of concrete: primitive and composite. Composite have field names.
