@@ -100,7 +100,10 @@ end
 
 # Varargs, unknown number of params
 function meh(a,b,x...)
-	# x is a collection of all the other params used in calling the func
+# x is a collection of all the other params used in calling the func (slurping)
+
+function meh(a,b,c)
+meh(x...)# tuple converted into multiple args (splatting)
 
 # Pass function as param
 
@@ -108,6 +111,15 @@ function meh(hem::Function)
 
 #; enforces keyword argument when calling function
 function meh(;x::Int)
+
+#ANON funcs, used in place of func arguments
+args -> body
+
+#do end
+
+foreach(list) do
+	body of func
+	end
 
 ```
 
@@ -269,20 +281,27 @@ name(n::Int, d::Float) = name(promote(n,d)...)
 #choosing the type to work with both
 
 
-# MULTI-DISPATCH FUNCTION
+
+
+```
+
+## MULTI-DISPATCH 
+
+- Will use the narrowest available subtype.
+
+```julia
 
 function blah(n::Int, d::Int) = println('meh')
 
 function blah(x::Int, y::name) = println(x*y.num)
 #This func now has two methods (multi dispatch)
 
+```
+
 # The T is the type inside the vector which refed in the func
 function myfunc(x::Vector{T}) where T
 	b::Vector{T} = x.*3
 end
-
-```
-
 ## Abstract
 
 Abstract types dont dictate how data is stored instead for controlling behaviour!
