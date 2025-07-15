@@ -260,8 +260,10 @@ end
 
 ## Abstract
 
+Abstract types dont dictate how data is stored instead for controlling behaviour!
+
 - **Hierarchical organization**: They allow you to create a logical type hierarchy that represents relationships between different types.
-- **Code reuse through multiple dispatch**: You can write methods that operate on an abstract type, and these methods will work with any concrete subtype.
+- **Code reuse through multiple dispatch**: You can write methods that operate on an abstract type, and these methods will work with any concrete subtype. (Overlapping behaviour built into each subtype.)
 - **Interface definition**: Abstract types define a conceptual interface that concrete subtypes are expected to implement, similar to interfaces in other languages. (Code control)
 - **Parametric polymorphism**: They enable parametric types to be constrained to a family of related types.
 - **Extension without modification**: New concrete subtypes can be added without changing existing code.
@@ -277,6 +279,8 @@ abstract type Real <: Number end
 
 ```
 # Modules
+
+**Dont overdo modules, should represent a single app/project. Only further separate if make sense as stand alone sections.**
 
 Modules allow for better namespace control and cleaner structure.
 
