@@ -99,13 +99,15 @@ r,r+2 #Omit the return keyword for tuple return
 end 
 
 # Varargs, unknown number of params
-
 function meh(a,b,x...)
 	# x is a collection of all the other params used in calling the func
 
 # Pass function as param
 
 function meh(hem::Function)
+
+#; enforces keyword argument when calling function
+function meh(;x::Int)
 
 ```
 
@@ -189,16 +191,18 @@ push!(results, (
 
 ### Parametric Structs
 
+- Helps enforce type consistency within subtypes.
+
 ```julia
 
-mutable struct name {}
+# Allows creating same name structs with different data types
+mutable struct name{T <: Real}
 	string::T
 	boolean::T 
 	age::T
 	height::T
 	a::T
 end
-
 
 ```
 ## Tenancy
