@@ -191,6 +191,13 @@ push!(results, (
 
 ```julia
 
+mutable struct name {}
+	string::T
+	boolean::T 
+	age::T
+	height::T
+	a::T
+end
 
 
 ```
