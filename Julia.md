@@ -396,15 +396,17 @@ Source codes structure is represented as an abstract syntax tree which is made o
 
 ## Macros
 
-Macros accept expressions manipulate them and return expressions. Therefore they adjust the abstract syntax tree effectively altering the source code.
+Macros accept expressions manipulate them and return expressions. Therefore they adjust the abstract syntax tree effectively altering the source code. Compiled code as an expression not executed on runtime but during parsing.
+
+**They do not access values only expressions.**
 
 **Benefits:**
 - Might give more concise code (ie using string literals for custom domain specific lang)
 - May improve performance as similar to direct source code so remove overhead of higher level stuff ie loops (@unroll).
 	- Executed only once during compile so better than a constructor being called many times in a func.
-- Access global scope from within local scope without specifiying 
+- Access global scope from within local scope without specifying global variable (cleaner)
 
-Compiled code as an expression not executed on runtime but during parsing.
+
 
 ```julia
 macro name()
@@ -414,6 +416,8 @@ end
 @name() # Run using the @ operator.
 
 @time func #Used to measure the time taken to run a func
+
+esc() #To access local scope variables 
 ```
 
 Macros are used in code when an expression is required in multiple places before it is evaluated.
@@ -1145,6 +1149,7 @@ Use makedocs func to control sidebar.
 
 In md format.
 
+```julia
 """
 	func(parmas) -> (return...)
 
@@ -1160,9 +1165,14 @@ Description
 ...
 
 """
+```
 
 # Appendix
 
 ## Variables
 
 Two types of concrete: primitive and composite. Composite have field names.
+
+## Macros
+
+Macro Hygiene : Compiler labels macro variables to avoid conflict with normal code.
