@@ -378,6 +378,8 @@ Can use submodules which are accessed via . operator.
 
 # Metaprogramming
 
+## Expressions
+
 Julia code is represented after compiling as a data struct of type Expr.
 
 - **\$:** Used as interpolation for literal expression in a macro.
@@ -388,16 +390,19 @@ Can use Expr data types as inputs to functions.
 
 ## Abstract syntax tree
 
-
+Source codes structure is represented as an abstract syntax tree which is made of expressions. The expression x + y is shown as a tree below.
 
 ![[Screenshot 2025-07-16 at 10.23.41.png]]
 
 ## Macros
 
+Macros accept expressions manipulate them and return expressions. Therefore they adjust the abstract syntax tree effectively altering the source code.
+
 **Benefits:**
 - Might give more concise code (ie using string literals for custom domain specific lang)
 - May improve performance as similar to direct source code so remove overhead of higher level stuff ie loops (@unroll).
 	- Executed only once during compile so better than a constructor being called many times in a func.
+- Access global scope from within local scope without specifiying 
 
 Compiled code as an expression not executed on runtime but during parsing.
 
