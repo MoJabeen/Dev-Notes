@@ -200,7 +200,6 @@ push!(results, (
 4. **Less clear interface**: Available keys aren't obvious from the type definition
 5. **No auto-completion**: IDEs can't suggest available keys
 
-
 ### Parametric Structs
 
 - Helps enforce type consistency within subtypes.
@@ -249,7 +248,7 @@ eachmatch(regex,string,overlap::Bool=false)
 
 ```
 
-# Objects/Methods
+# Constructors
 
 Structs mainly used to create new data type objects.
 Inner and outer constructor methods for structs define how a new object is created based on data input.
@@ -281,15 +280,12 @@ name(n::Int, d::Float) = name(promote(n,d)...)
 #choosing the type to work with both
 
 
-
-
 ```
 
-## MULTI-DISPATCH 
+# MULTI-DISPATCH 
 
 - Will use the narrowest available subtype.
 - Careful of ambiguities from unclear crossover within subtype structures (detect_ambiguities tool available)
-
 
 ```julia
 
@@ -300,11 +296,23 @@ function blah(x::Int, y::name) = println(x*y.num)
 
 ```
 
+# Parametric Methods
+
+Use variable to define types of arguments 
+
+```julia
+
 # The T is the type inside the vector which refed in the func
-function myfunc(x::Vector{T}) where T
+function myfunc(x::Vector{T}) where T <: Any
 	b::Vector{T} = x.*3
 end
-## Abstract
+
+function meh(a::T,b::T) where T <: Real
+	stuff
+end
+
+```
+# Abstract types
 
 Abstract types dont dictate how data is stored instead for controlling behaviour!
 
