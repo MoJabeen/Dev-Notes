@@ -4,31 +4,8 @@ author:
 date: 2023-10-01
 title: Julia Cheat Sheet
 ---
-# General
 
--   printf for formatted prints uses the module Printf and is macro with syntax \@printf
--   %3f : used to show 3 sig fig
--   ë : scientific notation
--   index starts at 1 !
--   Strings can be indexed like arrays
--   try, catch : for error handling
--   Avoid globals
-- Immutable vars use more memory but safer for multi threading.
--   Locals scope is defined by code blocks ie func, loop not if
--   Built in funcs such as iterate can be extended via multi-dispatch
--   Use the Profiling package for measuring performance.
-
-```julia 
-#String comb uses *
-comb = "str" * "ing"
- 
- d = Dict(1=>"one", 2 => "two")
-        d[3] = "three" # Add to the dict
-
-    #Loops and funcs can also be placed in dicts
-```
-
-## Constants
+# Constants
 
 Julia has lexical scope, allowing to access the scope in which the function is defined not from where its called. Global values are looked up at run time making state tracking difficult if multiple places are updating the value. Looking up global values is also slow.
 
@@ -40,7 +17,7 @@ const L = 2
 
 ```
 
-## Loops
+# Loops
 
 ```julia
 for i in 1:5 # This calls the iterate func
@@ -85,7 +62,7 @@ foreach(func, collection) #operate func on each val of collection
 for (key,val) in dict # to iterate through dict
 ```
 
-## Functions
+# Functions
 
 ```julia
 function name()
@@ -123,7 +100,7 @@ foreach(list) do
 
 ```
 
-## Struct
+# Struct
 
 ```julia
 
@@ -216,12 +193,47 @@ mutable struct name{T <: Real}
 end
 
 ```
-## Tenancy
+
+# Misc
+
+-   printf for formatted prints uses the module Printf and is macro with syntax \@printf
+-   %3f : used to show 3 sig fig
+-   ë : scientific notation
+-   index starts at 1 !
+-   Strings can be indexed like arrays
+-   try, catch : for error handling
+-   Avoid globals
+- Immutable vars use more memory but safer for multi threading.
+-   Locals scope is defined by code blocks ie func, loop not if
+-   Built in funcs such as iterate can be extended via multi-dispatch
+-   Use the Profiling package for measuring performance.
+
+```julia 
+#String comb uses *
+comb = "str" * "ing"
+ 
+ d = Dict(1=>"one", 2 => "two")
+        d[3] = "three" # Add to the dict
+
+    #Loops and funcs can also be placed in dicts
+```
+
+# Tenancy
 
 ```julia
 
 # If the condition is true 1 is returned else -1 is
 x > 0 ? 1 : -1 
+```
+
+# Push
+
+```julia
+
+pushfirst! #Can cause signficantly larger operations up to O(N^2) if a larger block of memory needs to be allocated
+
+push! #Stays at O(1) even combined with a sort its at O(N) 
+
 ```
 
 # Abstract types
@@ -303,7 +315,7 @@ name(n::Int, d::Float) = name(promote(n,d)...)
 
 ```
 
-# MULTI-DISPATCH 
+# Multiple Dispatch
 
 - Will use the narrowest available subtype.
 - Careful of ambiguities from unclear crossover within subtype structures (detect_ambiguities tool available)
@@ -336,18 +348,6 @@ end
 
 ```
 
-# Interfaces
-
-Frameworks modules with functions and abstract types than need to be implanted and extended. *Great for evolvability and extendability*.
-
-- Can be Hard (required) or soft (optional)
-	- Hard might use an error in the interface to force implementation
-	- Soft might return nothing as its not necessary
-- Extended by creating a new datatype that extends the main super type in the interface.
-- Check funcs used to check if a data type has a certain characteristic or behaviour - **Trait**
-	- Normally response is boolean
-
-
 # Modules
 
 **Dont overdo modules, should represent a single app/project. Only further separate if make sense as stand alone sections.**
@@ -361,21 +361,37 @@ They are not attached to a file, can have multiple modules in a file and multi f
 
 Can use submodules which are accessed via . operator.
 
-# Differences from Python
+# Interfaces
 
--   Use immutable Vector (same data type) instead of arrays (python
-    would use list)
--   Indents start with 1
--   Include end when slicing ie \[1:end\] not \[1:\]
--   Use \[start;stop;step\] format
--   Matrix indexing creates submatrix not tuple ie X\[\[1:2\]\[2:3\]\]
--   To create a tuple from a matrix use (like python) X\[CartesianIndex(1,1), CartesianIndex(2,3)\]
--   Variable assignment is not pointer assignment ie a= b creates new variable so they remain separate.
--   push! is the same as append
--   \% is remainder not modulus
--   Int is not an unknown size its int32
--   nothing instead of null
+Frameworks modules with functions and abstract types than need to be implanted and extended. *Great for evolvability and extendability*.
 
+- Can be Hard (required) or soft (optional)
+	- Hard might use an error in the interface to force implementation
+	- Soft might return nothing as its not necessary
+- Extended by creating a new datatype that extends the main super type in the interface.
+- Check funcs used to check if a data type has a certain characteristic or behaviour - **Trait**
+	- Normally response is boolean
+
+
+```julia
+
+module Vehicle
+
+# 1. Export/Imports
+export go!
+
+# 2. Interface documentation
+
+# A vehicle (v) must implement the following functions:
+# power_on!(v) - turn on the vehicle's engine
+# power_off!(v) - turn off the vehicle's engine
+# turn!(v, direction) - steer the vehicle to the specified direction
+# move!(v, distance) - move the vehicle by the specified distance
+# position(v) - returns the (x,y) position of the vehicle
+
+end
+
+```
 # Metaprogramming
 
 ## Expressions
@@ -894,19 +910,7 @@ At point of use annotation:
 ```julia
 for i in x :: Vector{Float64}
 ```
-
-## Push
-
-```julia
-
-pushfirst! #Can cause signficantly larger operations up to O(N^2) if a larger block of memory needs to be allocated
-
-push! #Stays at O(1) even combined with a sort its at O(N) 
-
-```
-
 ## Wrappers
-
 
 Better to define the type of the wrapper than only the its elements. As you dont want the high level struct type to be ambiguous:
 
@@ -1188,3 +1192,18 @@ Two types of concrete: primitive and composite. Composite have field names.
 ## Macros
 
 Macro Hygiene : Compiler labels macro variables to avoid conflict with normal code.
+
+## Differences from Python
+
+-   Use immutable Vector (same data type) instead of arrays (python
+    would use list)
+-   Indents start with 1
+-   Include end when slicing ie \[1:end\] not \[1:\]
+-   Use \[start;stop;step\] format
+-   Matrix indexing creates submatrix not tuple ie X\[\[1:2\]\[2:3\]\]
+-   To create a tuple from a matrix use (like python) X\[CartesianIndex(1,1), CartesianIndex(2,3)\]
+-   Variable assignment is not pointer assignment ie a= b creates new variable so they remain separate.
+-   push! is the same as append
+-   \% is remainder not modulus
+-   Int is not an unknown size its int32
+-   nothing instead of null
