@@ -343,7 +343,10 @@ Frameworks modules with functions and abstract types than need to be implanted a
 - Can be Hard (required) or soft (optional)
 	- Hard might use an error in the interface to force implementation
 	- Soft might return nothing as its not necessary
-- 
+- Extended by creating a new datatype that extends the main super type in the interface.
+- Check funcs used to check if a data type has a certain characteristic or behaviour - **Trait**
+	- Normally response is boolean
+
 
 # Modules
 
@@ -383,10 +386,20 @@ Julia code is represented after compiling as a data struct of type Expr.
 
 Can use Expr data types as inputs to functions.
 
+## Abstract syntax tree
+
+
+
+![[Screenshot 2025-07-16 at 10.23.41.png]]
+
 ## Macros
 
-Compiled code as an expression not executed on runtime but during
-parsing.
+**Benefits:**
+- Might give more concise code (ie using string literals for custom domain specific lang)
+- May improve performance as similar to direct source code so remove overhead of higher level stuff ie loops (@unroll).
+	- Executed only once during compile so better than a constructor being called many times in a func.
+
+Compiled code as an expression not executed on runtime but during parsing.
 
 ```julia
 macro name()
@@ -394,6 +407,8 @@ macro name()
 end
 
 @name() # Run using the @ operator.
+
+@time func #Used to measure the time taken to run a func
 ```
 
 Macros are used in code when an expression is required in multiple places before it is evaluated.
