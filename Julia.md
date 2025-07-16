@@ -396,7 +396,7 @@ Source codes structure is represented as an abstract syntax tree which is made o
 
 ## Macros
 
-Macros accept expressions manipulate them and return expressions. Therefore they adjust the abstract syntax tree effectively altering the source code. Compiled code as an expression not executed on runtime but during parsing.
+Macros accept expressions manipulate them and return expressions. Therefore they adjust the abstract syntax tree effectively altering the source code. 
 
 **They do not access values only expressions.**
 
@@ -405,8 +405,6 @@ Macros accept expressions manipulate them and return expressions. Therefore they
 - May improve performance as similar to direct source code so remove overhead of higher level stuff ie loops (@unroll).
 	- Executed only once during compile so better than a constructor being called many times in a func.
 - Access global scope from within local scope without specifying global variable (cleaner)
-
-
 
 ```julia
 macro name()
@@ -433,6 +431,20 @@ for op = (:sin, :cos, :tan, :log, :exp)
 end
 ```
 
+Generated funcs are like macros but with access to data types instead of expressions, if that is required when meta programming.
+### String Literals
+
+Used as mini domain specific language, making things more concise. Can be used to return defined empty data structures ie DataFrame as not a predefined variable.
+
+```julia
+
+macro macro_name(string)
+	stuff
+end
+
+macro_name"arg"
+
+```
 # Concurrency
 
 Julia combines multi threads and cores using the same memory space as threading. CPUs using separate memory spaces are defined as multi-processor or distributed computing.
