@@ -368,7 +368,7 @@ Frameworks modules with functions and abstract types than need to be implanted a
 - Can be Hard (required) or soft (optional)
 	- Hard might use an error in the interface to force implementation
 	- Soft might return nothing as its not necessary
-- Extended by creating a new datatype that extends the main super type in the interface.
+- Extended by creating a new datatype that extends the main super type in the interface. Not required tho. Can be purely functional (example below).
 - Check funcs used to check if a data type has a certain characteristic or behaviour - **Trait**
 	- Normally response is boolean
 
@@ -388,6 +388,34 @@ export go!
 # turn!(v, direction) - steer the vehicle to the specified direction
 # move!(v, distance) - move the vehicle by the specified distance
 # position(v) - returns the (x,y) position of the vehicle
+
+# 3. Generic definitions for the interface
+
+function power_on! end
+function power_off! end
+function turn! end
+function move! end
+function position end
+
+# 4. Game logic
+
+# Returns a travel plan from current position to destination
+function travel_path(position, destination)
+	return round(π/6, digits=2), 1000 # just a test
+end
+
+# Space travel logic
+function go!(vehicle, destination)
+
+	power_on!(vehicle)
+	direction, distance = travel_path(position(vehicle),
+	destination)
+	turn!(vehicle, direction)
+	move!(vehicle, distance)
+	power_off!(vehicle)
+	
+	nothing
+end
 
 end
 
