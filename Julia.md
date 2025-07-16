@@ -224,6 +224,27 @@ end
 x > 0 ? 1 : -1 
 ```
 
+# Abstract types
+
+Abstract types dont dictate how data is stored instead for controlling behaviour!
+
+- **Hierarchical organization**: They allow you to create a logical type hierarchy that represents relationships between different types.
+- **Code reuse through multiple dispatch**: You can write methods that operate on an abstract type, and these methods will work with any concrete subtype. (Overlapping behaviour built into each subtype, if subtype missing will use supertype func.)
+- **Interface definition**: Abstract types define a conceptual interface that concrete subtypes are expected to implement, similar to interfaces in other languages. (Code control)
+- **Parametric polymorphism**: They enable parametric types to be constrained to a family of related types.
+- **Extension without modification**: New concrete subtypes can be added without changing existing code.
+
+```julia
+#To allow grouping of objects, to define a common type for a function USE ABSTRACT TYPES
+
+abstract type «name» end
+abstract type «name» <: «supertype» end
+
+abstract type Number end 
+abstract type Real <: Number end
+
+```
+
 # Strings
 
 ## Regex
@@ -298,7 +319,9 @@ function blah(x::Int, y::name) = println(x*y.num)
 
 # Parametric Methods
 
-Use variable to define types of arguments 
+Use variable to define types of arguments.
+
+- Benefit is can enforce type consistency within subtype structures as T will need to be the same across args but can still be within a subtype of the <: abstract.
 
 ```julia
 
@@ -312,26 +335,16 @@ function meh(a::T,b::T) where T <: Real
 end
 
 ```
-# Abstract types
 
-Abstract types dont dictate how data is stored instead for controlling behaviour!
+# Interfaces
 
-- **Hierarchical organization**: They allow you to create a logical type hierarchy that represents relationships between different types.
-- **Code reuse through multiple dispatch**: You can write methods that operate on an abstract type, and these methods will work with any concrete subtype. (Overlapping behaviour built into each subtype, if subtype missing will use supertype func.)
-- **Interface definition**: Abstract types define a conceptual interface that concrete subtypes are expected to implement, similar to interfaces in other languages. (Code control)
-- **Parametric polymorphism**: They enable parametric types to be constrained to a family of related types.
-- **Extension without modification**: New concrete subtypes can be added without changing existing code.
+Frameworks modules with functions and abstract types than need to be implanted and extended. *Great for evolvability and extendability*.
 
-```julia
-#To allow grouping of objects, to define a common type for a function USE ABSTRACT TYPES
+- Can be Hard (required) or soft (optional)
+	- Hard might use an error in the interface to force implementation
+	- Soft might return nothing as its not necessary
+- 
 
-abstract type «name» end
-abstract type «name» <: «supertype» end
-
-abstract type Number end 
-abstract type Real <: Number end
-
-```
 # Modules
 
 **Dont overdo modules, should represent a single app/project. Only further separate if make sense as stand alone sections.**
