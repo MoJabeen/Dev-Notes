@@ -2,7 +2,7 @@
 author:
   - Mo D Jabeen
 date: 2023-10-01
-title: Julia Cheat Sheet
+title: Julia
 ---
 
 # Constants
