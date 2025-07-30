@@ -260,7 +260,12 @@ abstract type Real <: Number end
 
 struct implement <: supertype end 
 
-supertype(::Type())
+#Used supertype to return concrete type
+supertype(::Type(<:Real)) = implement()
+
+# Use inferred type to dispatch, 
+func(x::T) where {T} = func(supertype(T),x)
+func(::Type,x) = do stuff
 
 ```
 

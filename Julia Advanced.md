@@ -240,7 +240,35 @@ func_to_forward(wO::wrapObject) = func_to_forward(wO.orgObj)
 
 Avoid doing a conditional branch with type checks especially on abstract trees for behaviour control. Instead use **traits** which are new data types related to the behaviour in a small hierarchy  that return a data type based on the desired behaviour of the original type set.
 
+*Benefits:*
+- To allow for easier understanding and extension of code (Dont need to rewrite a conditional loop each time)
+- Can use a single trait to help define and control many different behaviours
+- The conditional will now be based on behaviour which can be extended to any new object with a given type.
+- Also used as interface to enforce implementation of new object (example below.)
 
+```julia
+
+abstract type LiquidityStyle end
+
+struct IsLiquid <: LiquidityStyle end
+struct IsIlliquid <: LiquidityStyle end
+
+# Cash is always liquid
+LiquidityStyle(::Type{<:Cash}) = IsLiquid()
+
+# Any subtype of Investment is liquid
+LiquidityStyle(::Type{<:Investment}) = IsLiquid()
+
+
+# The thing is tradable if it is liquid
+
+tradable(x::T) where {T} = tradable(LiquidityStyle(T), x)
+
+tradable(::IsLiquid, x) = true
+tradable(::IsIlliquid, x) = false
+
+#Inte
+```
 
 
 
