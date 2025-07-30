@@ -238,4 +238,10 @@ func_to_forward(wO::wrapObject) = func_to_forward(wO.orgObj)
 
 ### Holy traits Pattern
 
+Avoid doing a conditional branch with type checks especially on abstract trees for behaviour control. Instead use **traits** which are new data types related to the behaviour in a small hierarchy  that return a data type based on the desired behaviour of the original type set.
+
+
+
+
+
 

@@ -161,13 +161,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia Advanced.md",
+                "file": "Julia Base.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Julia Advanced"
+              "title": "Outline of Julia Base"
             }
           },
           {
@@ -198,10 +198,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d99665a397254a19",
+  "active": "b7d8a9a26ca7f9b1",
   "lastOpenFiles": [
-    "Julia Base.md",
     "Julia Advanced.md",
+    "Julia Base.md",
     "Julia Packages.md",
     "Tmux.md",
     "Design Patterns.md",

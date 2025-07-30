@@ -250,11 +250,17 @@ Abstract types dont dictate how data is stored instead for controlling behaviour
 ```julia
 #To allow grouping of objects, to define a common type for a function USE ABSTRACT TYPES
 
-abstract type «name» end
-abstract type «name» <: «supertype» end
+abstract type supertype end
+abstract type subtype <: supertype end
 
 abstract type Number end 
 abstract type Real <: Number end
+
+#Can return values using an abstract type ie
+
+struct implement <: supertype end 
+
+supertype(::Type())
 
 ```
 
