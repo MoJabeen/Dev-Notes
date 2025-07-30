@@ -248,6 +248,7 @@ Avoid doing a conditional branch with type checks especially on abstract trees f
 
 ```julia
 
+#Traits 
 abstract type LiquidityStyle end
 
 struct IsLiquid <: LiquidityStyle end
@@ -255,12 +256,10 @@ struct IsIlliquid <: LiquidityStyle end
 
 # Cash is always liquid
 LiquidityStyle(::Type{<:Cash}) = IsLiquid()
-
 # Any subtype of Investment is liquid
 LiquidityStyle(::Type{<:Investment}) = IsLiquid()
 
-
-# The thing is tradable if it is liquid
+# Trait behaviour example: The thing is tradable if it is liquid
 
 tradable(x::T) where {T} = tradable(LiquidityStyle(T), x)
 
