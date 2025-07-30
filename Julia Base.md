@@ -83,8 +83,11 @@ function meh(a,b,x...)
 function meh(a,b,c)
 meh(x...)# tuple converted into multiple args (splatting)
 
-# Pass function as param
+# Keyword arg ;
+function meh(a;b)
+meh(1,b=3)
 
+# Pass function as param
 function meh(hem::Function)
 
 #; enforces keyword argument when calling function

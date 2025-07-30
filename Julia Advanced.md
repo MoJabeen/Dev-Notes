@@ -203,11 +203,9 @@ map(x-f(x),a)
 map(f,a)
 ```
 
-# Patterns
+# Reusability Patterns
 
-## Reusability Patterns
-
-### Delegation Pattern
+## Delegation Pattern
 
 Instead of using inheritance on a object creating a dependancy on the entire implementation wrap it in a new object and forward onto original object any methods.
 
@@ -236,7 +234,7 @@ func_to_forward(wO::wrapObject) = func_to_forward(wO.orgObj)
 
 **Pkg: Lazy.jl**
 
-### Holy traits Pattern
+## Holy traits Pattern
 
 Avoid doing a conditional branch with type checks especially on abstract trees for behaviour control. Instead use **traits** which are new data types related to the behaviour in a small hierarchy  that return a data type based on the desired behaviour of the original type set.
 
@@ -277,7 +275,7 @@ available.")
 ```
 
 
-### Parametric Type Pattern
+## Parametric Type Pattern
 
 With different typed structs the same structure can be reused in different ways. Allowing for via multiple dispatch a single function to be used. Can be taken to a further complexity by layering in parametric structs inside structs.
 
@@ -304,9 +302,9 @@ function payment(t::SingleTrade{StockOption})
 end
 ```
 
-## Performance Patterns
+# Performance Patterns
 
-### Global constants
+## Global constants
 
 Can lead to very poor performance, in simple pure examples a untyped global var can reduce speed by 900x. As the complier has to add a lot of overhead to keep the flexibility of an untyped global var. *In complex funcs with large overhead difference may be negligible*
  
@@ -399,3 +397,9 @@ end
 
 # Maintainability Pattern 
 
+## Sub Module Pattern
+
+Afferent coupling : External entity that depend on current entity
+Efferent coupling: External that the current depends on
+
+High afferent means it has to be very stable, high efferent may cause instability due to external changing parts. Best for both to be minimised. Avoid bidirectional coupling.
