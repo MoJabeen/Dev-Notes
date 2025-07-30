@@ -193,6 +193,10 @@ mutable struct name{T <: Real}
 	a::T
 end
 
+#Multiple types + using a single value of the type to define a new type (N)
+abstract type Color{T, N} <: Colorant{T,N} end
+abstract type AbstractRGB{T} <: Color{T,3} end
+
 ```
 
 # Misc

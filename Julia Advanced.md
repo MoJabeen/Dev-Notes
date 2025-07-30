@@ -279,5 +279,32 @@ available.")
 
 ### Parametric Type Pattern
 
+With different typed structs the same structure can be reused in different ways. Allowing for via multiple dispatch a single function to be used. Can be taken to a further complexity by layering in parametric structs inside structs.
 
+Great if the different type structs have very similar behaviour.
+
+```julia
+
+struct SingleTrade{T <: Investment} <: Trade
+type::LongShort
+instrument::T
+quantity::Int
+price::Float64
+end
+
+
+# GENERIC OPTION: Calculate payment amount for the trade
+function payment(t::SingleTrade{T}) where {T}
+	return sign(t) * t.quantity * t.price
+end
+
+# SPECIFIC Calculate payment amount for option trades (100 shares per contract)
+function payment(t::SingleTrade{StockOption})
+	return sign(t) * t.quantity * 100 * t.price
+end
+```
+
+## Performance Patterns
+
+### Global constants
 
