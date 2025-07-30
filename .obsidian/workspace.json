@@ -156,7 +156,7 @@
               "type": "outline",
               "state": {
                 "file": "Julia.md",
-                "followCursor": false,
+                "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -170,8 +170,8 @@
             "state": {
               "type": "git-view",
               "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
         ],
@@ -194,13 +194,14 @@
   },
   "active": "b7d8a9a26ca7f9b1",
   "lastOpenFiles": [
+    "Design Patterns.md",
+    "Julia.md",
     "Tmux.md",
     "Database Fundamentals.md",
     "Rust.md",
     "Slack.md",
     "Svelte.md",
     "systemd.md",
-    "Julia.md",
     "Figures/Screenshot 2025-07-16 at 10.23.41.png",
     "Obsidian.md",
     "postgres.md",
@@ -219,7 +220,6 @@
     "vimnts-beg",
     "Clean Architecture.md",
     "GoLang.md",
-    "Design Patterns.md",
     "R.md",
     "Apache.md",
     "conflict-files-obsidian-git.md",
