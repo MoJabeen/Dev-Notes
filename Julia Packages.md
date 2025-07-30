@@ -226,3 +226,8 @@ Description
 """
 ```
 
+# Benchmark
+
+**Benchmarks.jl**
+
+@btime: Measure code performance via running it many times and giving an average.

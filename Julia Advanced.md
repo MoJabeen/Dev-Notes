@@ -308,3 +308,26 @@ end
 
 ### Global constants
 
+Can lead to very poor performance, in simple pure examples a untyped global var can reduce speed by 900x. As the complier has to add a lot of overhead to keep the flexibility of an untyped global var. *In complex funcs with large overhead difference may be negligible*
+ 
+**Easier Solutions: (in order of best)**
+- Make it a constant
+- Send as argument with $ operator
+- Make variable typed inside any function using it
+
+**Placeholder**
+
+Using Ref object can hide the variable in a global constant that can be updated. Not as good as real constant but better.
+
+
+```julia
+function add_using_global_variable_typed(x)
+	return x + variable::Int
+end
+
+# Initialize a constant Ref object with the value of 10
+const semi_constant = Ref(10)
+```
+
+## Struct of arrays
+
