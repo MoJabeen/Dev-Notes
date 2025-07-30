@@ -339,5 +339,32 @@ If to make use of the package you are creating a copy of the current data, there
 
 ## Shared Array Pattern
 
+A task broken down to allow multiple processes to concurrently operate, needs to be combined again, the recombination is called reduction. 
+
+Use **Shared Arrays.jl pkg** for this process used in distributed computing.
+
+There is some overhead for the parallel setup but this is normally negligible compared to the overall speed gains.
 ## Memoization Pattern
+
+Cache results from a function so that if the same variables are reused the result can be gained straight from cache. 
+
+```julia
+
+#Function wrap using anon function
+function memoize(f)
+
+	memo = Dict()
+	
+	x -> begin
+		if haskey(memo, x)
+			return memo[x]
+		else
+			value = f(x)
+			memo[x] = value
+			return value
+		end
+	end
+end
+
+```
 

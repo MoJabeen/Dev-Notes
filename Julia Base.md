@@ -93,6 +93,31 @@ function meh(;x::Int)
 #ANON funcs, used in place of func arguments
 args -> body
 
+#Can wrap a function using anon function (will return new wrapped func)
+function meh(f)
+
+	x -> begin
+		if x ...
+			f(x)
+		else 
+			return 1
+		end
+	end
+end
+
+#Multipe var wrap
+function meh(f)
+
+	(args,kwargs) -> begin
+		x = (args,kwargs)
+		if x ...
+			f(args...;kwargs...)
+		else 
+			return 1
+		end
+	end
+end
+
 #do end
 
 foreach(list) do
