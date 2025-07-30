@@ -202,3 +202,40 @@ map(x-f(x),a)
 #Pass func directly
 map(f,a)
 ```
+
+# Patterns
+
+## Reusability Patterns
+
+### Delegation Pattern
+
+Instead of using inheritance on a object creating a dependancy on the entire implementation wrap it in a new object and forward onto original object any methods.
+
+*When to use:*
+- When original code is not easy to change and has a high reuse %.
+
+*Benefits:*
+- Better than inheritance as can be selective in choice of methods to forward or data to access.
+- Use accessor to control data access
+- Can update easily without effecting old methods
+
+*Negatives*:
+- Increases complexity via indirection.
+
+```julia
+
+struct wrapObject
+	orgObj :: orginalObject
+	extra data ...
+end
+
+#Forward
+func_to_forward(wO::wrapObject) = func_to_forward(wO.orgObj)
+
+```
+
+**Pkg: Lazy.jl**
+
+### Holy traits Pattern
+
+

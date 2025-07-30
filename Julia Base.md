@@ -760,7 +760,6 @@ Adjust CI.yml to include macOS-latest
         arch:
 ```
 
-
 # Profiling
 
 Julia has built in profiling, allowing code lines to be timed to discover code bottlenecks. Checks how often lines appear in a set of backtraces, the line coverage is therefore dependant on the backtrace sampling freq.
