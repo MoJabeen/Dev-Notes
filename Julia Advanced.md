@@ -333,6 +333,11 @@ const semi_constant = Ref(10)
 
 Placing data in contiguous memory allows best use of CPU. Therefore for performance Struct of arrays >> array of structs.
 
-**Struct Arrays.jl pkg** (Unwrap option allows for )
+**Struct Arrays.jl pkg** (Unwrap option allows for layered structs in arrays.)
 
 If to make use of the package you are creating a copy of the current data, there is a trade of between speed and memory.
+
+## Shared Array Pattern
+
+## Memoization Pattern
+
