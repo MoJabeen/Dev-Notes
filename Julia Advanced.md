@@ -267,9 +267,16 @@ tradable(x::T) where {T} = tradable(LiquidityStyle(T), x)
 tradable(::IsLiquid, x) = true
 tradable(::IsIlliquid, x) = false
 
-#Inte
+#Interface example
+
+marketprice(x::T) where {T} = marketprice(LiquidityStyle(T), x)
+
+marketprice(::IsLiquid, x) = error("Please implement pricing function for
+", typeof(x))
+marketprice(::IsIlliquid, x) = error("Price for illiquid asset $x is not
+available.")
 ```
 
 
-
+### Param
 
