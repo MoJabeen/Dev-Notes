@@ -213,10 +213,12 @@ end
 #String comb uses *
 comb = "str" * "ing"
  
- d = Dict(1=>"one", 2 => "two")
+d = Dict(1=>"one", 2 => "two")
         d[3] = "three" # Add to the dict
+#Loops and funcs can also be placed in dicts
 
-    #Loops and funcs can also be placed in dicts
+@enum Options A B C
+#Creates type options with values A=0, B=1, C=2 etc
 ```
 
 # Tenancy
