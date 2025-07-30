@@ -377,8 +377,25 @@ If the arguments used to create the cache ie the keys of the dict are mutable th
 Solve issues due to type instability, if required.
 
 @code_warntype used to show instability issues in a func (shows in red).
+@inferred used to compare expected type of return to gathered from func.
 
 When the exact argument types are known inside the func it is compiled for that type this is called specialisation. A barrier func separates out a function into smaller versions to allow the smaller version to specialise. As within the function before the smaller function is called the type is known.
 
+Helps to make sure initialised values match the data they are going to work with, can use parametric of eltype in func.
 
+```julia
+
+function double_sum(data::AbstractVector{T}) where {T <: Number}
+	#Initialised value matches type of input
+	total = zero(T)
+
+	for v in data
+		total += v
+	end
+	return total
+
+end
+```
+
+# Maintainability Pattern 
 
