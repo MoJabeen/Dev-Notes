@@ -368,3 +368,14 @@ end
 
 ```
 
+If the arguments used to create the cache ie the keys of the dict are mutable this can cause issues, for a constant unique identifier for a given input in this case can use a hash.
+
+**Memoize.jl pkg** 
+
+## Barrier function pattern
+
+Solve issues due to type instability.
+
+@code_warntype used to show instability issues in a func (shows in red).
+
+When the exact argument types are known inside the func it is compiled for that type this is called specialisation. A barrier func separates out a function into smaller versions to allow the smaller version to specialise. 
