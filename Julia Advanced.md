@@ -454,37 +454,28 @@ error! (logger::Logger, msg...) = logme!(ERROR, " [ERROR] ", logger,msg...)
 
 ```
 
-Closure technique using a returned anon func:
+Closure technique using a returned anon func (these cannot be extended):
 
 ```julia
 
 function make_log_func(level, label)
 	
 	(logger::Logger, args...) -> begin
-	
-	if logger.level <= level
-	
-	let io = logger.handle
-	
-	print(io, trunc(now(), Dates.Second), " [", label, "] ")
-	
-	for (idx, arg) in enumerate(args)
-	
-	idx > 0 && print(io, " ")
-	
-	print(io, arg)
-	
-	end
-	
-	println(io)
-	
-	flush(io)
-	
-	end
-	
+		if logger.level <= level
+			println(io)
 		end
-	
 	end
 end
 
+info! = make_log_func(INFO, "INFO")
+warning! = make_log_func(WARNING, "WARNING")
+error! = make_log_func(ERROR, "ERROR")
+
 ```
+
+## Domain specific Lang
+
+Using string literal macros can create a domain specific language.
+
+# Robustness Patterns
+
