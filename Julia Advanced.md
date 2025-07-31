@@ -520,3 +520,29 @@ Highest level is a good location for try as last chance to catch any errors.
 
 Use catch_backtrace for trace output before error.
 
+```julia
+
+function foo1()
+
+	try
+	
+		foo2()
+	
+	catch
+	
+		println("handling error gracefully")
+		pretty_print_stacktrace(stacktrace(catch_backtrace()))
+	
+	end
+end
+
+```
+
+Avoid try catch in loops and if performance is key find other ways to deal with errors.
+
+Use retry func with defined delay between retries (default is Exponential back off)
+
+```julia
+#Example of retry
+retry(do_something, delays=fill(2.0, 3))("John")
+```
