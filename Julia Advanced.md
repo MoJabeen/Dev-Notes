@@ -403,3 +403,4 @@ Afferent coupling : External entity that depend on current entity
 Efferent coupling: External that the current depends on
 
 High afferent means it has to be very stable, high efferent may cause instability due to external changing parts. Best for both to be minimised. Avoid bidirectional coupling.
+
