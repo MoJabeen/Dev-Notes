@@ -146,6 +146,18 @@ end
 
 newstruct = name(...)
 
+#Keyword struct
+
+Base.@kwdef struct TextStyle
+	font_family
+	font_size
+	font_weight = "Normal"
+	foreground_color = "black"
+	background_color= "white"
+	alignment = "center"
+	rotation = 0
+end
+
 # Internal constructors are used to place constraints on the code
 
 mutable struct name
