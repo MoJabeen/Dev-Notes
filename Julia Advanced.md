@@ -479,3 +479,44 @@ Using string literal macros can create a domain specific language.
 
 # Robustness Patterns
 
+## Accessor Patterns
+
+More important for user based systems where safeguarding areas of the code is crucial.
+
+Benefit: 
+- Setup triggers before direct field access
+- Allows the core variable names to be changed without need for code wide changes 
+- Allows the core variable type to be changed without need for code wide changes 
+
+The change only happens in the accessor func instead of every use of the field. Not the biggest issue unless very large code base.
+
+```julia
+
+get_heatmap(s::Simulation) = s.heatmap
+
+function heatmap!(s::Simulation{N}, new_heatmap::AbstractArray{Float64, N})  where {N}
+	
+	s.heatmap = new_heatmap
+	s.stats = (mean = mean(new_heatmap), std = std(new_heatmap))
+	return nothing
+end
+
+```
+
+To enforce use best to overwrite the get and set property funcs.
+
+```julia
+
+function Base.getproperty(o::Object, s::Symbol)
+	return getfield(o, s)
+end
+```
+
+Can also make private vars throw error when accessed directly. And update var info tools in repl ie chosen fields to hide.
+
+## Error Handling
+
+Highest level is a good location for try as last chance to catch any errors.
+
+Use catch_backtrace for trace output before error.
+
