@@ -595,3 +595,41 @@ A stub replaces a function inside the function being tested, the stub will have 
 
 ![[Screenshot 2025-08-01 at 12.10.55.png]]
 
+**Mocking.jl pkg**
+
+```julia
+
+using Mocking
+
+function open_account(first_name, last_name, email)
+
+	#Placed where stub will be used
+	@mock(check_background(first_name, last_name)) || return
+	:failure
+
+	account_number = create_account(first_name, last_name, email)
+
+	notify_downstream(account_number)
+
+	return :success
+end
+
+Mocking.activate()
+
+check_background_success_patch =
+	
+	@patch function check_background(first_name, last_name)
+	println("check_background stub ==> simulating success")
+	return true
+end
+
+check_background_failure_patch =
+	
+	@patch function check_background(first_name, last_name)
+	println("check_background stub ==> simulating failure")
+	return false
+end
+
+
+
+```

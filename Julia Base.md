@@ -121,9 +121,6 @@ function meh(f)
 	end
 end
 
-# || as return m
-
-
 #do end
 
 foreach(list) do
@@ -266,9 +263,12 @@ d = Dict(1=>"one", 2 => "two")
 
 @enum Options A B C
 #Creates type options with values A=0, B=1, C=2 etc
+
+# || as if mechanism (false returns y)
+bool_func(x) || return y
 ```
 
-# Tenancy
+## Tenancy
 
 ```julia
 
@@ -276,7 +276,7 @@ d = Dict(1=>"one", 2 => "two")
 x > 0 ? 1 : -1 
 ```
 
-# Push
+## Push
 
 ```julia
 
@@ -367,12 +367,10 @@ struct name{T<:Integer} <: Real
 	end     
 end 
 
-
 name(n::Int, d::Float) = name(promote(n,d)...)
 #Outer constructor
 #Promote converts values of a single type to the same type 
 #choosing the type to work with both
-
 
 ```
 
@@ -435,7 +433,6 @@ Frameworks modules with functions and abstract types than need to be implanted a
 
 
 ```julia
-
 module Vehicle
 
 # 1. Export/Imports
