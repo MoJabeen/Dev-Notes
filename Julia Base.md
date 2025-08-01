@@ -121,6 +121,9 @@ function meh(f)
 	end
 end
 
+# || as return m
+
+
 #do end
 
 foreach(list) do

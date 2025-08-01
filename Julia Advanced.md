@@ -555,7 +555,11 @@ The same constructor in julia will return the same object, if non mutable.
 
 Val type allows used of value to change the type of data, creating single instances for different inputs. Using dispatch to create different methods for different data, with a main dispatcher that makes the function arguments look cleaner (better for evolvability).
 
+Instead of using Val type can use a parametric structs.
+
 ```julia
+
+struct Val(x) end
 
 function process_command(::Val{:open}, filename)
 	println("opening file $filename")
@@ -571,4 +575,23 @@ function process_command(command::String, args...)
 end
 
 
+#Paramteric struct version
+
+struct Meh{T} end
+
+function process_command(::Meh{:open}, filename)
+	println("opening file $filename")
+end
+
 ```
+
+## Stubbing / Mocking
+
+Create automated unit testing, in which functions can be replaced with a testing version. Small functions enable this more.
+
+Testing double: Replace a component during testing (considered fake) the real one is called the collaborator func.
+
+A stub replaces a function inside the function being tested, the stub will have hard coded values returned for consistency. Mock also replaces func but is focused on the behaviour of the func not just return values, the behaviour is tracked via global vars.
+
+![[Screenshot 2025-08-01 at 12.10.55.png]]
+
