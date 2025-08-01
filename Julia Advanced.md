@@ -669,5 +669,5 @@ Pass data sequentially from one func to the next, every func must accept only si
 
 ![[Screenshot 2025-08-01 at 12.31.16.png]]
 
+# Anti-Patterns
 
-# Anti-Patterns 
