@@ -266,6 +266,9 @@ d = Dict(1=>"one", 2 => "two")
 
 # || as if mechanism (false returns y)
 bool_func(x) || return y
+
+# Create array using func and loop
+arr = [func() for x in list]
 ```
 
 ## Tenancy

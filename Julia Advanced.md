@@ -630,6 +630,44 @@ check_background_failure_patch =
 	return false
 end
 
+# test background check failure case
+apply(check_background_failure_patch) do
+	@test open_account("john", "doe", "jdoe@julia-is-awesome.com")
+	== :failure
+end
 
+#Vars used to test behaviour, modified in patch for mock
+let check_background_call_count = 0,
+
+	create_account_call_count = 0,
+	notify_downstream_call_count = 0,
+	notify_downstream_received_proper_account_number = false
+end
+
+check_background_success_patch =
+
+	@patch function check_background(first_name, last_name)
+	check_background_call_count += 1
+	println("check_background mock is called, simulating success")
+	return true
+end
 
 ```
+
+## Functional Pipes
+
+*Good for visual scenarios in which there is regular editing/prototyping and mixing of different funcs.*
+
+Pass data sequentially from one func to the next, every func must accept only single argument. Use dispatch for conditional situations creating tree branches. Use broadcasting ie . on operations to avoid copying data between each func. 
+
+```julia
+
+:> : right to left pass
+\circle : left to right pass
+```
+
+
+![[Screenshot 2025-08-01 at 12.31.16.png]]
+
+
+# Anti-Patterns 
