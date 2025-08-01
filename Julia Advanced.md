@@ -553,4 +553,22 @@ retry(do_something, delays=fill(2.0, 3))("John")
 
 The same constructor in julia will return the same object, if non mutable.
 
-Val type allows used of value to change the type of data, creating single instances for different inputs. 
+Val type allows used of value to change the type of data, creating single instances for different inputs. Using dispatch to create different methods for different data, with a main dispatcher that makes the function arguments look cleaner (better for evolvability).
+
+```julia
+
+function process_command(::Val{:open}, filename)
+	println("opening file $filename")
+end
+
+function process_command(::Val{:close}, filename)
+	println("closing file $filename")
+end
+
+#Main dispatcher
+function process_command(command::String, args...)
+	process_command(Val(Symbol(command)), args...)
+end
+
+
+```
