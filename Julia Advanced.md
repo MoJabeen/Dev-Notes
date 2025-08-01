@@ -546,3 +546,11 @@ Use retry func with defined delay between retries (default is Exponential back o
 #Example of retry
 retry(do_something, delays=fill(2.0, 3))("John")
 ```
+
+# General Patterns
+
+## Singleton Pattern
+
+The same constructor in julia will return the same object, if non mutable.
+
+Val type allows used of value to change the type of data, creating single instances for different inputs. 
