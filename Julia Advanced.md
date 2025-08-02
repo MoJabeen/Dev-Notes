@@ -673,4 +673,14 @@ Pass data sequentially from one func to the next, every func must accept only si
 
 ## Piracy
 
-Package extension is dangerous and should be done very carefully and only if very useful. 
+Package extension is dangerous and should be done very carefully and only if very useful. The extension needs to match a similar behaviour to the original function to avoid hard to debug issues.
+
+## Narrow type
+
+Too narrow a func argument type stops it from being more useful. **A func type really doesnt affect peformance, used more to ensure accuracy!**
+
+## Concrete structs
+
+Using abstract types in a struct will need pointers to point to the data, if concrete is used the compiler will instead place the data directly into the struct. Skipping the dereference and improving performance. 
+
+Another benefit of using Parametric types is that they give the fliexbilty of using 
