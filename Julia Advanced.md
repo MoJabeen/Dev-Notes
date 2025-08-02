@@ -673,4 +673,4 @@ Pass data sequentially from one func to the next, every func must accept only si
 
 ## Piracy
 
-Package extension is dangerous 
+Package extension is dangerous and should be done very carefully and only if very useful. 
