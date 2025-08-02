@@ -671,3 +671,6 @@ Pass data sequentially from one func to the next, every func must accept only si
 
 # Anti-Patterns
 
+## Piracy
+
+Package extension is dangerous 
