@@ -685,4 +685,31 @@ Using abstract types in a struct will need pointers to point to the data, if con
 
 Another benefit of using Parametric types is that they give the flexibility of using abstract types but the implementation is concrete based on the exact type given to the struct, much improving performance. 
 
+# Misc
 
+## Composition
+
+Julia does not support implementation inheritance (data/subtype structure) only does interface inheritance. 
+
+- All concrete types are final, abstracts cant have a concrete type.
+
+**Benefits:**
+- Avoids base class changes breaking things
+- Avoids need for a lot of overwriting to get behaviour you need which is bad for peformance (square rectangle problem)
+
+## Variance
+
+Covariant: A is part of B
+Contravariant: B is part of A. 
+ 
+Parametric types are invariant ie even if Mammal <: Animal does not mean Array{Mammal,1} <: Array{Animal,1}.
+
+This can be fixed using Array{T,1} where T <: Animal.
+
+Methods are covariant.
+
+## Diagonal Rule 
+
+In a parametric when T is used for consistency the match must be of concrete type not abstract. 
+
+Be aware things wont always work as expected in complex situations with ,,,
