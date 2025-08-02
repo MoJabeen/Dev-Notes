@@ -677,10 +677,12 @@ Package extension is dangerous and should be done very carefully and only if ver
 
 ## Narrow type
 
-Too narrow a func argument type stops it from being more useful. **A func type really doesnt affect peformance, used more to ensure accuracy!**
+Too narrow a func argument type stops it from being more useful. **A func type really doesnt affect performance, used more to ensure accuracy!**
 
 ## Concrete structs
 
 Using abstract types in a struct will need pointers to point to the data, if concrete is used the compiler will instead place the data directly into the struct. Skipping the dereference and improving performance. 
 
-Another benefit of using Parametric types is that they give the fliexbilty of using 
+Another benefit of using Parametric types is that they give the flexibility of using abstract types but the implementation is concrete based on the exact type given to the struct, much improving performance. 
+
+
