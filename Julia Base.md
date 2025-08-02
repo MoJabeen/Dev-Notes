@@ -182,6 +182,13 @@ push!(results, (
             count = length(positions)
         ))
 
+# Callable structs
+struct PredicateFunction{T,S}
+	f::Function
+end
+
+(pred::PredicateFunction{T,S})(x::T; kwargs...) where {T,S} = pred.f(x; kwargs...)
+
 ```   
 
 ## Struct with Separate Fields
