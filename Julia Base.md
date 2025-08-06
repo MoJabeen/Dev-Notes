@@ -829,11 +829,25 @@ Adjust CI.yml to include macOS-latest
 
 # Profiling
 
+## Basic
+
+```julia
+@time func() #Measure how long to run func
+@timev func() #Extra memory stats
+
+@time func(); #; stops return value given to console
+x = @elapsed func() #Gives value that can be further processed ie tests
+
+```
+## Sampling
+
 Julia has built in profiling, allowing code lines to be timed to discover code bottlenecks. Checks how often lines appear in a set of backtraces, the line coverage is therefore dependant on the backtrace sampling freq.
 
 **Pros:** No need to change code to measure and little computational overhead.
 
-### Example
+Don't want to profile JIT so best to run code once allowing it to compile before profiling. Check if inference.jl shows up to see if JIT was profiled.
+
+The output will be saved in memory, the output will show the number against each line being how many times it was sampled.
 
 ```julia
 using Profile
@@ -841,25 +855,31 @@ using Profile
 @profile myfunc()
 
 Profile.print() #Output to stderr backtraces
+Profile.print(format = :flat) #If too nested
 
 #Run test 100 times
 
-@profile for( i=1:100; myfunc();end)
+@profile for(i=1:100; myfunc();end)
 
 Profile.clear() #Clear buffer
+Profile.init(delay=.01) #Adjust sampling delay, too low will increase overhead.
 
-@time func() #Measure how long to run func
 ```
 
 The number of backtraces shows how expensive that line is.
 
-### Memory allocation
+## ProfileView.jl
+
+Package that gives graphical out
+
+## Memory allocation
 
 Use \@time or \@allocation to check the memory allocation. Can also check the cost of garbage collection.
 
 To check line by line allocation, use flag trackallocation. Remove compiler overhead before measuring allocation by running Profile.clear_malloc_data() after executing commands. 
 
 GC.enable_logging(true) set to true to check collection cost.
+
 
 # Appendix
 
