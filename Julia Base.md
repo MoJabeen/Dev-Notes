@@ -831,6 +831,8 @@ Adjust CI.yml to include macOS-latest
 
 ## Basic
 
+For more accurate comparison use BenchmarkTools.jl pkg.
+
 ```julia
 @time func() #Measure how long to run func
 @timev func() #Extra memory stats
@@ -870,16 +872,28 @@ The number of backtraces shows how expensive that line is.
 
 ## ProfileView.jl
 
-Package that gives graphical out
+Package that gives graphical output of profiling (flame graph).
+
+Time elapsed shown left to right and call stack top to bottom.
+## TimerOutputs.jl
+
+Be more selective in choice of parts of the program to profile.
 
 ## Memory allocation
 
+```julia
+
+julia track-allocation=user
+ 
+Profile.clear_malloc_data() #after executing commands
+
+```
+
 Use \@time or \@allocation to check the memory allocation. Can also check the cost of garbage collection.
 
-To check line by line allocation, use flag trackallocation. Remove compiler overhead before measuring allocation by running Profile.clear_malloc_data() after executing commands. 
+To check line by line allocation, use flag trackallocation. Remove compiler overhead before measuring allocation by running. 
 
 GC.enable_logging(true) set to true to check collection cost.
-
 
 # Appendix
 

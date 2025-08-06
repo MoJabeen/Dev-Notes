@@ -15,6 +15,9 @@ Julia compiles multiple versions of the code optimised for different data types 
 
 **Adding type annotations therefore for arguments and local variables does not help performance!**
 
+# Type stability
+
+
 # Performance tips
 
 Performance critical code should be inside a function.
