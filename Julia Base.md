@@ -398,6 +398,7 @@ function blah(x::Int, y::name) = println(x*y.num)
 
 ```
 
+Different to method overloading which is done on specified values at compile time, whereas dispatch works at run time. 
 # Parametric Methods
 
 Use variable to define types of arguments.

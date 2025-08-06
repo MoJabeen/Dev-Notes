@@ -14,8 +14,33 @@ Dynamic high level languages often use a C based inner kernal for performance, J
 Julia compiles multiple versions of the code optimised for different data types based on the expected use cases and inferred types. Type inference and code specialisation is the secret sauce to Julia's speed. 
 
 **Adding type annotations therefore for arguments and local variables does not help performance!**
-
 # Type stability
+
+**Function:**  Abstract operations
+**Methods:** Specialised type implementation 
+
+Julia needs to infer the params and return types of all functions. To do this effectively the code needs to be type stable.
+
+**Type stability:** when the return type only depends on the argument types not the values.
+
+```julia
+function pos(x)
+	if x < 0
+		return 0
+	else
+		return x
+	end
+end
+
+# Here the type changes based on input value ! UNSTABLE
+julia> typeof(pos(2.5))
+	Float64
+
+julia> typeof(pos(-2.5))
+	Int64
+
+```
+
 
 
 # Performance tips
