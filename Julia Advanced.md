@@ -4,7 +4,17 @@ author:
 Date Created: 2025-07-30
 title: Julia Advanced
 Description: Notes on Julia's Advanced mechanics/ patterns and tips
+bibliography:
+  - Julia High Performance
 ---
+# Compiler
+
+Dynamic high level languages often use a C based inner kernal for performance, Julia is instead all coded in julia. Julia uses Just in Time (JIT) compilation, where the code is compiled at runtime. Ahead of time (AOT) compilation is compiled prior and stored in memory. The other option is the interpreted languages during runtime, which have a greater overhead and therefore worse performance.
+
+Julia compiles multiple versions of the code optimised for different data types based on the expected use cases and inferred types. Type inference and code specialisation is the secret sauce to Julia's speed. 
+
+**Adding type annotations therefore for arguments and local variables does not help performance!**
+
 # Performance tips
 
 Performance critical code should be inside a function.
