@@ -155,7 +155,34 @@ julia>0.1 > 1//10
 true
 ```
 
-Machine epsilon (eps) shows the diff between two floating point values that can be represented 
+Machine epsilon (eps) shows the diff between two floating point values that can be represented in float form. Therefore the eps value is all the values + given float that cant be represented in float. The next float that can be represented is a result of adding 1 to the unit in last place (ULP) or the least significant bit.
+
+### Conversion
+
+To skip bounds checking when converting to a different type use %.
+
+```julia
+
+x = UInt32(4294967297)
+
+# Faster with no bounds checking
+x = 4294967297 % UInt32
+
+```
+
+## Fast Math
+
+Use **@fastmath** to loosen IEEE constrains potentially reducing accuracy for performance improvement. 
+
+Advice is to test and measure extensively before use.
+
+## K-B-N
+
+For a more accurate method of summing floats use KahanSummation pkg, will negatively effect performance. Standard sum method has $O(\sqrt{n})$ and KBN has $O(n)$ error.  Generally fine to use sum().
+
+## Subnormal
+
+
 
 # Performance tips
 
