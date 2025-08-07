@@ -14,6 +14,8 @@ Dynamic high level languages often use a C based inner kernal for performance, J
 Julia compiles multiple versions of the code optimised for different data types based on the expected use cases and inferred types. Type inference and code specialisation is the secret sauce to Julia's speed. 
 
 **Adding type annotations therefore for arguments and local variables does not help performance!**
+
+***Helps only in storage locations ie composite types and global vars.***
 # Type stability
 
 **Function:**  Abstract operations
@@ -42,6 +44,39 @@ julia> typeof(pos(-2.5))
 ```
 
 
+**@codewarn:** Used to show unstable areas, they will be highlighted in red ambiguous types normally Any or Union. These need to be made certain.
+
+Variables in loop should also not be changing types during the loop to avoid instability. Some issues can be solved by breaking the function down giving hints to the compiler: [[#Barrier function pattern]].
+
+```julia
+
+function string_zeros(s::AbstractString)
+
+	n=1000_000
+	
+	x = s=="Int64" ? Vector{Int64}(undef,n) : Vector{Float64}(undef, n)
+
+	# Type of x is unknown to the compiler as it works on func boundaries
+	# Therefore adding a boundary here will help
+	for i in 1:length(x)
+		x[i] = 0	
+	end
+	
+	return x
+end
+
+function string_zeros(s::AbstractString)
+
+	n=1000_000
+	
+	x = s=="Int64" ? Vector{Int64}(undef,n) : Vector{Float64}(undef, n)
+
+	#Barrier func helping make x known as its become a param instead of a
+	# local var
+	return fill_zero(x)
+end
+
+```
 
 # Performance tips
 

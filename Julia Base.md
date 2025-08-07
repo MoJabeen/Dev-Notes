@@ -278,15 +278,19 @@ bool_func(x) || return y
 arr = [func() for x in list]
 ```
 
-## Tenancy
+# Tenancy
 
 ```julia
 
 # If the condition is true 1 is returned else -1 is
 x > 0 ? 1 : -1 
+
+#Set value type based on condition
+x = s=="Int64" ? Vector{Int64}(undef,n) : Vector{Float64}(undef, n)
+
 ```
 
-## Push
+# Push
 
 ```julia
 
