@@ -410,6 +410,8 @@ Use variable to define types of arguments.
 
 - Benefit is can enforce type consistency within subtype structures as T will need to be the same across args but can still be within a subtype of the <: abstract.
 
+Type parameters don't have to be types than can also be symbols.
+
 ```julia
 
 # The T is the type inside the vector which refed in the func

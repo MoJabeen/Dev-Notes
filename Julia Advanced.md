@@ -190,6 +190,46 @@ Improve performance by setting small values to 0 or at an extreme use the cmd li
 
 # Arrays
 
+Arrays are of the form Array{T,N}; T is type and N is number of elements.
+
+In Julia elements of the array are stored within the arrays primary memory locations, it does not use like other dynamic languages (that do not have enough type info) for concrete types pointers. Improving performance !
+
+Column ordered arrays, meaning cols are stored together in memory. C is row ordered.
+
+![[Screenshot 2025-08-07 at 16.21.24.png]]
+
+Sequential reads should access contiguous areas in memory therefore col by col. 
+
+```julia
+function col_iter(x)
+	s=zero(eltype(x))
+	
+	for i in 1:size(x, 2)
+		
+		for j in 1:size(x, 1)
+		
+			s = s + x[j, i] ^ 2
+			
+			x[j, i] = s
+			
+		end
+	end
+end
+```
+
+## Adjoint
+
+Adjoint type allows the array to be flipped to use efficiently row ordered functions. 
+
+```julia
+
+#b will be Adjoint type
+b=a'
+
+```
+
+## Bounds checking
+
 
 
 # Performance tips
