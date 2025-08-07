@@ -16,6 +16,21 @@ Julia compiles multiple versions of the code optimised for different data types 
 **Adding type annotations therefore for arguments and local variables does not help performance!**
 
 ***Helps only in storage locations ie composite types and global vars.***
+
+## Inlining Functions
+
+The compiler may place small functions directly into the body of an outer func to allow for better optimisations. It is selective with inlining to ensure the code size does not get too large. 
+
+Can encourage inlining using for performance sensitive section ie inner loop use **@inline** macro. Or stop inlining for example on a barrier function use **@noinline**.
+
+Disable all inlining (if need a direct connection between source code and machine code) using cmd line option -inline = no. 
+
+## Constant Propagation
+
+An argument can be replaced with a constant if its known after the initial compile, this is done on pure funcs that don't alter anything (mutate args or global vars).
+
+Writing small pure funcs is good practise to help compiler improve performance.
+
 # Type stability
 
 **Function:**  Abstract operations
@@ -77,6 +92,7 @@ function string_zeros(s::AbstractString)
 end
 
 ```
+
 
 # Performance tips
 
