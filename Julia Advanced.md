@@ -182,6 +182,14 @@ For a more accurate method of summing floats use KahanSummation pkg, will negati
 
 ## Subnormal
 
+Subnormals numbers are smaller than can be represented without using any leading 0 in the significand. If the exponent cannot represent the number as its to small for the power formula the significand will have leading zeros which is a subnormal.
+
+Subnormals are a significant performance slow down, however are useful for very small calculations to stop underflow. 
+
+Improve performance by setting small values to 0 or at an extreme use the cmd line option -set_zero(subnormal) setting all subnormals to 0 reducing accuracy. A subnormal example often found is via exponential decay toward 0.
+
+# Arrays
+
 
 
 # Performance tips
