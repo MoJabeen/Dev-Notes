@@ -93,15 +93,37 @@ end
 
 ```
 
+## How should functions be returned?
+
+A function should always return the same type, so if the type is ambiguous convert before return.
+
+```julia
+zero(x) #Gives a 0 val in type of x
+oftype(x,y) #Gives y as type of x
+```
+
+Variables changing type within the function should also be avoided.
+
+## Types used as parameters for other types
+
+If a var is created using an unknown type ie a matrix or array then its type will be checked on every access.
+
+```julia
+fill(5,ntuple(d->3,N)) 
+#If N is unknown then will create an unknown type matrix.
+::Val{N} 
+#is used a concrete type to specify dimensions, pass as Val(N) in func
+```
 
 # Performance tips
 
 Performance critical code should be inside a function.
 **AVOID:**
 
--   Untyped global variables, if they must be used annotate the type at point of use.
--   Problems with type stability
--   Many temporary small arrays
+- Initially always look to optimise the algorithm !
+- Untyped global variables, if they must be used annotate the type at point of use.
+- Problems with type stability
+- Many temporary small arrays
 
 At point of use annotation:
 
@@ -138,31 +160,9 @@ function func(a::Vector{Any,1})
 
 Dont use compound functions, ie same function used differently for types use multiple dispatch.
 
-## How should functions be returned?
-
-A function should always return the same type, so if the type is ambiguous convert before return.
-
-```julia
-zero(x) #Gives a 0 val in type of x
-oftype(x,y) #Gives y as type of x
-```
-
-Variables changing type within the function should also be avoided.
-
 ## How should functions be broken down?
 
 Generally functions of made of the setup and compute on the setup vars. The compute should broken into its own function.
-
-## Types used as parameters for other types
-
-If a var is created using an unknown type ie a matrix or array then its type will be checked on every access.
-
-```julia
-fill(5,ntuple(d->3,N)) 
-#If N is unknown then will create an unknown type matrix.
-::Val{N} 
-#is used a concrete type to specify dimensions, pass as Val(N) in func
-```
 
 ## What is dangerous when using Multi Dispatch?
 

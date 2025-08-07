@@ -549,6 +549,14 @@ end
 ```
 
 Generated funcs are like macros but with access to data types instead of expressions, if that is required when meta programming.
+
+### Compilation
+
+Macros can help run code at different points along the execution pipeline instead of just at the end runtime. Moving constant computation known at compile time to earlier in the pipeline can allow for a more optimised operation created via a macro that is then used at runtime.  
+
+![[Screenshot 2025-08-07 at 11.46.10.png]]
+
+
 ### String Literals
 
 Used as mini domain specific language, making things more concise. Can be used to return defined empty data structures ie DataFrame as not a predefined variable.
