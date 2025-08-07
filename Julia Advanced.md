@@ -250,7 +250,7 @@ Define expected size of a dynamic array - probably does not give much benefit as
 
 Writing vectorised code is not a performance gain unlike numpy as julia loops are already very fast.
 
-When using chained functions broadcasting can give a performance boost especially with an in place vector fusion assignment and preallocated array.
+When using chained functions broadcasting (due to optimisations via loop fusion) can give a performance boost especially with an in place vector fusion assignment and preallocated array.
 
 ```julia
 
@@ -258,6 +258,53 @@ When using chained functions broadcasting can give a performance boost especiall
 b .= cos.(sin.(a))
 
 ```
+
+## Slices
+
+A slice creates a copy of the array, which is okay if many operations are to be done on the copy, however, could be worse if the cost of the copy outweighs the operations to be done on it.
+
+Can instead use \@view to reference a subarray of the original array without making a copy.  SubArrays are almost as fast as a dense array. 
+
+Also contiguous are better and if possible arrays should be converted into a contiguous array before operation.
+
+```julia
+
+A = zeros(3, 3); 
+
+#@views converts each operations return into a view, like a wrapper
+@views for row in 1:3 
+	b = A[row, :] # b is a view, not a copy 
+	b .= row # assign every element to the row index 
+end
+
+function sum_cols_matrix_views(x::Array{Float64, 2})
+
+	num_cols = size(x, 2); num_rows = size(x, 1)
+	
+	s = zeros(num_cols)
+	
+	for i = 1:num_cols
+		s[i] = sum_vector(@view(x[:, i]))
+	end
+	
+	return s
+end
+
+```
+
+## SIMD
+
+Single instruction multiple data parallelisation allows for parallel calc on the CPU improving performance. Can encourage its use using **@simd**, however should meet the following criteria:
+
+- Each iteration of the loop is independent of the others. That is, no iteration of the loop uses a value from a previous iteration or waits for its completion. The significant exception to this rule is that certain reductions are permitted.
+- The arrays being operated upon within the loop do not overlap in memory.
+- The loop body is straight-line code without branches or function calls.
+- The number of iterations of the loop is obvious. In practical terms, this means that the loop should typically be expressed on the length of the arrays within it.
+- The subscript (or index variable) within the loop changes by one for each iteration. In other words, the subscript is unit stride.
+- Bounds checking is disabled for SIMD loops. (Bound checking can cause branches due to exceptional conditions.)
+
+Can force SIMD by using the pkg and its special types.
+
 ### What are the array types used in Julia?
 
 Arrays are column major, the first index changes most rapidly (row). Meaning the inner most loop should be iterated on rows, the outer loop on cols. Cols are faster to get than rows.
@@ -368,24 +415,6 @@ fdot(x) = @. 3x^2 + 4x + 7x^3
 # fdot(x) is 10x faster
 ```
 
-## How should views be used?
-
-A slice creates a copy of the array, which is okay if many operations are to be done on the copy, however, could be worse if the cost of the copy outweighs the operations to be done on it.
-
-Can instead use \@view to reference a subarray of the original array without making a copy. Also contiguous are better and if possible arrays should be converted into a contiguous array before operation.
-
-```julia
-
-A = zeros(3, 3); 
-
-#@views converts each operations return into a view, like a wrapper
-@views for row in 1:3 
-	b = A[row, :] # b is a view, not a copy 
-	b .= row # assign every element to the row index 
-end
-
-
-```
 
 ## Other
 
