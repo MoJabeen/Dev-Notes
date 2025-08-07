@@ -91,6 +91,7 @@ meh(1,b=3)
 function meh(hem::Function)
 
 #; enforces keyword argument when calling function
+# Keyword args have slight increase in overhead 
 function meh(;x::Int)
 
 #ANON funcs, used in place of func arguments
@@ -548,15 +549,47 @@ for op = (:sin, :cos, :tan, :log, :exp)
 end
 ```
 
-Generated funcs are like macros but with access to data types instead of expressions, if that is required when meta programming.
-
 ### Compilation
 
 Macros can help run code at different points along the execution pipeline instead of just at the end runtime. Moving constant computation known at compile time to earlier in the pipeline can allow for a more optimised operation created via a macro that is then used at runtime.  
 
 ![[Screenshot 2025-08-07 at 11.46.10.png]]
 
+### Generated Functions
 
+Generated funcs are like macros but with access to data types instead of expressions, if that is required when meta programming.
+
+Once the compiler has inferred the types can be used to move constant computation based on type to a more optimised place in the pipeline.
+
+```julia
+
+function prod_dim(x::Array{T, N}) where {T, N}
+	s = 1
+
+	#Loop depends on type N (known before runtime)
+	for i = 1:N
+		s = s * size(x, i)
+	end
+	
+	return s
+end
+
+# Example of loop unrolling as will be optimised into a inline calc
+@generated function prod_dim_gen{T, N}(x::Array{T, N})
+
+	ex = :(1)
+	
+	for i in 1:N
+		ex = :(size(x, $i) * $ex)
+	end
+	
+	return ex
+end
+
+
+```
+
+Converting a loop into a inline calculation is known as unrolling. Made easy by using N as a type via gen funcs. 
 ### String Literals
 
 Used as mini domain specific language, making things more concise. Can be used to return defined empty data structures ie DataFrame as not a predefined variable.

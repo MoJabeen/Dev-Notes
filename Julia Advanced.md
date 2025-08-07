@@ -93,7 +93,7 @@ end
 
 ```
 
-## How should functions be returned?
+### How should functions be returned?
 
 A function should always return the same type, so if the type is ambiguous convert before return.
 
@@ -104,7 +104,7 @@ oftype(x,y) #Gives y as type of x
 
 Variables changing type within the function should also be avoided.
 
-## Types used as parameters for other types
+### Types used as parameters for other types
 
 If a var is created using an unknown type ie a matrix or array then its type will be checked on every access.
 
@@ -124,6 +124,7 @@ Performance critical code should be inside a function.
 - Untyped global variables, if they must be used annotate the type at point of use.
 - Problems with type stability
 - Many temporary small arrays
+- Keyword args have slight increase in overhead 
 
 At point of use annotation:
 
