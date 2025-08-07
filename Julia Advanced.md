@@ -230,7 +230,21 @@ b=a'
 
 ## Bounds checking
 
+Can remove bounds checking with **@inbounds**, to be used when loop limits depends directly on size.
 
+```julia
+function prefix_inbounds(a, b)
+
+	@inbounds for i in 2:size(a, 1)
+		a[i] = b[i-1] + b[i]
+	end
+end
+```
+
+Cmd line flag *-check-bounds* set to yes will ignore inbounds macros and when no will turn off all bound checking.
+### What are the array types used in Julia?
+
+Arrays are column major, the first index changes most rapidly (row). Meaning the inner most loop should be iterated on rows, the outer loop on cols. Cols are faster to get than rows.
 
 # Performance tips
 
@@ -248,6 +262,11 @@ At point of use annotation:
 ```julia
 for i in x :: Vector{Float64}
 ```
+
+## In place functions
+
+
+
 ## Wrappers
 
 Better to define the type of the wrapper than only the its elements. As you dont want the high level struct type to be ambiguous:
@@ -281,9 +300,6 @@ Dont use compound functions, ie same function used differently for types use mul
 ## How should functions be broken down?
 
 Generally functions of made of the setup and compute on the setup vars. The compute should broken into its own function.
-## What are the array types used in Julia?
-
-Arrays are column major, the first index changes most rapidly (row). Meaning the inner most loop should be iterated on rows, the outer loop on cols. Cols are faster to get than rows.
 
 ## Should outputs for func allocated before?
 
