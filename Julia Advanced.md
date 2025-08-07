@@ -142,6 +142,20 @@ BigInt is a type used for very arbitrarily large integer values, it does increas
 
 ## Floats
 
+Default float is float64 (64 bits) uses the IEEE 754 binary standard. 
+
+Floats are calculated by splitting the binary into 3 sections the first bit is the sign (+/-). The next 11 are the exponent calculated using $2^{n-1023}$ where where is the decimal value of the 11 bits.
+
+The next 53 bits is the significand and is a fraction value calculated using the formula: $1 + \frac{b_n}{2^n} ...$ where n is pos and b is binary value.
+
+Using this formula not all decimal values will be able to be represented exactly. The example below shows how 0.1 is not represented exactly in float form.
+
+```bash
+julia>0.1 > 1//10
+true
+```
+
+Machine epsilon (eps) shows the diff between two floating point values that can be represented 
 
 # Performance tips
 

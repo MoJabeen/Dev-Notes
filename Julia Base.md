@@ -586,7 +586,6 @@ end
 	return ex
 end
 
-
 ```
 
 Converting a loop into a inline calculation is known as unrolling. Made easy by using N as a type via gen funcs. 
