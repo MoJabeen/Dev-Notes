@@ -115,6 +115,28 @@ fill(5,ntuple(d->3,N))
 #is used a concrete type to specify dimensions, pass as Val(N) in func
 ```
 
+### What is dangerous when using Multi Dispatch?
+
+If at compile time Julia does not know the type it will be checked at
+run time slowing down compute.
+
+```julia
+struct Car{:make,:model}
+	year::Int
+end
+
+Array{Car{:Honda,:Accord},N} 
+#This is contiguous and known
+
+ar = [Car{:Honda,:Accord}(2),Car{:Honda,:Buggy}(3)] 
+#Non contiguous will be determined at runtime
+```
+
+The above situation would be bad if used as method of multi dispatch as many lookups on each type as the array is iterated will be done. Will also take a lot more compile time memory as all versions of functions will need to be compiled for each type ie for push!.
+
+# Numbers
+
+
 # Performance tips
 
 Performance critical code should be inside a function.
@@ -164,26 +186,6 @@ Dont use compound functions, ie same function used differently for types use mul
 ## How should functions be broken down?
 
 Generally functions of made of the setup and compute on the setup vars. The compute should broken into its own function.
-
-## What is dangerous when using Multi Dispatch?
-
-If at compile time Julia does not know the type it will be checked at
-run time slowing down compute.
-
-```julia
-struct Car{:make,:model}
-	year::Int
-end
-
-Array{Car{:Honda,:Accord},N} 
-#This is contiguous and known
-
-ar = [Car{:Honda,:Accord}(2),Car{:Honda,:Buggy}(3)] 
-#Non contiguous will be determined at runtime
-```
-
-The above situation would be bad if used as method of multi dispatch as many lookups on each type as the array is iterated will be done. Will also take a lot more compile time memory as all versions of functions will need to be compiled for each type ie for push!.
-
 ## What are the array types used in Julia?
 
 Arrays are column major, the first index changes most rapidly (row). Meaning the inner most loop should be iterated on rows, the outer loop on cols. Cols are faster to get than rows.
