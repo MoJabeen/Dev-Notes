@@ -242,6 +242,9 @@ end
 ```
 
 Cmd line flag *-check-bounds* set to yes will ignore inbounds macros and when no will turn off all bound checking.
+## Sizehint()!
+
+Define expected size of a dynamic array - probably does not give much benefit as new julia is fast with dynamic allocation.
 ### What are the array types used in Julia?
 
 Arrays are column major, the first index changes most rapidly (row). Meaning the inner most loop should be iterated on rows, the outer loop on cols. Cols are faster to get than rows.
@@ -265,7 +268,42 @@ for i in x :: Vector{Float64}
 
 ## In place functions
 
+Preallocating and mutating existing vars via in place function can improve performance by removing unnecessary new allocations especially in loops.
 
+```julia
+
+function xpow_loop(n)
+
+	s = 0
+	
+	for i = 1:n
+
+		# xpow has many new allocations returning a new array
+		s = s + xpow(i)[2]
+	
+	end
+	
+	return s
+
+end
+
+function xpow_loop_noalloc(n)
+
+	r = [0, 0, 0, 0]
+	s = 0
+	
+	for i = 1:n
+
+		#New allocations removed by in place func
+		xpow!(r, i)
+		
+		s = s + r[2]
+	end
+	
+	return s
+end
+
+```
 
 ## Wrappers
 
