@@ -305,6 +305,20 @@ Single instruction multiple data parallelisation allows for parallel calc on the
 
 Can force SIMD by using the pkg and its special types.
 
+## StaticArrays.jl
+
+For fixed size arrays, recommended for arrays up to 100 elements.
+
+## StructArrays.jl
+
+Gives the benefits of using structs (type usage via dispatch) and the speed of arrays. [[#Struct of arrays]].
+
+Increase use on memory as creates copy of array.
+
+## Indexing
+
+
+
 ### What are the array types used in Julia?
 
 Arrays are column major, the first index changes most rapidly (row). Meaning the inner most loop should be iterated on rows, the outer loop on cols. Cols are faster to get than rows.
