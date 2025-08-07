@@ -245,6 +245,19 @@ Cmd line flag *-check-bounds* set to yes will ignore inbounds macros and when no
 ## Sizehint()!
 
 Define expected size of a dynamic array - probably does not give much benefit as new julia is fast with dynamic allocation.
+
+## Broadcasting
+
+Writing vectorised code is not a performance gain unlike numpy as julia loops are already very fast.
+
+When using chained functions broadcasting can give a performance boost especially with an in place vector fusion assignment and preallocated array.
+
+```julia
+
+# .= in place assigmnent
+b .= cos.(sin.(a))
+
+```
 ### What are the array types used in Julia?
 
 Arrays are column major, the first index changes most rapidly (row). Meaning the inner most loop should be iterated on rows, the outer loop on cols. Cols are faster to get than rows.
