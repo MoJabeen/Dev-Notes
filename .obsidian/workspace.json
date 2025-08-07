@@ -35,7 +35,8 @@
               "title": "Julia Packages"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "3e88d42b785d96cb",
@@ -214,10 +215,10 @@
   },
   "active": "d99665a397254a19",
   "lastOpenFiles": [
-    "Julia Base.md",
-    "Julia Advanced.md",
-    "Screenshot 2025-08-07 at 16.21.24.png",
     "Julia Packages.md",
+    "Julia Advanced.md",
+    "Julia Base.md",
+    "Screenshot 2025-08-07 at 16.21.24.png",
     "Screenshot 2025-08-07 at 11.46.10.png",
     "Screenshot 2025-08-01 at 12.31.16.png",
     "Screenshot 2025-08-01 at 12.10.55.png",

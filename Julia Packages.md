@@ -234,3 +234,6 @@ Description
 
 # Yeppp
 
+Transcendental functions (funcs that cannot be expressed using a finite combination of basic algebraic operations; log, sin, cos etc) on floating optimised with Yeppp software suite.
+
+Also has in place funcs()! which give a further performance boost.

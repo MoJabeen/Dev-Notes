@@ -314,10 +314,11 @@ For fixed size arrays, recommended for arrays up to 100 elements.
 Gives the benefits of using structs (type usage via dispatch) and the speed of arrays. [[#Struct of arrays]].
 
 Increase use on memory as creates copy of array.
-
 ## Indexing
 
+Linear indexing (single value index) is fast but not always the best option, cartesian index ([x,y,z]) maybe better (SubArrays work better wit. 
 
+Best to use **eachindex()** func instead of direct indexing or iterate directly over the list so that the optimal choice is made for you.
 
 ### What are the array types used in Julia?
 
