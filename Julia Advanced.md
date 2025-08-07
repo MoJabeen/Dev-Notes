@@ -316,7 +316,7 @@ Gives the benefits of using structs (type usage via dispatch) and the speed of a
 Increase use on memory as creates copy of array.
 ## Indexing
 
-Linear indexing (single value index) is fast but not always the best option, cartesian index ([x,y,z]) maybe better (SubArrays work better wit. 
+Linear indexing (single value index) is fast but not always the best option, cartesian index ([x,y,z]) maybe better (SubArrays work better with cartesian). 
 
 Best to use **eachindex()** func instead of direct indexing or iterate directly over the list so that the optimal choice is made for you.
 
