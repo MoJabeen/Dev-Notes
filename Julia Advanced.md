@@ -136,6 +136,12 @@ The above situation would be bad if used as method of multi dispatch as many loo
 
 # Numbers
 
+Julia does not do any overflow or underflow checking on numbers, if a number overflows it will often wrap from max to min value. Underflows will set the number to 0. It has no auto-upgrade to larger type feature other dynamic languages have that do check for overflow (python).
+
+BigInt is a type used for very arbitrarily large integer values, it does increase overhead. Floats can also be used to hold large values and avoid overflow as they will adjust precision if a value gets too large. Up to 4 quadrillion (52 bits) the precision for ints and floats is the same.
+
+## Floats
+
 
 # Performance tips
 
