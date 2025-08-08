@@ -6,6 +6,7 @@
       {
         "id": "1e83242e9984895d",
         "type": "tabs",
+        "dimension": 40.22842639593909,
         "children": [
           {
             "id": "b7d8a9a26ca7f9b1",
@@ -40,6 +41,7 @@
       {
         "id": "3e88d42b785d96cb",
         "type": "tabs",
+        "dimension": 59.77157360406091,
         "children": [
           {
             "id": "d99665a397254a19",
@@ -175,13 +177,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia Base.md",
+                "file": "Julia Advanced.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Julia Base"
+              "title": "Outline of Julia Advanced"
             }
           },
           {
@@ -212,11 +214,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b7d8a9a26ca7f9b1",
+  "active": "d99665a397254a19",
   "lastOpenFiles": [
+    "Julia Base.md",
     "Julia Advanced.md",
     "Julia Packages.md",
-    "Julia Base.md",
     "Screenshot 2025-08-07 at 16.21.24.png",
     "Screenshot 2025-08-07 at 11.46.10.png",
     "Screenshot 2025-08-01 at 12.31.16.png",

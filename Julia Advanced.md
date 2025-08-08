@@ -117,8 +117,7 @@ fill(5,ntuple(d->3,N))
 
 ### What is dangerous when using Multi Dispatch?
 
-If at compile time Julia does not know the type it will be checked at
-run time slowing down compute.
+If at compile time Julia does not know the type it will be checked at run time slowing down compute.
 
 ```julia
 struct Car{:make,:model}
