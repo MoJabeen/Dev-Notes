@@ -59,7 +59,7 @@ julia> typeof(pos(-2.5))
 ```
 
 
-**@codewarn:** Used to show unstable areas, they will be highlighted in red ambiguous types normally Any or Union. These need to be made certain.
+**@code_warntype:** Used to show unstable areas, they will be highlighted in red ambiguous types normally Any or Union. These need to be made certain.
 
 Variables in loop should also not be changing types during the loop to avoid instability. Some issues can be solved by breaking the function down giving hints to the compiler: [[#Barrier function pattern]].
 
