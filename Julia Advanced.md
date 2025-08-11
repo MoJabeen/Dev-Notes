@@ -125,10 +125,10 @@ struct Car{:make,:model}
 end
 
 Array{Car{:Honda,:Accord},N} 
-#This is contiguous and known
+#This is contiguous and known (many homegenous structs of the same type)
 
 ar = [Car{:Honda,:Accord}(2),Car{:Honda,:Buggy}(3)] 
-#Non contiguous will be determined at runtime
+#Non contiguous will be determined at runtime, these are different.
 ```
 
 The above situation would be bad if used as method of multi dispatch as many lookups on each type as the array is iterated will be done. Will also take a lot more compile time memory as all versions of functions will need to be compiled for each type ie for push!.
