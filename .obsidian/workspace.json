@@ -49,8 +49,7 @@
               "title": "Julia Advanced"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -170,13 +169,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia Advanced.md",
+                "file": "Julia Base.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Julia Advanced"
+              "title": "Outline of Julia Base"
             }
           },
           {
@@ -207,11 +206,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d99665a397254a19",
+  "active": "b7d8a9a26ca7f9b1",
   "lastOpenFiles": [
+    "Julia Advanced.md",
     "Julia Packages.md",
     "Julia Base.md",
-    "Julia Advanced.md",
     "Screenshot 2025-08-07 at 16.21.24.png",
     "Screenshot 2025-08-07 at 11.46.10.png",
     "Screenshot 2025-08-01 at 12.31.16.png",
