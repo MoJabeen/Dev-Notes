@@ -11,14 +11,26 @@
             "id": "b7d8a9a26ca7f9b1",
             "type": "leaf",
             "state": {
+              "type": "image",
+              "state": {
+                "file": "Figures/Screenshot 2025-08-01 at 12.10.55.png"
+              },
+              "icon": "lucide-image",
+              "title": "Screenshot 2025-08-01 at 12.10.55"
+            }
+          },
+          {
+            "id": "03763707e0fd887f",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "Julia Base.md",
+                "file": "QuestDB.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Julia Base"
+              "title": "QuestDB"
             }
           },
           {
@@ -49,7 +61,8 @@
               "title": "Julia Advanced"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -106,8 +119,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "362672b597807a41",
@@ -169,13 +181,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia Base.md",
+                "file": "QuestDB.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Julia Base"
+              "title": "Outline of QuestDB"
             }
           },
           {
@@ -207,15 +219,16 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b7d8a9a26ca7f9b1",
+  "active": "03763707e0fd887f",
   "lastOpenFiles": [
+    "Figures/Screenshot 2025-08-01 at 12.10.55.png",
+    "QuestDB.md",
+    "Julia Base.md",
     "Julia Advanced.md",
     "Julia Packages.md",
-    "Julia Base.md",
-    "Screenshot 2025-08-07 at 16.21.24.png",
-    "Screenshot 2025-08-07 at 11.46.10.png",
-    "Screenshot 2025-08-01 at 12.31.16.png",
-    "Screenshot 2025-08-01 at 12.10.55.png",
+    "Figures/Screenshot 2025-08-07 at 16.21.24.png",
+    "Figures/Screenshot 2025-08-07 at 11.46.10.png",
+    "Figures/Screenshot 2025-08-01 at 12.31.16.png",
     "Tmux.md",
     "Design Patterns.md",
     "Database Fundamentals.md",
