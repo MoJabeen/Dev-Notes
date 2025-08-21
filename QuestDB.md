@@ -19,6 +19,8 @@ PSQL
 
 Can use standard psql clients.
 
+*QuestDB is **not** a PostgreSQL database but is **compatible with the [PostgreSQL wire protocol](https://questdb.com/docs/reference/api/postgres/)**. This means you can connect using PostgreSQL-compatible libraries and clients and execute SQL commands. However, compatibility with PostgreSQL system catalogs, metadata queries, data types, and functions is limited.*
+
 ```
 "host":"localhost",
 "port":"8812",
@@ -29,3 +31,7 @@ Can use standard psql clients.
 
 # Schema
 
+Should choose:
+- A designated timestamp to allow for time series data optimisations. 
+- A partition resolution to optimise queries at that resolution 
+- 
