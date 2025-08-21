@@ -48,6 +48,8 @@ amount DOUBLE
 
 Dense tables are preferred, better to separate tables if sparse. 
 
+# TTL
+
 Time to live period (TTL) set period after which eligible for auto removal. 
 
 ```sql
@@ -61,6 +63,22 @@ PARTITION BY DAY
 TTL 1 WEEK;
 ```
 
+# Deduplication
+
+When [Deduplication](https://questdb.com/docs/concept/deduplication/) is enabled, QuestDB only inserts rows that do not match the existing data. When you insert a row into a table with deduplication enabled, QuestDB searches for existing rows with matching values in all the columns specified with `UPSERT KEYS`. It replaces all such matching rows with the new row.
+
+```sql
+
+CREATE TABLE trades (  
+timestamp TIMESTAMP,  
+symbol SYMBOL,  
+price DOUBLE,  
+amount DOUBLE  
+) TIMESTAMP(timestamp)  
+PARTITION BY DAY  
+DEDUP UPSERT KEYS (timestamp, symbol);
+
+```
 
 
 # Types
