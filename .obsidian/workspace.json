@@ -8,18 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "b7d8a9a26ca7f9b1",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Figures/Screenshot 2025-08-01 at 12.10.55.png"
-              },
-              "icon": "lucide-image",
-              "title": "Screenshot 2025-08-01 at 12.10.55"
-            }
-          },
-          {
             "id": "03763707e0fd887f",
             "type": "leaf",
             "state": {
@@ -61,8 +49,7 @@
               "title": "Julia Advanced"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -221,10 +208,10 @@
   },
   "active": "03763707e0fd887f",
   "lastOpenFiles": [
-    "postgres.md",
-    "QuestDB.md",
-    "R.md",
     "Figures/Screenshot 2025-08-01 at 12.10.55.png",
+    "QuestDB.md",
+    "postgres.md",
+    "R.md",
     "Julia Base.md",
     "Julia Advanced.md",
     "Julia Packages.md",
