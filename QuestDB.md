@@ -98,6 +98,25 @@ Use **`VARCHAR`** instead for general string storage.
 
 QuestDB has a dedicated **[`UUID`](https://questdb.com/blog/uuid-coordination-free-unique-keys/)** type, which is more efficient than storing UUIDs as `VARCHAR`.
 
+# WAL (Write ahead logging)
+
+It’s a durability and crash-recovery mechanism used in databases to ensure data consistency and reliability. Instead of writing changes directly to the main table storage files, QuestDB first writes them to a **WAL log**.
+
+- **Without WAL (the default for QuestDB’s “in-place” mode)**
+    
+    - Writes are made directly to table files on disk.
+        
+    - This is very fast, but if a crash or power loss happens mid-write, the database could end up in an inconsistent state.
+        
+    
+- **With WAL enabled (the “WAL mode”)**
+    
+    - Each incoming insert is written to a **per-table WAL log** before being applied to the main table storage.
+        
+    - A background process (called the _checkpointer_) periodically flushes the WAL changes into the main table storage in batches.
+        
+    - If QuestDB crashes, it can replay the WAL log on restart, ensuring no data is lost or corrupted.
+
 # Other
 
 - QuestDB **does not enforce** `PRIMARY KEYS`, `FOREIGN KEYS`, or **`NOT NULL`** constraints.
