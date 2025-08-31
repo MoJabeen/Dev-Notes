@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "QuestDB.md",
+                "file": "Julia Base.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "QuestDB"
+              "title": "Julia Base"
             }
           },
           {
@@ -168,13 +168,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "QuestDB.md",
+                "file": "Julia Base.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of QuestDB"
+              "title": "Outline of Julia Base"
             }
           },
           {
@@ -208,8 +208,8 @@
   },
   "active": "03763707e0fd887f",
   "lastOpenFiles": [
-    "Julia Advanced.md",
     "QuestDB.md",
+    "Julia Advanced.md",
     "Figures/Screenshot 2025-08-01 at 12.10.55.png",
     "postgres.md",
     "R.md",
