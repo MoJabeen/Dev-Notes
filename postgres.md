@@ -604,3 +604,8 @@ Adjust file /etc/postgresql/\*/main/pg_hba.conf to:
 ```
 host  all  all 0.0.0.0/0 scram-sha-256
 ```
+
+Restart service
+```bash
+sudo systemctl restart postgresql
+```
