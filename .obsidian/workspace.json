@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Julia Base.md",
+                "file": "postgres.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Julia Base"
+              "title": "postgres"
             }
           },
           {
@@ -168,13 +168,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia Base.md",
+                "file": "postgres.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Julia Base"
+              "title": "Outline of postgres"
             }
           },
           {
@@ -208,12 +208,13 @@
   },
   "active": "03763707e0fd887f",
   "lastOpenFiles": [
+    "Obsidian.md",
+    "Julia Base.md",
     "QuestDB.md",
     "Julia Advanced.md",
     "Figures/Screenshot 2025-08-01 at 12.10.55.png",
     "postgres.md",
     "R.md",
-    "Julia Base.md",
     "Julia Packages.md",
     "Figures/Screenshot 2025-08-07 at 16.21.24.png",
     "Figures/Screenshot 2025-08-07 at 11.46.10.png",
@@ -226,7 +227,6 @@
     "Svelte.md",
     "systemd.md",
     "Figures/Screenshot 2025-07-16 at 10.23.41.png",
-    "Obsidian.md",
     "Clippings/Clip web pages - Obsidian Help.md",
     "Clippings",
     "templates/Default template.md",
