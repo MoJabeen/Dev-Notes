@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Julia Advanced.md",
+                "file": "Julia Base.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Julia Advanced"
+              "title": "Julia Base"
             }
           },
           {
@@ -183,13 +183,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia Advanced.md",
+                "file": "Julia Base.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Julia Advanced"
+              "title": "Outline of Julia Base"
             }
           },
           {
@@ -223,12 +223,12 @@
   },
   "active": "ab6f262125cb6f7d",
   "lastOpenFiles": [
+    "Julia Advanced.md",
     "postgres.md",
     "Linux.md",
     "Obsidian.md",
     "Julia Base.md",
     "QuestDB.md",
-    "Julia Advanced.md",
     "Figures/Screenshot 2025-08-01 at 12.10.55.png",
     "R.md",
     "Julia Packages.md",

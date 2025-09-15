@@ -277,6 +277,10 @@ bool_func(x) || return y
 
 # Create array using func and loop
 arr = [func() for x in list]
+
+@. #Broadcast . operator ie
+# These are all equivalent: @. x + y * 2 -> x .+ y .* 2
+
 ```
 
 # Tenancy
