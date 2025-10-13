@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Julia Base.md",
+                "file": "Linux.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Julia Base"
+              "title": "Linux"
             }
           },
           {
@@ -183,13 +183,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia Base.md",
+                "file": "Linux.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Julia Base"
+              "title": "Outline of Linux"
             }
           },
           {
@@ -223,11 +223,11 @@
   },
   "active": "ab6f262125cb6f7d",
   "lastOpenFiles": [
+    "Julia Base.md",
     "Julia Advanced.md",
     "postgres.md",
     "Linux.md",
     "Obsidian.md",
-    "Julia Base.md",
     "QuestDB.md",
     "Figures/Screenshot 2025-08-01 at 12.10.55.png",
     "R.md",
