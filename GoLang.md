@@ -502,7 +502,10 @@ func TestExample(t *testing.T){
 }
 ```
 
-
+```go
+go test
+go test -run Func
+```
 Use go test to run the file.
 
 ## Table Driven Tests
