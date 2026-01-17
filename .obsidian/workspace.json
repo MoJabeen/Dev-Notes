@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "postgres.md",
+                "file": "QuestDB.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "postgres"
+              "title": "QuestDB"
             }
           },
           {
@@ -183,13 +183,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "postgres.md",
+                "file": "QuestDB.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of postgres"
+              "title": "Outline of QuestDB"
             }
           },
           {
@@ -223,12 +223,12 @@
   },
   "active": "ab6f262125cb6f7d",
   "lastOpenFiles": [
+    "postgres.md",
     "Linux.md",
     "Julia Base.md",
     "GoLang.md",
     "Julia Packages.md",
     "Julia Advanced.md",
-    "postgres.md",
     "Obsidian.md",
     "QuestDB.md",
     "Figures/Screenshot 2025-08-01 at 12.10.55.png",
