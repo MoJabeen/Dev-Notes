@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Linux.md",
+                "file": "postgres.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Linux"
+              "title": "postgres"
             }
           },
           {
@@ -183,13 +183,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Linux.md",
+                "file": "postgres.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Linux"
+              "title": "Outline of postgres"
             }
           },
           {
@@ -223,10 +223,10 @@
   },
   "active": "ab6f262125cb6f7d",
   "lastOpenFiles": [
+    "Linux.md",
     "Julia Base.md",
     "GoLang.md",
     "Julia Packages.md",
-    "Linux.md",
     "Julia Advanced.md",
     "postgres.md",
     "Obsidian.md",
