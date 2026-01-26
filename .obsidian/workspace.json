@@ -50,6 +50,18 @@
             }
           },
           {
+            "id": "134b17d8356e7526",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.11.5"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.11.5"
+            }
+          },
+          {
             "id": "40174566ea8fa1db",
             "type": "leaf",
             "state": {
@@ -78,7 +90,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -197,13 +209,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Julia Base.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Julia Base"
+              "title": "Outline"
             }
           },
           {
@@ -235,7 +246,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7f578701e83c56b3",
+  "active": "134b17d8356e7526",
   "lastOpenFiles": [
     "Julia Packages.md",
     "Julia Base.md",
