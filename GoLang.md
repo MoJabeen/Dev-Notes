@@ -853,6 +853,32 @@ upper_bound: 40
 ```
 
 
+# Alerting
+
+## Alerting Rules
+
+```
+groups:
+- name: example
+  labels:
+    team: myteam
+  rules:
+  - alert: HighRequestLatency
+    expr: job:request_latency_seconds:mean5m{job="myjob"} > 0.5
+    for: 10m
+    keep_firing_for: 5m
+    labels:
+      severity: page
+    annotations:
+      summary: High request latency
+```
+
+
+- For: Checks the condition is met for X mins before triggering alert
+	- Without this the alert will be instant
+- keep_firing_for: Keep firing alert for x mins, if not inc will stop when the condition is no longer met
+## Alert Manager
+
 # Cobra - CLI
 
 Cobra is a CLI framework. Built around commands (actions), args (things) and flags (modifiers).
