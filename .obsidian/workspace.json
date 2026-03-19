@@ -145,8 +145,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -250,7 +249,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ba41bce760986c9b",
+  "active": "1f3335a1e3a78653",
   "lastOpenFiles": [
     "Julia Packages.md",
     "Julia Base.md",
