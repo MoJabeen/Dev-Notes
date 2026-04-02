@@ -97,12 +97,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GoLang.md",
+                "file": "Claude Code.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GoLang"
+              "title": "Claude Code"
             }
           }
         ],
@@ -225,13 +225,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "GoLang.md",
+                "file": "Claude Code.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of GoLang"
+              "title": "Outline of Claude Code"
             }
           },
           {
@@ -265,9 +265,9 @@
   },
   "active": "c3687ae08faaeaf3",
   "lastOpenFiles": [
+    "GoLang.md",
     "Claude Code.md",
     "Clean Code.md",
-    "GoLang.md",
     "Julia Packages.md",
     "Julia Base.md",
     "postgres.md",
