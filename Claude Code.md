@@ -56,6 +56,20 @@ Project or system specific instructions, placed into the repo or claude dir that
 - Keep under 200 lines
 - Use skills for specific tasks or a path scoped rule.
 
+## Subagents
+
+When claude finds a task that matches the subagents description, it delegates to that subagent, which works independently and returns results. 
+
+Subagents help you:
+
+- **Preserve context** by keeping exploration and implementation out of your main conversation
+- **Enforce constraints** by limiting which tools a subagent can use
+- **Reuse configurations** across projects with user-level subagents
+- **Specialize behavior** with focused system prompts for specific domains
+- **Control costs** by routing tasks to faster, cheaper models like Haiku
+
+**Main purpose i**
+
 ## Skills
 
 Create a SKILL.md file with instructions, Claude will auto use them when relevant or can be used manually via /skill-name.
@@ -79,6 +93,13 @@ When explaining code, always include:
 
 Keep explanations conversational. For complex concepts, use multiple analogies.
 ```
+
+## Hooks
+
+Run shell commands automatically at precise moments in Claudes functioning (when it edits a file, finishes a task, needs input etc). Designed to be deterministic, prompt-based hooks or agent-based hooks also exist.
+
+Placed into ``~/.claude/settings.json``
+
 
 # Inner workings
 
