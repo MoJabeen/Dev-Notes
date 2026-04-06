@@ -55,3 +55,4 @@ When running claude in a directory, it has access to:
 - Extensions in the claude directory (**skills, MCP, hooks, subagents and Claude in Chrome **)
 
 # Sessions
+
