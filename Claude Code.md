@@ -46,4 +46,9 @@ Three step process on every prompt:
 
 # Access
 
-When
+When running claude in a directory, it has access to:
+- All files in your directory
+- The terminal (All commands available in the terminal)
+- Your git state.
+- Your Claude.md (stored in claudes directory) for each projects instructions.
+- Auto memory: Learnings claude saves 
