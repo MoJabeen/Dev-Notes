@@ -16,6 +16,9 @@ author:
 | `/clear`            | Clear conversation history, good to reduce context fog. | `/clear`                            |
 | `/help`             | Show available commands                                 | `/help`                             |
 | `exit` or Ctrl+D    | Exit Claude Code                                        |                                     |
+| /init               | Walks through creating a CLAUDE.md for your project     |                                     |
+| /agents             | Configure custom sub agents                             |                                     |
+| /doctor             | Any issues with installations                           |                                     |
 
 ## Git
 
@@ -32,6 +35,17 @@ Use these keywords:
 - Write test
 - Update
 - Review
+
+## Permission Modes
+
+Shift+Tab to cycle through permission modes:
+
+- Default: Asks before files are edited and commands used
+- Auto-accept edits: Edit files without asking, permission for commands
+- Plan mode: Read only tools, creates plan before execution
+- Auto mode: Evals all actions with background safety checks.
+
+*Can set trusted commands in settings.json file, to avoid asking.*
 
 # Inner workings
 
@@ -76,6 +90,10 @@ Multiple terminals running the same sessions will confuse the context, better to
 
 - Skills load full context on demand
 	- Can be set to be manual only aswell via [disable-model-invocation: true]
-- 
+- Subagents get their own fresh context, when done they return a summary.
 
+
+# Tips
+
+Context fog causes performance degradation. 
 
