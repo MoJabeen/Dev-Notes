@@ -47,6 +47,12 @@ Shift+Tab to cycle through permission modes:
 
 *Can set trusted commands in settings.json file, to avoid asking.*
 
+# Config/Extends
+
+## CLAUDE.md
+
+
+
 # Inner workings
 
 Can be interrupted at any point and steered a different way.
@@ -58,7 +64,7 @@ Three step process on every prompt:
 
 **Claude code serves as the agentic harness (actionable) around claude providing the tools, context management and execution environment that turns LLM into a coding agent.**
 
-# Access
+## Access
 
 When running claude in a directory, it has access to:
 - All files in your directory
@@ -68,7 +74,7 @@ When running claude in a directory, it has access to:
 - Auto memory: Learnings claude saves about your projects and patterns, stored in MEMORY.md
 - Extensions in the claude directory (**skills, MCP, hooks, subagents and Claude in Chrome)
 
-# Sessions
+## Sessions
 
 You are able to **rewind, resume and fork** sessions. Sessions are independent, each one starts without the previous conversation history can use the command to continue the previous. Conversations will carry across branch switches. Use git worktrees for separate sessions for each branch.
 
@@ -78,7 +84,7 @@ claude --continue --fork-session #Alows you to continue prev convo on a forked s
 
 Multiple terminals running the same sessions will confuse the context, better to use forking !
 
-# Context Window
+## Context Window
 
 ```
 /context # Sees what taking space in the context window.
@@ -86,7 +92,7 @@ Multiple terminals running the same sessions will confuse the context, better to
 /compact # Choose what parts of the context should be focused on when compacting can be added to CLAUDE.md
 ```
 
-## Manage Context
+### Manage Context
 
 - Skills load full context on demand
 	- Can be set to be manual only aswell via [disable-model-invocation: true]
@@ -95,5 +101,13 @@ Multiple terminals running the same sessions will confuse the context, better to
 
 # Tips
 
-Context fog causes performance degradation. 
+- Context fog causes performance degradation. 
 
+- Give something to verify against in any form
+
+```
+Implement func(), Test cases: 'meh' -> true, 'hem' -> false.
+```
+
+- Explore before implementing 
+	- Treat it like a consultant that needs a well understood spec before starting work !!!
