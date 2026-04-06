@@ -56,3 +56,8 @@ When running claude in a directory, it has access to:
 
 # Sessions
 
+You are able to **rewind, resume and fork** sessions. Sessions are independent, each one starts without the previous conversation history can use the command to continue the previous. Conversations will carry across branch switches. Use git worktrees for separate sessions for each branch.
+
+```
+claude --continue --fork-session #Alows 
+```
