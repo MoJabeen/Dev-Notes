@@ -52,12 +52,30 @@ When running claude in a directory, it has access to:
 - Your git state.
 - Your Claude.md (stored in claudes directory) for each projects instructions.
 - Auto memory: Learnings claude saves about your projects and patterns, stored in MEMORY.md
-- Extensions in the claude directory (**skills, MCP, hooks, subagents and Claude in Chrome **)
+- Extensions in the claude directory (**skills, MCP, hooks, subagents and Claude in Chrome)
 
 # Sessions
 
 You are able to **rewind, resume and fork** sessions. Sessions are independent, each one starts without the previous conversation history can use the command to continue the previous. Conversations will carry across branch switches. Use git worktrees for separate sessions for each branch.
 
 ```
-claude --continue --fork-session #Alows 
+claude --continue --fork-session #Alows you to continue prev convo on a forked session
 ```
+
+Multiple terminals running the same sessions will confuse the context, better to use forking !
+
+# Context Window
+
+```
+/context # Sees what taking space in the context window.
+
+/compact # Choose what parts of the context should be focused on when compacting can be added to CLAUDE.md
+```
+
+## Manage Context
+
+- Skills load full context on demand
+	- Can be set to be manual only aswell via [disable-model-invocation: true]
+- 
+
+
