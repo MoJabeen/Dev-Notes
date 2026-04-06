@@ -68,7 +68,9 @@ Subagents help you:
 - **Specialize behavior** with focused system prompts for specific domains
 - **Control costs** by routing tasks to faster, cheaper models like Haiku
 
-**Main purpose i**
+**Main purpose is to control your context window !**
+
+`Use /agents command to create subagent.` The description is key for allowing claude to auto use it.
 
 ## Skills
 
