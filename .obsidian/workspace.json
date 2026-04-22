@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "Claude Code"
             }
+          },
+          {
+            "id": "1ec2a9b0c00b0528",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.12.7"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.12.7"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -140,13 +153,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Claude Code.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Claude Code"
+              "title": "Outline"
             }
           },
           {
@@ -178,7 +190,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c204ad92e154f158",
+  "active": "1ec2a9b0c00b0528",
   "lastOpenFiles": [
     "postgres.md",
     "QuestDB.md",
